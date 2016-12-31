@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="loginPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="501.0" prefWidth="828.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <VBox alignment="CENTER" fillWidth="false" BorderPane.alignment="CENTER">
+         <children>
+            <VBox fx:id="loginBox" alignment="CENTER" prefHeight="288.0" prefWidth="387.0" spacing="16.0">
+               <children>
+                  <Label text="LOGIN TO KITTY FAV PAYROLL" textFill="WHITE">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <JFXTextField maxWidth="300.0" prefWidth="300.0" promptText="Username">
+                     <font>
+                        <Font size="14.0" />
+                     </font></JFXTextField>
+                  <JFXPasswordField maxWidth="300.0" prefWidth="300.0" promptText="Password">
+                     <font>
+                        <Font size="14.0" />
+                     </font></JFXPasswordField>
+                  <JFXButton fx:id="loginB" maxWidth="300.0" prefWidth="290.0" text="LOGIN" />
+                  <Label text="Incorrect Username or Password" textFill="#ff3d3d">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>

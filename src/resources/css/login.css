@@ -1,0 +1,32 @@
+#loginBox {
+    -fx-background-color: rgba(190,190,190,0.4);
+        -fx-background-radius : 10px;
+
+}
+
+.jfx-text-field, .jfx-password-field{
+	-fx-background-color: rgba(0,0,0,0);
+    -fx-font-weight: BOLD;
+    -fx-prompt-text-fill: #d9d9d9;
+    -fx-text-fill: white;
+    -fx-alignment: top-left ;
+    -fx-focus-color: #CC3366;
+    -fx-unfocus-color: #4d4d4d;
+    -fx-max-width: 300;
+}
+
+#loginPane {
+    -fx-background-image: url("/resources/images/background_1.jpg");
+    -fx-background-position: center center;
+    -fx-background-size: stretch;
+}
+
+.button-raised{
+	-fx-padding: 0.7em 0.57em;
+    -fx-font-size: 14px;
+    -fx-button-type: RAISED;
+    -fx-background-color: #CC3366;
+    -fx-pref-width: 200;
+    -fx-text-fill: WHITE;
+}
+

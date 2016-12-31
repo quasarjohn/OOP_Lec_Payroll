@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox fx:id="container" prefHeight="457.0" prefWidth="633.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox spacing="16.0" HBox.hgrow="ALWAYS">
+         <children>
+            <ScrollPane fx:id="sp" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" pannable="true" vbarPolicy="NEVER">
+               <content>
+                  <VBox fx:id="empListContainer" alignment="TOP_CENTER" />
+               </content>
+               <effect>
+                  <DropShadow color="#0000007f" height="15.0" offsetX="1.0" offsetY="1.0" radius="7.0" width="15.0" />
+               </effect>
+            </ScrollPane>
+            <StackPane fx:id="stackPane" HBox.hgrow="ALWAYS">
+               <children>
+                  <VBox fx:id="vb">
+                     <children>
+                        <ScrollPane fx:id="sp2" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" maxHeight="220.0" minHeight="220.0" pannable="true" prefHeight="220.0" prefWidth="356.0" vbarPolicy="NEVER" VBox.vgrow="NEVER">
+                           <effect>
+                              <DropShadow color="#00000080" height="15.0" offsetX="1.0" offsetY="1.0" radius="7.0" width="15.0" />
+                           </effect>
+                           <content>
+                              <HBox fx:id="hb" prefWidth="200.0" scaleX="1.02" translateX="1.0">
+                                 <children>
+                                    <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" spacing="5.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Label layoutX="40.0" layoutY="69.0" text="PERIOD: 12/8 to 12/15/2017">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                             <VBox.margin>
+                                                <Insets bottom="10.0" />
+                                             </VBox.margin>
+                                          </Label>
+                                          <Label layoutX="26.0" layoutY="26.0" text="Hours Worked: 63">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="40.0" layoutY="160.0" text="x Rate: 33 / hour">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <HBox fx:id="hr1" maxHeight="1.0" prefHeight="1.0" prefWidth="240.0" />
+                                          <HBox alignment="CENTER_LEFT">
+                                             <children>
+                                                <Label text="Total Pay: ">
+                                                   <font>
+                                                      <Font size="18.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label layoutX="10.0" layoutY="10.0" text="P2079.00">
+                                                   <font>
+                                                      <Font size="24.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="40.0" left="40.0" right="40.0" top="20.0" />
+                                       </padding>
+                                    </VBox>
+                                    <VBox layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" spacing="5.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Label layoutX="40.0" layoutY="69.0" text="P2709.00">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                             <VBox.margin>
+                                                <Insets bottom="10.0" />
+                                             </VBox.margin>
+                                          </Label>
+                                          <Label layoutX="26.0" layoutY="26.0" text="- Deductions: 500.00">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="40.0" layoutY="160.0" text="+ Additions: 800.00">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <HBox fx:id="hr1" maxHeight="1.0" prefHeight="1.0" prefWidth="240.0" />
+                                          <HBox alignment="CENTER_LEFT">
+                                             <children>
+                                                <Label text="Net Pay: ">
+                                                   <font>
+                                                      <Font size="18.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label layoutX="10.0" layoutY="10.0" text="P3709">
+                                                   <font>
+                                                      <Font size="24.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="40.0" left="40.0" right="40.0" top="20.0" />
+                                       </padding>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                           </content>
+                        </ScrollPane>
+                     </children>
+                  </VBox>
+                  <JFXButton fx:id="genPayrollB" buttonType="RAISED" text="GENERATE PAYROLL" translateY="164.0" StackPane.alignment="TOP_RIGHT">
+                     <StackPane.margin>
+                        <Insets right="16.0" />
+                     </StackPane.margin>
+                  </JFXButton>
+               </children>
+            </StackPane>
+         </children>
+      </HBox>
+   </children>
+   <padding>
+      <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+   </padding>
+</HBox>

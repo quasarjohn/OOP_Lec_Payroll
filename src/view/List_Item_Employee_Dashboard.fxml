@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<HBox fx:id="list_item_emp" alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="403.0" spacing="10.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
+    <padding>
+        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+    </padding>
+    <children>
+        <Circle fx:id="circle" fill="WHITE" radius="30.0" stroke="WHITE" strokeType="INSIDE" />
+      <VBox alignment="CENTER_LEFT">
+         <children>
+            <Label fx:id="title" text="TIME IN: 10:00 AM">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="subtitle" text="HOURS WORKED: 06:23" />
+         </children>
+      </VBox>
+      <Region prefHeight="78.0" prefWidth="46.0" HBox.hgrow="ALWAYS" />
+      <Label text="P500.25">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+    </children>
+</HBox>

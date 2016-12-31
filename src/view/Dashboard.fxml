@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<HBox fx:id="container" prefHeight="457.0" prefWidth="633.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox spacing="16.0" HBox.hgrow="ALWAYS">
+         <children>
+            <ScrollPane fx:id="sp" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" pannable="true" vbarPolicy="NEVER">
+               <content>
+                  <VBox fx:id="empListContainer" alignment="TOP_CENTER" />
+               </content>
+               <effect>
+                  <DropShadow color="#0000007f" height="15.0" offsetX="1.0" offsetY="1.0" radius="7.0" width="15.0" />
+               </effect>
+            </ScrollPane>
+            <StackPane fx:id="stackPane" HBox.hgrow="ALWAYS">
+               <children>
+                  <VBox fx:id="vb">
+                     <children>
+                        <ScrollPane fx:id="sp2" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" maxHeight="220.0" minHeight="220.0" pannable="true" prefHeight="220.0" prefWidth="356.0" vbarPolicy="NEVER" VBox.vgrow="NEVER">
+                           <effect>
+                              <DropShadow color="#00000080" height="15.0" offsetX="1.0" offsetY="1.0" radius="7.0" width="15.0" />
+                           </effect>
+                           <content>
+                              <HBox fx:id="hb" prefWidth="200.0" scaleX="1.02" translateX="1.0">
+                                 <children>
+                                    <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Label layoutX="40.0" layoutY="64.0" text="SALON SUMMARY">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                             <VBox.margin>
+                                                <Insets bottom="10.0" />
+                                             </VBox.margin>
+                                          </Label>
+                                          <Label text="Salon Income: 3,500.00">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="26.0" layoutY="26.0" text="- Commission: 1,115.00">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <HBox fx:id="hr1" maxHeight="1.0" prefHeight="1.0" prefWidth="240.0" />
+                                          <HBox alignment="CENTER_LEFT">
+                                             <children>
+                                                <Label text="Net Salon Income: ">
+                                                   <font>
+                                                      <Font size="18.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label text="P2,375">
+                                                   <font>
+                                                      <Font size="24.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="40.0" left="40.0" right="40.0" top="20.0" />
+                                       </padding>
+                                    </VBox>
+                                    <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Label layoutX="40.0" layoutY="69.0" text="EMPLOYEE SUMMARY">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                             <VBox.margin>
+                                                <Insets bottom="10.0" />
+                                             </VBox.margin>
+                                          </Label>
+                                          <Label layoutX="26.0" layoutY="26.0" text="Commission: 330.00">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="40.0" layoutY="160.0" text="Regular Pay: 220.00">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <HBox fx:id="hr1" maxHeight="1.0" prefHeight="1.0" prefWidth="240.0" />
+                                          <HBox alignment="CENTER_LEFT">
+                                             <children>
+                                                <Label text="Earning: ">
+                                                   <font>
+                                                      <Font size="18.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label layoutX="10.0" layoutY="10.0" text="P550.00">
+                                                   <font>
+                                                      <Font size="24.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="30.0" left="30.0" right="30.0" top="20.0" />
+                                       </padding>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                           </content>
+                        </ScrollPane>
+                        <ScrollPane fx:id="sp3" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" pannable="true" vbarPolicy="NEVER" VBox.vgrow="ALWAYS">
+                           <VBox.margin>
+                              <Insets left="2.0" right="2.0" top="4.0" />
+                           </VBox.margin>
+                           <content>
+                              <VBox fx:id="jobsDoneListContainer" prefHeight="150.0" prefWidth="356.0" />
+                           </content>
+                        </ScrollPane>
+                     </children>
+                  </VBox>
+                  <Circle fx:id="fab" fill="#cc3366" radius="27.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" translateY="190.0" StackPane.alignment="TOP_RIGHT">
+                     <effect>
+                        <DropShadow color="#00000081" height="15.0" offsetX="2.0" offsetY="2.0" radius="7.0" width="15.0" />
+                     </effect>
+                     <StackPane.margin>
+                        <Insets right="16.0" />
+                     </StackPane.margin>
+                  </Circle>
+               </children>
+            </StackPane>
+         </children>
+      </HBox>
+   </children>
+   <padding>
+      <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+   </padding>
+</HBox>

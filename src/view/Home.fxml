@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXDrawer?>
+<?import com.jfoenix.controls.JFXHamburger?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="borderpane" prefHeight="501.0" prefWidth="826.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <StackPane alignment="TOP_LEFT">
+         <children>
+            <VBox prefHeight="60.0" prefWidth="423.0">
+               <children>
+                  <ScrollPane fx:id="header" hbarPolicy="NEVER" minHeight="72.0" vbarPolicy="NEVER">
+                     <content>
+                        <HBox fx:id="headerContent" alignment="CENTER_LEFT" maxHeight="70.0" minHeight="70.0" prefHeight="70.0" spacing="16.0">
+                           <children>
+                              <JFXHamburger fx:id="hamburger" fillWidth="false" maxHeight="83.0" maxWidth="70.0" prefHeight="60.0" prefWidth="70.0">
+                                 <padding>
+                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                 </padding>
+                              </JFXHamburger>
+                              <Label fx:id="toolbarTitle" text="KITTY FAV PAYROLL" textFill="WHITE">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                     </content>
+                     <effect>
+                        <DropShadow color="#0000007f" height="15.0" offsetX="1.0" offsetY="1.0" radius="7.0" width="15.0" />
+                     </effect>
+                  </ScrollPane>
+                  <BorderPane fx:id="body" VBox.vgrow="ALWAYS" />
+               </children>
+            </VBox>
+            <JFXDrawer fx:id="drawer" alignment="TOP_LEFT" defaultDrawerSize="278.0" maxWidth="0.0" prefHeight="483.0" prefWidth="0.0" resizableOnDrag="true" StackPane.alignment="BOTTOM_LEFT">
+               <effect>
+                  <DropShadow color="#000000cc" height="15.0" radius="7.0" width="15.0" />
+               </effect>
+            </JFXDrawer>
+         </children>
+      </StackPane>
+   </center>
+</BorderPane>

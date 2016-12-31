@@ -1,0 +1,140 @@
+#drawerHeader{
+    -fx-background-color:#339933;
+}
+
+#headerContent, #header{
+    -fx-background-color:#339933;
+}
+
+#header {
+    -fx-border-color: #339933;
+}
+
+.jfx-hamburger-icon{
+    -fx-spacing: 5;
+    -fx-cursor: hand;
+    -fx-background-color : white;
+}
+.jfx-hamburger-icon StackPane{
+    -fx-pref-width: 35px;
+    -fx-pref-height: 5px;
+    -fx-background-color : #D63333;
+    -fx-background-radius : 5px;
+}
+
+#hamburger StackPane{
+    -fx-background-color : white;
+
+    -fx-pref-width: 25px;
+    -fx-pref-height: 2px;
+}
+
+.root {
+    -fx-focus-color: white;
+    -fx-border-color: white;
+    -fx-background-color:white;
+}
+
+.scroll-pane {
+    -fx-border-color:white;
+}
+
+#list_item_emp {
+
+    -fx-border-color: gray;-fx-border-width:0 0 0.5 0 ;
+}
+
+#jobsDoneListContainer, #stackPane, #sp2, #sp, #empListContainer, #hb, #sp3, #attendanceListContainer {
+    -fx-background-color:white;
+    -fx-border-width:0px;
+}
+
+#container {
+    -fx-background-color:#f2f2f2
+}
+
+#h1 {
+    -fx-background-color: #7c2d6d;
+}
+
+#h1 .label {
+    -fx-text-fill: white;
+}
+
+#h2 {
+    -fx-background-color:  #CC3366;
+}
+
+#sp2 {
+     -fx-background-color:  rgba(0,0,0,0);
+}
+
+#hr {
+    -fx-background-color:white;
+}
+
+#hr1 {
+    -fx-background-color:black;
+}
+
+#drawerSp {
+    -fx-border-width: 0;
+    -fx-background-color:white;
+}
+
+#ap {
+    -fx-background-color:rgba(10,10,10,0.5);
+}
+
+#genPayrollB {
+    -fx-background-color: #f2a42d;
+    -fx-text-fill:white;
+}
+
+#profileHeader{
+       -fx-background-image: url("/resources/images/ic_flower.jpg");
+       -fx-background-position: center center;
+      //-fx-background-color: #7c2d6d
+}
+
+#generateBadgeB {
+    -fx-background-color: #f2a42d;
+    -fx-text-fill:white;
+    -fx-background-size: stretch;
+}
+
+#updateInfoB, #oneTimeDedB {
+    -fx-background-color: white;
+}
+
+#lineSeparator {
+    -fx-background-color:gray
+}
+
+#monthCB, #yearCB, #datePicker {
+    -fx-border-color: white;
+    -fx-background-color:white;
+}
+
+#violetHeader {
+    -fx-background-color: #7c2d6d
+}
+
+#violetHeader .label {
+    -fx-text-fill:white
+}
+
+#violetSP {
+    -fx-padding: 0px;
+    -fx-background-color: #7c2d6d
+}
+
+#whiteContainer {
+    -fx-background-color:white;
+}
+
+#greenHeader {
+    -fx-background-color: #8cd98c;
+}
+
+

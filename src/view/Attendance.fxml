@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox fx:id="container" prefHeight="457.0" prefWidth="1461.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox spacing="16.0" HBox.hgrow="ALWAYS">
+         <children>
+            <StackPane minWidth="403.0" prefWidth="403.0">
+               <children>
+                  <ScrollPane fx:id="sp" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" pannable="true" prefHeight="425.0" prefWidth="361.0" vbarPolicy="NEVER">
+                     <content>
+                        <VBox fx:id="empListContainer" alignment="TOP_CENTER" />
+                     </content>
+                     <effect>
+                        <DropShadow color="#0000007f" height="15.0" offsetX="1.0" offsetY="1.0" radius="7.0" width="15.0" />
+                     </effect>
+                  </ScrollPane>
+                  <ScrollPane fx:id="sp" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" maxHeight="82.0" minHeight="82.0" prefHeight="82.0" prefWidth="239.0" vbarPolicy="NEVER" StackPane.alignment="TOP_CENTER">
+                     <content>
+                        <VBox fx:id="sp" alignment="TOP_CENTER" prefHeight="106.0" prefWidth="258.0" spacing="5.0">
+                           <children>
+                              <Label text="EMPLOYEES ATTENDANCE:">
+                                 <VBox.margin>
+                                    <Insets top="16.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <JFXDatePicker fx:id="datePicker" />
+                           </children>
+                           <padding>
+                              <Insets left="16.0" right="16.0" />
+                           </padding>
+                        </VBox>
+                     </content>
+                     <effect>
+                        <DropShadow color="#0000007f" height="15.0" offsetX="1.0" offsetY="1.0" radius="7.0" width="15.0" />
+                     </effect>
+                  </ScrollPane>
+               </children>
+            </StackPane>
+            <VBox fx:id="vb" HBox.hgrow="ALWAYS">
+               <children>
+                  <HBox fillHeight="false" prefWidth="1010.0" spacing="16.0" VBox.vgrow="NEVER">
+                     <children>
+                        <ScrollPane fx:id="sp" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" prefHeight="193.0" prefWidth="389.0" vbarPolicy="NEVER" HBox.hgrow="ALWAYS">
+                           <content>
+                              <VBox fx:id="hb" alignment="CENTER" prefHeight="191.0" prefWidth="376.0" spacing="10.0">
+                                 <children>
+                                    <Label layoutX="10.0" layoutY="66.0" text="MONTHLY ATTENDANCE">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                    </Label>
+                                    <JFXComboBox fx:id="monthCB" editable="true" prefHeight="25.0" prefWidth="245.0" promptText="Select Month" />
+                                    <JFXComboBox fx:id="yearCB" editable="true" layoutX="99.0" layoutY="134.0" prefHeight="25.0" prefWidth="245.0" promptText="Select Year" />
+                                 </children></VBox>
+                           </content>
+                           <effect>
+                              <DropShadow color="#00000081" height="15.0" offsetX="1.0" offsetY="1.0" radius="7.0" width="15.0" />
+                           </effect>
+                        </ScrollPane>
+                        <ScrollPane fx:id="sp" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" layoutX="10.0" layoutY="10.0" maxHeight="231.0" minHeight="191.0" pannable="true" prefHeight="193.0" prefWidth="277.0" vbarPolicy="NEVER">
+                           <effect>
+                              <DropShadow color="#00000080" height="15.0" offsetX="1.0" offsetY="1.0" radius="7.0" width="15.0" />
+                           </effect>
+                           <content>
+                              <VBox fx:id="whiteContainer" alignment="CENTER" prefHeight="227.0" prefWidth="275.0" spacing="16.0">
+                                 <children>
+                                    <Label text="MTD ATTENDANCE">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="90%">
+                                       <font>
+                                          <Font size="48.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+                                 </padding>
+                              </VBox>
+                           </content>
+                        </ScrollPane>
+                        <ScrollPane fx:id="sp1" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" layoutX="743.0" layoutY="10.0" maxHeight="231.0" minHeight="192.0" pannable="true" prefHeight="193.0" prefWidth="277.0" vbarPolicy="NEVER">
+                           <effect>
+                              <DropShadow color="#00000080" height="15.0" offsetX="1.0" offsetY="1.0" radius="7.0" width="15.0" />
+                           </effect>
+                           <content>
+                              <VBox fx:id="whiteContainer" alignment="CENTER" prefHeight="257.0" prefWidth="275.0" spacing="16.0">
+                                 <children>
+                                    <Label text="ATTENDANCE SINCE HIRED">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="85%">
+                                       <font>
+                                          <Font size="48.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+                                 </padding>
+                              </VBox>
+                           </content>
+                        </ScrollPane>
+                     </children>
+                  </HBox>
+                  <ScrollPane fx:id="sp" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" pannable="true" vbarPolicy="NEVER" VBox.vgrow="ALWAYS">
+                     <VBox.margin>
+                        <Insets left="2.0" right="2.0" top="4.0" />
+                     </VBox.margin>
+                     <content>
+                        <FlowPane fx:id="attendanceListContainer" alignment="CENTER" hgap="16.0" prefHeight="200.0" prefWidth="200.0" rowValignment="TOP" vgap="16.0">
+                           <padding>
+                              <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+                           </padding></FlowPane>
+                     </content>
+                  </ScrollPane>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+   <padding>
+      <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+   </padding>
+</HBox>

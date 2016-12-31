@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<ScrollPane fx:id="drawerSp" accessibleRole="PARENT" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" maxWidth="278.0" minWidth="278.0" prefHeight="341.0" prefWidth="310.0" vbarPolicy="NEVER" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
+   <content>
+      <VBox fx:id="sp" minWidth="274.0" prefHeight="337.0" prefWidth="274.0">
+         <children>
+            <HBox fx:id="drawerHeader" alignment="CENTER" prefHeight="159.0" prefWidth="311.0" spacing="10.0">
+               <children>
+                  <Label text="11" textFill="WHITE">
+                     <font>
+                        <Font size="72.0" />
+                     </font>
+                  </Label>
+                  <Label text="December, 2016" textFill="WHITE">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <VBox>
+               <children>
+                  <HBox fx:id="drawerItem1" alignment="CENTER_LEFT" onMouseClicked="#listenToItem1" spacing="16.0">
+                     <children>
+                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/images/ic_attendance.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="Dashboard">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <padding>
+                        <Insets left="16.0" />
+                     </padding>
+                     <VBox.margin>
+                        <Insets top="16.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox fx:id="drawerItem2" alignment="CENTER_LEFT" onMouseClicked="#listenToItem2" spacing="16.0">
+                     <children>
+                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/images/ic_cash.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="Payroll">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <padding>
+                        <Insets left="16.0" />
+                     </padding>
+                  </HBox>
+                  <HBox fx:id="drawerItem3" alignment="CENTER_LEFT" onMouseClicked="#listenToItem3" spacing="16.0">
+                     <children>
+                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/images/ic_person.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="Employees">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <padding>
+                        <Insets left="16.0" />
+                     </padding>
+                  </HBox>
+                  <HBox fx:id="drawerItem4" alignment="CENTER_LEFT" layoutX="10.0" layoutY="106.0" onMouseClicked="#listenToItem4" spacing="16.0">
+                     <children>
+                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/images/ic_person.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="Attendance">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <padding>
+                        <Insets left="16.0" />
+                     </padding>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" spacing="16.0">
+                     <children>
+                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/images/ic_settings.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="Settings">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <padding>
+                        <Insets left="16.0" />
+                     </padding>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </content>
+</ScrollPane>
