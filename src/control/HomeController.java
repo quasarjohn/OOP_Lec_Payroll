@@ -8,16 +8,20 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import screenControls.ScreenController;
 
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 /**
@@ -49,6 +53,8 @@ public class HomeController implements Initializable {
         header.setFitToWidth(true);
         header.setFitToHeight(true);
 
+        loadScreenControls();
+
     }
 
     private void inflateDrawer() {
@@ -65,6 +71,8 @@ public class HomeController implements Initializable {
     @FXML
     private HBox drawerItem4;
 
+    @FXML private HBox headerContent;
+
     @FXML
     private ScrollPane header;
     private ArrayList<HBox> drawerItems = new ArrayList<>();
@@ -72,7 +80,6 @@ public class HomeController implements Initializable {
     private void loadDrawer() {
         try {
             ScrollPane leftDrawer = leftDrawerLoader.load();
-
 
             //leftDrawer.setFitToHeight(true);
             drawer.setSidePane(leftDrawer);
@@ -97,6 +104,7 @@ public class HomeController implements Initializable {
         });
     }
 
+    @FXML
     public void listenToItem2() {
         toolbarTitle.setText("PAYROLL");
         resetDrawerItemFocus();
@@ -107,17 +115,20 @@ public class HomeController implements Initializable {
         });
     }
 
+    @FXML
     public void listenToItem3() {
         toolbarTitle.setText("EMPLOYEES");
         resetDrawerItemFocus();
         focusItem(drawerItem3);
 
         Platform.runLater(() -> {
-            employeeController.populateEmpList();
             body.setCenter(empPane);
+            employeeController.populateEmpList();
+            employeeController.initViews();
         });
     }
 
+    @FXML
     public void listenToItem4() {
         toolbarTitle.setText("ATTENDANCE");
         resetDrawerItemFocus();
@@ -140,17 +151,21 @@ public class HomeController implements Initializable {
 
     private void loadListeners() {
         hamburger.setOnMouseClicked(e -> {
-            if (drawer.isShown()) {
-                drawer.close();
-            } else {
-                drawer.open();
-            }
+            Platform.runLater(() -> {
+                if (drawer.isShown()) {
+                    drawer.close();
+                } else {
+                    drawer.open();
+                }
+            });
         });
 
         borderpane.setOnMouseClicked(e -> {
-            if (drawer.isShown()) {
-                drawer.close();
-            }
+            Platform.runLater(() -> {
+                if (drawer.isShown()) {
+                    drawer.close();
+                }
+            });
         });
     }
 
@@ -191,5 +206,26 @@ public class HomeController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    private ImageView powerB;
+    private void loadScreenControls() {
+        ScreenController controls = new ScreenController(borderpane, Domain.getPrimaryStage(), headerContent);
+    }
+
+    @FXML
+    private void closeApp() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setHeaderText("Are you sure you want to exit?");
+        Optional result = alert.showAndWait();
+        if(result.get() == ButtonType.OK) {
+            System.exit(0);
+        }
+    }
+
+    @FXML
+    private void minimizeApp() {
+        Domain.getPrimaryStage().setIconified(true);
     }
 }

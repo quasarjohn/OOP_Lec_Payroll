@@ -6,8 +6,11 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -20,7 +23,7 @@
                <children>
                   <ScrollPane fx:id="header" hbarPolicy="NEVER" minHeight="72.0" vbarPolicy="NEVER">
                      <content>
-                        <HBox fx:id="headerContent" alignment="CENTER_LEFT" maxHeight="70.0" minHeight="70.0" prefHeight="70.0" spacing="16.0">
+                        <HBox fx:id="headerContent" alignment="CENTER_LEFT" maxHeight="70.0" minHeight="70.0" prefHeight="70.0" prefWidth="730.0" spacing="16.0">
                            <children>
                               <JFXHamburger fx:id="hamburger" fillWidth="false" maxHeight="83.0" maxWidth="70.0" prefHeight="60.0" prefWidth="70.0">
                                  <padding>
@@ -32,6 +35,20 @@
                                     <Font size="20.0" />
                                  </font>
                               </Label>
+                              <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                              <ImageView fx:id="minimizeB" fitHeight="25.0" fitWidth="25.0" layoutX="699.0" layoutY="33.0" onMouseClicked="#minimizeApp" pickOnBounds="true">
+                                 <image>
+                                    <Image url="@../resources/images/ic_minimize.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="powerB" fitHeight="25.0" fitWidth="25.0" onMouseClicked="#closeApp" pickOnBounds="true">
+                                 <image>
+                                    <Image url="@../resources/images/ic_power.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets right="16.0" />
+                                 </HBox.margin>
+                              </ImageView>
                            </children>
                         </HBox>
                      </content>

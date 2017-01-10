@@ -1,15 +1,22 @@
 package control;
 
+import animators.FabAnimator;
 import domain.Domain;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import values.Styles;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -30,6 +37,12 @@ public class DashboardController implements Initializable {
     @FXML
     private Circle fab;
 
+    @FXML
+    private StackPane stackPane;
+
+    @FXML
+    private Button dashboardAddB, cancelB;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         sp.setFitToWidth(true);
@@ -39,6 +52,7 @@ public class DashboardController implements Initializable {
         Image image = new Image(getClass().getResourceAsStream("/resources/images/ic_fab.png"));
         ImagePattern pattern = new ImagePattern(image);
         fab.setFill(pattern);
+
     }
 
     void populateEmpList() {
@@ -50,5 +64,20 @@ public class DashboardController implements Initializable {
             empListContainer.getChildren().addAll(hb);
             Domain.getEmpList().add(hb);
         }
+
+        dashboardAddB.setStyle(Styles.ButtonStyles.greenButton);
+        cancelB.setStyle(Styles.ButtonStyles.redButton);
+    }
+
+    @FXML
+    private void listenToFAB() {
+        FabAnimator.hideFab(fab);
+        //fab.setVisible(false);
+        stackPane.getChildren().get(0).toFront();
+    }
+
+    @FXML private void listenToCancel() {
+        FabAnimator.showFab(fab);
+        stackPane.getChildren().get(0).toFront();
     }
 }

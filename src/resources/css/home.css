@@ -97,7 +97,7 @@
       //-fx-background-color: #7c2d6d
 }
 
-#generateBadgeB {
+#generateBadgeB, #dashboardAddButton {
     -fx-background-color: #f2a42d;
     -fx-text-fill:white;
     -fx-background-size: stretch;
@@ -111,7 +111,7 @@
     -fx-background-color:gray
 }
 
-#monthCB, #yearCB, #datePicker {
+#monthCB, #yearCB, #datePicker, #categoryCB {
     -fx-border-color: white;
     -fx-background-color:white;
 }
@@ -137,4 +137,39 @@
     -fx-background-color: #8cd98c;
 }
 
+.text-area {
+    -fx-border-width: 1px;
+    -fx-border-color:gray;
+    -fx-background-insets: 0;
+    -fx-background-color: transparent, white, transparent, white;
+}
+
+.text-area .content {
+    -fx-background-color: transparent, white, transparent, white;
+}
+
+.text-area:focused .content {
+    -fx-background-color: transparent, white, transparent, white;
+}
+
+.text-area:focused {
+    -fx-highlight-fill: #7ecfff;
+}
+
+.text-area .content {
+    -fx-padding: 10px;
+    -fx-text-fill: gray;
+    -fx-highlight-fill: #7ecfff;
+}
+
+#firstnameTF, #middlenameTF, #lastnameTF  {
+    -fx-background-color: rgba(0,0,0,0);
+        -fx-font-weight: BOLD;
+        -fx-prompt-text-fill: lightgray;
+        -fx-text-fill:white;
+        -fx-alignment: top-left ;
+        -fx-focus-color:#8cd98c;
+        -fx-unfocus-color: #4d4d4d;
+        -fx-max-width: 300;
+}
 

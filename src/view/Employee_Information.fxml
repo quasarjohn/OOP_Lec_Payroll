@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<HBox prefHeight="674.0" prefWidth="656.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox spacing="16.0" HBox.hgrow="ALWAYS">
+          <children>
+              <ScrollPane fx:id="sp2" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" maxHeight="244.0" minHeight="244.0" prefHeight="244.0" vbarPolicy="NEVER">
+                  <content>
+                      <VBox maxHeight="242.0" minHeight="242.0" prefHeight="242.0">
+                          <children>
+                              <HBox fx:id="profileHeader" alignment="CENTER_LEFT" fillHeight="false" maxHeight="187.0" minHeight="187.0" prefHeight="187.0" prefWidth="438.0" spacing="16.0">
+                                  <children>
+                                      <Circle fx:id="bigProfileImage" fill="#567b9e" radius="73.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
+                                          <HBox.margin>
+                                              <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+                                          </HBox.margin>
+                                      </Circle>
+                                      <Label fx:id="lbl_name" text="Emma Watson" textFill="WHITE" HBox.hgrow="ALWAYS">
+                                          <font>
+                                              <Font name="Segoe UI" size="48.0" />
+                                          </font>
+                                      </Label>
+                                  </children>
+                              </HBox>
+                              <HBox fx:id="whiteContainer" alignment="CENTER_LEFT" fillHeight="false" maxHeight="55.0" minHeight="55.0" prefHeight="55.0" prefWidth="438.0" spacing="16.0" VBox.vgrow="NEVER">
+                                  <children>
+                                      <Label text="Phone Number:     090512345678">
+                                          <font>
+                                              <Font size="14.0" />
+                                          </font>
+                                      </Label>
+                                      <VBox fx:id="lineSeparator" prefHeight="55.0" prefWidth="1.0">
+                                          <HBox.margin>
+                                              <Insets bottom="4.0" top="4.0" />
+                                          </HBox.margin>
+                                      </VBox>
+                                      <Label layoutX="26.0" layoutY="29.0" text="Address:     Quezon City">
+                                          <font>
+                                              <Font size="14.0" />
+                                          </font>
+                                      </Label>
+                                  </children>
+                                  <padding>
+                                      <Insets left="16.0" />
+                                  </padding>
+                              </HBox>
+                          </children>
+                      </VBox>
+                  </content>
+                  <effect>
+                      <DropShadow color="#00000080" height="15.0" offsetX="1.0" offsetY="1.0" radius="7.0" width="15.0" />
+                  </effect>
+              </ScrollPane>
+              <HBox spacing="16.0" VBox.vgrow="ALWAYS">
+                  <children>
+                      <ScrollPane fx:id="whiteContainer" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="NEVER" HBox.hgrow="ALWAYS">
+                          <content>
+                              <VBox fx:id="whiteContainer" prefHeight="326.0" prefWidth="226.0" spacing="10.0">
+                                  <children>
+                                      <HBox fx:id="violetHeader" alignment="CENTER" layoutX="26.0" layoutY="42.0">
+                                          <children>
+                                              <Label text="PERSONAL INFORMATION" textFill="WHITE">
+                                                  <font>
+                                                      <Font size="14.0" />
+                                                  </font>
+                                              </Label>
+                                          </children>
+                                          <padding>
+                                              <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+                                          </padding>
+                                      </HBox>
+                                      <HBox alignment="CENTER_LEFT" layoutX="26.0" layoutY="26.0" />
+                                      <Label text="Hire Date: 12/16/2016">
+                                          <font>
+                                              <Font size="14.0" />
+                                          </font>
+                                          <VBox.margin>
+                                              <Insets left="16.0" />
+                                          </VBox.margin>
+                                      </Label>
+                                      <Label text="Birthday: 12/18/1994">
+                                          <font>
+                                              <Font size="14.0" />
+                                          </font>
+                                          <VBox.margin>
+                                              <Insets left="16.0" />
+                                          </VBox.margin>
+                                      </Label>
+                                      <Label layoutX="26.0" layoutY="144.0" text="EMERGENCY CONTACT INFORMATION">
+                                          <font>
+                                              <Font name="System Bold" size="14.0" />
+                                          </font>
+                                          <VBox.margin>
+                                              <Insets left="16.0" top="10.0" />
+                                          </VBox.margin>
+                                      </Label>
+                                      <Label text="Contact Person: Gilbert John Cuaresma">
+                                          <font>
+                                              <Font size="14.0" />
+                                          </font>
+                                          <VBox.margin>
+                                              <Insets left="16.0" />
+                                          </VBox.margin>
+                                      </Label>
+                                      <Label layoutX="26.0" layoutY="144.0" text="Address: Quezon City">
+                                          <font>
+                                              <Font size="14.0" />
+                                          </font>
+                                          <VBox.margin>
+                                              <Insets left="16.0" />
+                                          </VBox.margin>
+                                      </Label>
+                                      <Label layoutX="10.0" layoutY="174.0" text="Phone Number: 0932388888">
+                                          <font>
+                                              <Font size="14.0" />
+                                          </font>
+                                          <VBox.margin>
+                                              <Insets left="16.0" />
+                                          </VBox.margin>
+                                      </Label>
+                                  </children>
+                              </VBox>
+                          </content>
+                          <effect>
+                              <DropShadow color="#00000080" height="15.0" offsetX="1.0" offsetY="1.0" radius="7.0" width="15.0" />
+                          </effect>
+                      </ScrollPane>
+                      <StackPane HBox.hgrow="ALWAYS">
+                          <children>
+                              <ScrollPane fx:id="whiteContainer" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="NEVER">
+                                  <content>
+                                      <VBox fx:id="whiteContainer" prefHeight="326.0" prefWidth="226.0" spacing="10.0">
+                                          <children>
+                                              <HBox fx:id="violetHeader" alignment="CENTER" layoutX="26.0" layoutY="42.0">
+                                                  <children>
+                                                      <Label text="DEDUCTIONS" textFill="WHITE">
+                                                          <font>
+                                                              <Font size="14.0" />
+                                                          </font>
+                                                      </Label>
+                                                  </children>
+                                                  <padding>
+                                                      <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+                                                  </padding>
+                                              </HBox>
+                                              <HBox alignment="CENTER_LEFT" layoutX="26.0" layoutY="26.0" />
+                                              <Label layoutX="26.0" layoutY="84.0" text="RECURRING">
+                                                  <font>
+                                                      <Font name="System Bold" size="14.0" />
+                                                  </font>
+                                                  <VBox.margin>
+                                                      <Insets left="16.0" />
+                                                  </VBox.margin>
+                                              </Label>
+                                              <Label text="Pag-ibig: 100.00">
+                                                  <font>
+                                                      <Font size="14.0" />
+                                                  </font>
+                                                  <VBox.margin>
+                                                      <Insets left="16.0" />
+                                                  </VBox.margin>
+                                              </Label>
+                                              <Label text="SSS: 100">
+                                                  <font>
+                                                      <Font size="14.0" />
+                                                  </font>
+                                                  <VBox.margin>
+                                                      <Insets left="16.0" />
+                                                  </VBox.margin>
+                                              </Label>
+                                              <Label layoutX="26.0" layoutY="84.0" text="ONE-TIME">
+                                                  <font>
+                                                      <Font name="System Bold" size="14.0" />
+                                                  </font>
+                                                  <VBox.margin>
+                                                      <Insets left="16.0" top="10.0" />
+                                                  </VBox.margin>
+                                              </Label>
+                                              <Label layoutX="26.0" layoutY="114.0" text="Cash Advance: 1200">
+                                                  <font>
+                                                      <Font size="14.0" />
+                                                  </font>
+                                                  <VBox.margin>
+                                                      <Insets left="16.0" />
+                                                  </VBox.margin>
+                                              </Label>
+                                              <Label text="*Will be cleared after the payroll is generated.">
+                                                  <font>
+                                                      <Font size="10.0" />
+                                                  </font>
+                                                  <VBox.margin>
+                                                      <Insets left="16.0" />
+                                                  </VBox.margin>
+                                              </Label>
+                                          </children>
+                                      </VBox>
+                                  </content>
+                                  <effect>
+                                      <DropShadow color="#00000081" height="15.0" offsetX="1.0" offsetY="1.0" radius="7.0" width="15.0" />
+                                  </effect>
+                              </ScrollPane>
+                              <JFXButton fx:id="oneTimeDedB" buttonType="RAISED" text="ADD ONE-TIME DEDUCTION" StackPane.alignment="BOTTOM_RIGHT">
+                                  <StackPane.margin>
+                                      <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+                                  </StackPane.margin>
+                              </JFXButton>
+                          </children>
+                      </StackPane>
+                  </children>
+              </HBox>
+          </children>
+      </VBox>
+   </children>
+</HBox>

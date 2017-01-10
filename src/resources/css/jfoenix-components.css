@@ -28,7 +28,7 @@
     -fx-font-weight: BOLD;
     -fx-prompt-text-fill: #808080;
     -fx-alignment: top-left ;
-    -fx-focus-color: #4059A9;
+    -fx-focus-color:#8cd98c;
     -fx-unfocus-color: #4d4d4d;
     -fx-max-width: 300;
 }
@@ -366,7 +366,7 @@
     -fx-shape: "M 0 -3.5 L 4 0 L 0 3.5 z";
 }
 .tree-table-row-cell .jfx-text-field{
-    -fx-focus-color: rgba(240,40,40);
+    -fx-focus-color: #8cd98c
 }
 
 .tree-table-row-group{

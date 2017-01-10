@@ -36,6 +36,8 @@ public class JobDoneListFactory {
         });
     }
 
+
+
     public HBox getItem() {
         if(index % 2 == 0) {
             hBox.setStyle("-fx-border-color: gray;-fx-border-width:0 0 0 0 ;");

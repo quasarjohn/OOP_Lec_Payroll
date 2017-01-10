@@ -32,7 +32,6 @@ public class AttendanceController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
     }
-
     void populateEmpList() {
         monthCB.getItems().clear();
         //populate months ComboBox

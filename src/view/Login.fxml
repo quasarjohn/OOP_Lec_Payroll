@@ -3,8 +3,12 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -38,4 +42,23 @@
          </children>
       </VBox>
    </center>
+   <top>
+      <HBox fx:id="header" alignment="CENTER_RIGHT" spacing="10.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fx:id="minimizeB" fitHeight="25.0" fitWidth="25.0" layoutX="797.0" layoutY="26.0" onMouseClicked="#minimizeApp" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resources/images/ic_minimize.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="powerB" fitHeight="25.0" fitWidth="25.0" onMouseClicked="#closeApp" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resources/images/ic_power.png" />
+               </image>
+            </ImageView>
+         </children>
+         <padding>
+            <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+         </padding>
+      </HBox>
+   </top>
 </BorderPane>
