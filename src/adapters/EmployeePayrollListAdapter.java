@@ -1,4 +1,4 @@
-package control;
+package adapters;
 
 
 import domain.Domain;
@@ -16,7 +16,7 @@ import java.io.IOException;
 /**
  * Created by John on 12/11/2016.
  */
-public class EmployeePayrollListFactory {
+public class EmployeePayrollListAdapter {
 
     @FXML
     private Circle circle;
@@ -26,7 +26,7 @@ public class EmployeePayrollListFactory {
     private Label subtitle;
 
     private HBox hBox;
-    public EmployeePayrollListFactory() {
+    public EmployeePayrollListAdapter() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/List_Item_Employee_Payroll.fxml"));
         loader.setController(this);
         try {

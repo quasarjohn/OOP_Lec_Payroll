@@ -1,4 +1,4 @@
-package control;
+package adapters;
 
 import domain.Domain;
 import domain.FocusSwapper;
@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
@@ -16,9 +17,8 @@ import java.io.IOException;
 /**
  * Created by John on 12/11/2016.
  */
-public class EmployeeDashboardListFactory {
+public class EmployeeAttendanceListAdapter {
 
-    private VBox jobsDoneListContainer;
     @FXML
     private Circle circle;
     @FXML
@@ -26,10 +26,10 @@ public class EmployeeDashboardListFactory {
     @FXML
     private Label subtitle;
 
-    private HBox hBox;
     private int i = 0;
-    public EmployeeDashboardListFactory(VBox jobsDoneListContainer) {
-        this.jobsDoneListContainer = jobsDoneListContainer;
+
+    private HBox hBox;
+    public EmployeeAttendanceListAdapter(FlowPane attendanceListContainer) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/List_Item_Employee_Dashboard.fxml"));
         loader.setController(this);
         try {
@@ -42,14 +42,14 @@ public class EmployeeDashboardListFactory {
         circle.setFill(pattern);
 
         hBox.setOnMouseClicked(e -> {
-           i = 0;
+            i = 0;
             if (e.isStillSincePress()) {
                 FocusSwapper.changeFocus(hBox, Domain.getEmpList());
-                jobsDoneListContainer.getChildren().clear();
-                for (; i < 5; i++) {
-                        JobDoneListFactory jobDoneListFactory = new JobDoneListFactory(i);
-                        HBox hb = jobDoneListFactory.getItem();
-                        jobsDoneListContainer.getChildren().addAll(hb);
+                attendanceListContainer.getChildren().clear();
+                for (; i < 31; i++) {
+                    MonthToDateAttendanceListAdapter mtd = new MonthToDateAttendanceListAdapter();
+                    VBox hb = mtd.getItem();
+                    attendanceListContainer.getChildren().addAll(hb);
                 }
             }
         });

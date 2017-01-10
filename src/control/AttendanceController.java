@@ -1,18 +1,14 @@
 package control;
 
+import adapters.EmployeeAttendanceListAdapter;
 import com.jfoenix.controls.JFXComboBox;
 import domain.Domain;
 import domain.StaticData;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.image.Image;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.ImagePattern;
-import javafx.scene.shape.Circle;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -43,7 +39,7 @@ public class AttendanceController implements Initializable {
         Domain.getEmpList().clear();
         empListContainer.getChildren().clear();
         for (int i = 0; i < 8; i++) {
-            EmployeeAttendanceListFactory emp = new EmployeeAttendanceListFactory(attendanceListContainer);
+            EmployeeAttendanceListAdapter emp = new EmployeeAttendanceListAdapter(attendanceListContainer);
             HBox hb = emp.getItem();
             empListContainer.getChildren().addAll(hb);
             Domain.getEmpList().add(hb);

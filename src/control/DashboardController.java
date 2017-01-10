@@ -1,14 +1,13 @@
 package control;
 
+import adapters.EmployeeDashboardListAdapter;
 import animators.FabAnimator;
 import domain.Domain;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -16,7 +15,6 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import values.Styles;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -59,7 +57,7 @@ public class DashboardController implements Initializable {
         Domain.getEmpList().clear();
         empListContainer.getChildren().clear();
         for (int i = 0; i < 8; i++) {
-            EmployeeDashboardListFactory emp = new EmployeeDashboardListFactory(jobsDoneListContainer);
+            EmployeeDashboardListAdapter emp = new EmployeeDashboardListAdapter(jobsDoneListContainer);
             HBox hb = emp.getItem();
             empListContainer.getChildren().addAll(hb);
             Domain.getEmpList().add(hb);

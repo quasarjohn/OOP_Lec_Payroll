@@ -162,7 +162,7 @@
     -fx-highlight-fill: #7ecfff;
 }
 
-#firstnameTF, #middlenameTF, #lastnameTF  {
+#tf_lastName, #tf_firstName, #tf_middleName, #hour, #min  {
     -fx-background-color: rgba(0,0,0,0);
         -fx-font-weight: BOLD;
         -fx-prompt-text-fill: lightgray;
@@ -172,4 +172,3 @@
         -fx-unfocus-color: #4d4d4d;
         -fx-max-width: 300;
 }
-

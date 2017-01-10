@@ -1,4 +1,4 @@
-package control;
+package adapters;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.HBox;
@@ -9,11 +9,11 @@ import java.io.IOException;
 /**
  * Created by John on 12/11/2016.
  */
-public class MonthToDateAttendanceListFactory {
+public class MonthToDateAttendanceListAdapter {
 
     private VBox vb;
 
-    public MonthToDateAttendanceListFactory() {
+    public MonthToDateAttendanceListAdapter() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/List_Item_Attendance.fxml"));
         loader.setController(this);
         try {

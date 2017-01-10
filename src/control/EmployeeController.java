@@ -48,6 +48,8 @@ public class EmployeeController implements Initializable {
     @FXML
     private JFXButton updateInfoB, generateBadgeB;
 
+    private String activePane = "INFO";
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Image image = new Image(getClass().getResourceAsStream("/resources/images/ic_face4.jpg"));
@@ -58,7 +60,8 @@ public class EmployeeController implements Initializable {
     }
 
     public void initViews() {
-        FXMLLoader emp_information_loader = new FXMLLoader(getClass().getResource("/view/Employee_Information.fxml"));
+        FXMLLoader emp_information_loader = new FXMLLoader(getClass().
+                getResource("/view/Employee_Information.fxml"));
         emp_information_loader.setController(this);
         try {
             hb_emp_information = emp_information_loader.load();
@@ -71,7 +74,8 @@ public class EmployeeController implements Initializable {
         bigProfileImage.setFill(pattern);
         fab.setFill(fabPattern);
 
-        FXMLLoader hb_emp_edit_information_loader = new FXMLLoader(getClass().getResource("/view/Employee_Edit_Information.fxml"));
+        FXMLLoader hb_emp_edit_information_loader = new FXMLLoader(getClass().
+                getResource("/view/Employee_Edit_Information.fxml"));
         hb_emp_edit_information_loader.setController(this);
         try {
             hb_emp_edit_information = hb_emp_edit_information_loader.load();
@@ -79,8 +83,11 @@ public class EmployeeController implements Initializable {
             e.printStackTrace();
         }
 
-        FXMLLoader hb_add_employee_loader = new FXMLLoader(getClass().getResource("/view/Employee_Add_New.fxml"));
-        hb_add_employee_loader.setController(this);
+        //LOAD ADD EMPLOYEE VIEW
+        AddEmployeeController addEmployeeController = new AddEmployeeController(this);
+        FXMLLoader hb_add_employee_loader = new FXMLLoader(getClass().
+                getResource("/view/Employee_Add_New.fxml"));
+        hb_add_employee_loader.setController(addEmployeeController);
         try {
             hb_add_employee = hb_add_employee_loader.load();
         } catch (IOException e) {
@@ -103,6 +110,8 @@ public class EmployeeController implements Initializable {
 
     @FXML
     private void listenToUpdateButton() {
+
+
 
         if (editInfoActive) {
             vb.getChildren().setAll(hb_emp_information);
@@ -128,6 +137,9 @@ public class EmployeeController implements Initializable {
 
     @FXML
     private void listenToFAB() {
+
+        activePane = "ADD";
+
         FabAnimator.hideFab(fab);
         vb.getChildren().setAll(hb_add_employee);
 
