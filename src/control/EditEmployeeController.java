@@ -1,6 +1,9 @@
 package control;
 
-import com.jfoenix.controls.*;
+import com.jfoenix.controls.JFXCheckBox;
+import com.jfoenix.controls.JFXDatePicker;
+import com.jfoenix.controls.JFXRadioButton;
+import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
@@ -15,9 +18,6 @@ import values.Strings;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.CopyOption;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.UUID;
@@ -25,7 +25,7 @@ import java.util.UUID;
 /**
  * Created by John on 1/11/2017.
  */
-public class AddEmployeeController {
+public class EditEmployeeController {
 
     //WIRE VIEWS
     @FXML
@@ -51,7 +51,7 @@ public class AddEmployeeController {
 
     private EmployeeController context;
 
-    public AddEmployeeController(EmployeeController context) {
+    public EditEmployeeController(EmployeeController context) {
         this.context = context;
     }
 

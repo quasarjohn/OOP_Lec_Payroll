@@ -2,13 +2,13 @@ package control;
 
 import adapters.EmployeeAttendanceListAdapter;
 import com.jfoenix.controls.JFXComboBox;
-import domain.Domain;
-import domain.StaticData;
+import utils.Domain;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import values.Strings;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -29,12 +29,8 @@ public class AttendanceController implements Initializable {
 
     }
     void populateEmpList() {
-        monthCB.getItems().clear();
-        //populate months ComboBox
-        String[] months = StaticData.getMonths();
-        for(int i = 0; i < 12; i++) {
-            monthCB.getItems().add(months[i]);
-        }
+
+        monthCB.getItems().setAll(Strings.months());
 
         Domain.getEmpList().clear();
         empListContainer.getChildren().clear();

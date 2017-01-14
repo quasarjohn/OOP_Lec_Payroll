@@ -1,8 +1,7 @@
 package adapters;
 
-import control.JobDoneListFactory;
-import domain.Domain;
-import domain.FocusSwapper;
+import utils.Domain;
+import animators.FocusSwapper;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
@@ -48,8 +47,8 @@ public class EmployeeDashboardListAdapter {
                 FocusSwapper.changeFocus(hBox, Domain.getEmpList());
                 jobsDoneListContainer.getChildren().clear();
                 for (; i < 5; i++) {
-                        JobDoneListFactory jobDoneListFactory = new JobDoneListFactory(i);
-                        HBox hb = jobDoneListFactory.getItem();
+                        JobDoneListAdapter jobDoneListAdapter = new JobDoneListAdapter(i);
+                        HBox hb = jobDoneListAdapter.getItem();
                         jobsDoneListContainer.getChildren().addAll(hb);
                 }
             }

@@ -8,7 +8,7 @@ import java.sql.SQLException;
 /**
  * Created by John on 1/11/2017.
  */
-public class EmployeeAdder {
+public class EmployeeWriter {
 
     private static AppConnection conn;
 
@@ -33,7 +33,12 @@ public class EmployeeAdder {
                 emp.getBirthDate() + "','" +
                 emp.getHireDate() + "','" +
                 emp.getSchedule() + "','" +
-                emp.getTime() + "')"
+                emp.getTime() + "'," +
+                emp.getPagIbig() + "," +
+                emp.getSss() + ",'" +
+                emp.getImageUUID() + "'"
+                + ")"
+
         );
 
         try {

@@ -2,7 +2,7 @@ package control;
 
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
-import domain.Domain;
+import utils.Domain;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -52,6 +52,8 @@ public class HomeController implements Initializable {
 
         header.setFitToWidth(true);
         header.setFitToHeight(true);
+
+        Domain.setToolbarTitle(toolbarTitle);
 
         loadScreenControls();
 
@@ -124,7 +126,7 @@ public class HomeController implements Initializable {
         Platform.runLater(() -> {
             body.setCenter(empPane);
             employeeController.populateEmpList();
-            employeeController.initViews();
+
         });
     }
 
@@ -188,6 +190,7 @@ public class HomeController implements Initializable {
         dashboardController = new DashboardController();
         payrollController = new PayrollController();
         employeeController = new EmployeeController();
+        //TODO
         attendanceController = new AttendanceController();
 
         //Set controllers
@@ -206,6 +209,8 @@ public class HomeController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        employeeController.initViews();
     }
 
     @FXML

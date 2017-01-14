@@ -18,7 +18,9 @@ public class Employee {
     //CONTACT DETAILS
     private String phoneNumber, contactPerson, contactPersonNumber, contactPersonAddress;
 
-    private String schedule, time;
+    private String schedule, time, imageUUID;
+
+    private double pagIbig, sss;
 
     public int getPre_empNo() {
         return pre_empNo;
@@ -138,5 +140,29 @@ public class Employee {
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    public double getPagIbig() {
+        return pagIbig;
+    }
+
+    public void setPagIbig(double pagIbig) {
+        this.pagIbig = pagIbig;
+    }
+
+    public double getSss() {
+        return sss;
+    }
+
+    public void setSss(double sss) {
+        this.sss = sss;
+    }
+
+    public String getImageUUID() {
+        return imageUUID;
+    }
+
+    public void setImageUUID(String imageUUID) {
+        this.imageUUID = imageUUID;
     }
 }

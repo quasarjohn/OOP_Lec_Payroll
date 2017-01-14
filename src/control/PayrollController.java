@@ -1,7 +1,7 @@
 package control;
 
 import adapters.EmployeePayrollListAdapter;
-import domain.Domain;
+import utils.Domain;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ScrollPane;

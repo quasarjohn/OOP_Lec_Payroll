@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
@@ -15,8 +18,9 @@
          <children>
             <HBox spacing="16.0">
                <children>
-                  <StackPane>
+                  <StackPane fx:id="empListSP">
                      <children>
+                        <VBox fx:id="restrictionPane" prefHeight="200.0" prefWidth="100.0" />
                         <ScrollPane fx:id="sp" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" maxWidth="403.0" minWidth="403.0" pannable="true" prefWidth="403.0" vbarPolicy="NEVER">
                            <content>
                               <VBox fx:id="empListContainer" alignment="TOP_CENTER" />
@@ -24,6 +28,9 @@
                            <effect>
                               <DropShadow color="#0000007f" height="15.0" offsetX="1.0" offsetY="1.0" radius="7.0" width="15.0" />
                            </effect>
+                           <StackPane.margin>
+                              <Insets top="80.0" />
+                           </StackPane.margin>
                         </ScrollPane>
                         <Circle fx:id="fab" fill="DODGERBLUE" onMouseClicked="#listenToFAB" radius="27.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" StackPane.alignment="BOTTOM_RIGHT">
                            <StackPane.margin>
@@ -33,6 +40,19 @@
                               <DropShadow color="#0000007e" height="15.0" offsetX="1.0" offsetY="1.0" radius="7.0" width="15.0" />
                            </effect>
                         </Circle>
+                        <ScrollPane hbarPolicy="NEVER" maxHeight="80.0" prefHeight="388.0" prefWidth="403.0" vbarPolicy="NEVER" StackPane.alignment="TOP_CENTER">
+                          <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="77.0" prefWidth="399.0">
+                                 <children>
+                                    <Label layoutX="14.0" layoutY="14.0" text="10 EMPLOYEES" />
+                                    <JFXComboBox fx:id="empOrderCB" layoutX="14.0" layoutY="39.0" prefHeight="25.0" prefWidth="150.0" promptText="Order By" />
+                                 </children>
+                              </AnchorPane>
+                          </content>
+                           <effect>
+                              <DropShadow color="#00000081" height="15.0" radius="7.0" width="15.0" />
+                           </effect>
+                        </ScrollPane>
                      </children>
                   </StackPane>
                   <VBox fx:id="vb" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS" />
@@ -43,7 +63,7 @@
                   <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
                </StackPane.margin>
                <children>
-                  <JFXButton fx:id="generateBadgeB" buttonType="RAISED" maxWidth="180.0" minWidth="180.0" prefWidth="180.0" text="GENERATE BADGE" />
+                  <JFXButton fx:id="generateBadgeB" buttonType="RAISED" maxWidth="180.0" minWidth="180.0" onAction="#listenToGenerateBadgeB" prefWidth="180.0" text="GENERATE BADGE" />
                   <JFXButton fx:id="updateInfoB" buttonType="RAISED" layoutX="10.0" layoutY="10.0" maxWidth="180.0" minWidth="180.0" onAction="#listenToUpdateButton" prefHeight="25.0" prefWidth="180.0" text="UPDATE INFORMATION" />
                </children>
             </HBox>

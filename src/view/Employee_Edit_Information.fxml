@@ -1,17 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXRadioButton?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<HBox prefHeight="754.0" prefWidth="613.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
+<HBox prefHeight="766.0" prefWidth="784.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox spacing="16.0" HBox.hgrow="ALWAYS">
           <children>
@@ -19,18 +24,28 @@
                   <content>
                       <VBox maxHeight="242.0" minHeight="242.0" prefHeight="242.0">
                           <children>
-                              <HBox fx:id="profileHeader" alignment="CENTER_LEFT" fillHeight="false" maxHeight="187.0" minHeight="187.0" prefHeight="187.0" prefWidth="438.0" spacing="16.0">
+                              <HBox fx:id="profileHeader" alignment="CENTER_LEFT" fillHeight="false" maxHeight="187.0" minHeight="187.0" prefHeight="187.0" prefWidth="438.0">
                                   <children>
                                       <Circle fx:id="bigProfileImage" fill="#567b9e" radius="73.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
                                           <HBox.margin>
-                                              <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+                                              <Insets bottom="16.0" left="16.0" right="26.0" top="16.0" />
                                           </HBox.margin>
                                       </Circle>
-                                      <Label fx:id="lbl_name" text="Emma Watson" textFill="WHITE" HBox.hgrow="ALWAYS">
-                                          <font>
-                                              <Font name="Segoe UI" size="48.0" />
-                                          </font>
-                                      </Label>
+                              <JFXTextField fx:id="tf_firstName" promptText="First Name" text="Gilbert">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tf_middleName" layoutX="204.0" layoutY="86.0" promptText="Middle Name" text="John">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </JFXTextField>
+                              <JFXTextField fx:id="tf_lastName" layoutX="395.0" layoutY="86.0" promptText="Last Name" text="Cuaresma">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </JFXTextField>
                                   </children>
                               </HBox>
                               <HBox fx:id="whiteContainer" alignment="CENTER_LEFT" fillHeight="false" maxHeight="55.0" minHeight="55.0" prefHeight="55.0" prefWidth="438.0" VBox.vgrow="NEVER">
@@ -40,7 +55,7 @@
                                               <Font size="14.0" />
                                           </font>
                                       </Label>
-                              <JFXTextField maxWidth="1.7976931348623157E308" minWidth="103.0" prefHeight="36.0" prefWidth="115.0" text="090512345678">
+                              <JFXTextField fx:id="tf_phoneNumber" maxWidth="1.7976931348623157E308" minWidth="103.0" prefHeight="36.0" prefWidth="115.0" text="0905">
                                  <HBox.margin>
                                     <Insets right="11.0" />
                                  </HBox.margin>
@@ -60,7 +75,7 @@
                                     <Insets left="11.0" />
                                  </HBox.margin>
                                       </Label>
-                              <JFXTextField text="Quezon City">
+                              <JFXTextField fx:id="tf_address" text="QC">
                                  <font>
                                     <Font size="14.0" />
                                  </font></JFXTextField>
@@ -80,35 +95,23 @@
                   <children>
                       <ScrollPane fx:id="whiteContainer" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="NEVER" HBox.hgrow="ALWAYS">
                           <content>
-                              <VBox fx:id="whiteContainer" prefHeight="326.0" prefWidth="226.0" spacing="10.0">
+                              <VBox fx:id="whiteContainer" prefHeight="326.0" prefWidth="226.0">
                                   <children>
-                                      <HBox fx:id="violetHeader" alignment="CENTER" layoutX="26.0" layoutY="42.0">
-                                          <children>
-                                              <Label text="PERSONAL INFORMATION" textFill="WHITE">
-                                                  <font>
-                                                      <Font size="14.0" />
-                                                  </font>
-                                              </Label>
-                                          </children>
-                                          <padding>
-                                              <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
-                                          </padding>
-                                      </HBox>
-                                      <HBox alignment="CENTER_LEFT" layoutX="26.0" layoutY="26.0" />
-                              <HBox alignment="CENTER_LEFT">
+                              <HBox alignment="CENTER_LEFT" layoutX="26.0" layoutY="82.0" spacing="5.0">
+                                 <children>
+                                    <Label text="Hire Date:">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <JFXDatePicker fx:id="hireDatePicker" defaultColor="#339933" editable="false" />
+                                 </children>
                                  <VBox.margin>
                                     <Insets left="16.0" />
                                  </VBox.margin>
-                                 <children>
-                                            <Label text="Hire Date:">
-                                                <font>
-                                                    <Font size="14.0" />
-                                                </font>
-                                            </Label>
-                                    <JFXTextField focusColor="#8cd98c" text="12/16/2016" />
-                                 </children>
                               </HBox>
-                              <HBox alignment="CENTER_LEFT">
+                                      <HBox alignment="CENTER_LEFT" layoutX="26.0" layoutY="26.0" />
+                              <HBox alignment="CENTER_LEFT" spacing="5.0">
                                  <VBox.margin>
                                     <Insets left="16.0" />
                                  </VBox.margin>
@@ -118,7 +121,7 @@
                                                     <Font size="14.0" />
                                                 </font>
                                             </Label>
-                                    <JFXTextField focusColor="#8cd98c" text="12/18/1999" />
+                                    <JFXDatePicker fx:id="birthdayPicker" defaultColor="#339933" />
                                  </children>
                               </HBox>
                                       <Label layoutX="26.0" layoutY="144.0" text="EMERGENCY CONTACT INFORMATION">
@@ -126,12 +129,12 @@
                                               <Font name="System Bold" size="14.0" />
                                           </font>
                                           <VBox.margin>
-                                              <Insets left="16.0" top="10.0" />
+                                              <Insets left="16.0" top="20.0" />
                                           </VBox.margin>
                                       </Label>
                               <HBox alignment="CENTER_LEFT">
                                  <VBox.margin>
-                                    <Insets left="16.0" />
+                                    <Insets left="16.0" top="5.0" />
                                  </VBox.margin>
                                  <children>
                                             <Label text="Contact Person:">
@@ -139,7 +142,7 @@
                                                     <Font size="14.0" />
                                                 </font>
                                             </Label>
-                                    <JFXTextField focusColor="#8cd98c" text="Gilbert John Cuaresma" />
+                                    <JFXTextField fx:id="tf_contactPerson" focusColor="#8cd98c" text="Vangie" />
                                  </children>
                               </HBox>
                               <HBox alignment="CENTER_LEFT">
@@ -152,7 +155,7 @@
                                                     <Font size="14.0" />
                                                 </font>
                                             </Label>
-                                    <JFXTextField focusColor="#8cd98c" text="Quezon City" />
+                                    <JFXTextField fx:id="tf_contactAddress" focusColor="#8cd98c" text="QC" />
                                  </children>
                               </HBox>
                               <HBox alignment="CENTER_LEFT">
@@ -165,10 +168,34 @@
                                                     <Font size="14.0" />
                                                 </font>
                                             </Label>
-                                    <JFXTextField focusColor="#8cd98c" text="0932388888" />
+                                    <JFXTextField fx:id="tf_contactPersonNumber" focusColor="#8cd98c" text="111456" />
                                  </children>
                               </HBox>
+                              <Label layoutX="26.0" layoutY="174.0" text="GENDER">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets left="16.0" top="15.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <HBox>
+                                 <children>
+                                    <JFXRadioButton fx:id="female" layoutX="10.0" layoutY="10.0" selected="true" text="Female">
+                                       <toggleGroup>
+                                          <ToggleGroup fx:id="mf" />
+                                       </toggleGroup>
+                                    </JFXRadioButton>
+                                    <JFXRadioButton fx:id="male" text="Male" toggleGroup="$mf" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets top="5.0" />
+                                 </VBox.margin>
+                              </HBox>
                                   </children>
+                           <padding>
+                              <Insets top="10.0" />
+                           </padding>
                               </VBox>
                           </content>
                           <effect>
@@ -179,20 +206,8 @@
                           <children>
                               <ScrollPane fx:id="whiteContainer" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="NEVER">
                                   <content>
-                                      <VBox fx:id="whiteContainer" prefHeight="326.0" prefWidth="226.0" spacing="10.0">
+                                      <VBox fx:id="whiteContainer" prefHeight="326.0" prefWidth="226.0" spacing="5.0">
                                           <children>
-                                              <HBox fx:id="violetHeader" alignment="CENTER" layoutX="26.0" layoutY="42.0">
-                                                  <children>
-                                                      <Label text="DEDUCTIONS" textFill="WHITE">
-                                                          <font>
-                                                              <Font size="14.0" />
-                                                          </font>
-                                                      </Label>
-                                                  </children>
-                                                  <padding>
-                                                      <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
-                                                  </padding>
-                                              </HBox>
                                               <HBox alignment="CENTER_LEFT" layoutX="26.0" layoutY="26.0" />
                                               <Label layoutX="26.0" layoutY="84.0" text="RECURRING">
                                                   <font>
@@ -212,7 +227,7 @@
                                                             <Font size="14.0" />
                                                         </font>
                                                     </Label>
-                                          <JFXTextField focusColor="#8cd98c" text="100.00" />
+                                          <JFXTextField fx:id="tf_pagIbig" focusColor="#8cd98c" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER_LEFT">
@@ -225,34 +240,40 @@
                                                             <Font size="14.0" />
                                                         </font>
                                                     </Label>
-                                          <JFXTextField focusColor="#8cd98c" text="100" />
+                                          <JFXTextField fx:id="tf_sss" focusColor="#8cd98c" />
                                        </children>
                                     </HBox>
-                                              <Label layoutX="26.0" layoutY="84.0" text="ONE-TIME">
-                                                  <font>
-                                                      <Font name="System Bold" size="14.0" />
-                                                  </font>
-                                                  <VBox.margin>
-                                                      <Insets left="16.0" top="10.0" />
-                                                  </VBox.margin>
-                                              </Label>
-                                              <Label layoutX="26.0" layoutY="114.0" text="Cash Advance: 1200">
-                                                  <font>
-                                                      <Font size="14.0" />
-                                                  </font>
-                                                  <VBox.margin>
-                                                      <Insets left="16.0" />
-                                                  </VBox.margin>
-                                              </Label>
-                                              <Label text="*Will be cleared after the payroll is generated.">
-                                                  <font>
-                                                      <Font size="10.0" />
-                                                  </font>
-                                                  <VBox.margin>
-                                                      <Insets left="16.0" />
-                                                  </VBox.margin>
-                                              </Label>
+                                    <Label text="SCHEDULE">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets left="16.0" top="15.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <FlowPane vgap="10.0">
+                                       <children>
+                                          <JFXCheckBox fx:id="m" checkedColor="#339933" selected="true" text="Monday" />
+                                          <JFXCheckBox fx:id="t" checkedColor="#339933" selected="true" text="Tuesday" />
+                                          <JFXCheckBox fx:id="w" checkedColor="#339933" layoutX="99.0" layoutY="20.0" selected="true" text="Wednesday" />
+                                          <JFXCheckBox fx:id="th" checkedColor="#339933" layoutX="178.0" layoutY="20.0" selected="true" text="Thursday" />
+                                          <JFXCheckBox fx:id="f" checkedColor="#339933" layoutX="257.0" layoutY="20.0" selected="true" text="Friday" />
+                                          <JFXCheckBox fx:id="s" checkedColor="#339933" layoutX="20.0" layoutY="37.0" selected="true" text="Saturday" />
+                                          <JFXCheckBox fx:id="su" checkedColor="#339933" layoutX="99.0" layoutY="37.0" selected="true" text="Sunday" />
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                       </padding>
+                                    </FlowPane>
+                                    <JFXDatePicker fx:id="scheduleTimePicker" defaultColor="#339933">
+                                       <VBox.margin>
+                                          <Insets left="12.0" />
+                                       </VBox.margin>
+                                    </JFXDatePicker>
                                           </children>
+                                 <padding>
+                                    <Insets top="10.0" />
+                                 </padding>
                                       </VBox>
                                   </content>
                                   <effect>

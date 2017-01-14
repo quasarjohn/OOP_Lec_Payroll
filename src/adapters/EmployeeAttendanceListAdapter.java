@@ -1,7 +1,7 @@
 package adapters;
 
-import domain.Domain;
-import domain.FocusSwapper;
+import utils.Domain;
+import animators.FocusSwapper;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;

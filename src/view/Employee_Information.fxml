@@ -35,7 +35,7 @@
                               </HBox>
                               <HBox fx:id="whiteContainer" alignment="CENTER_LEFT" fillHeight="false" maxHeight="55.0" minHeight="55.0" prefHeight="55.0" prefWidth="438.0" spacing="16.0" VBox.vgrow="NEVER">
                                   <children>
-                                      <Label text="Phone Number:     090512345678">
+                                      <Label fx:id="phoneNumberL" text="Phone Number:     090512345678">
                                           <font>
                                               <Font size="14.0" />
                                           </font>
@@ -45,7 +45,7 @@
                                               <Insets bottom="4.0" top="4.0" />
                                           </HBox.margin>
                                       </VBox>
-                                      <Label layoutX="26.0" layoutY="29.0" text="Address:     Quezon City">
+                                      <Label fx:id="addressL" layoutX="26.0" layoutY="29.0" text="Address:     Quezon City">
                                           <font>
                                               <Font size="14.0" />
                                           </font>
@@ -68,20 +68,8 @@
                           <content>
                               <VBox fx:id="whiteContainer" prefHeight="326.0" prefWidth="226.0" spacing="10.0">
                                   <children>
-                                      <HBox fx:id="violetHeader" alignment="CENTER" layoutX="26.0" layoutY="42.0">
-                                          <children>
-                                              <Label text="PERSONAL INFORMATION" textFill="WHITE">
-                                                  <font>
-                                                      <Font size="14.0" />
-                                                  </font>
-                                              </Label>
-                                          </children>
-                                          <padding>
-                                              <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
-                                          </padding>
-                                      </HBox>
                                       <HBox alignment="CENTER_LEFT" layoutX="26.0" layoutY="26.0" />
-                                      <Label text="Hire Date: 12/16/2016">
+                                      <Label fx:id="hireDateL" text="Hire Date: 12/16/2016">
                                           <font>
                                               <Font size="14.0" />
                                           </font>
@@ -89,7 +77,7 @@
                                               <Insets left="16.0" />
                                           </VBox.margin>
                                       </Label>
-                                      <Label text="Birthday: 12/18/1994">
+                                      <Label fx:id="birthDayL" text="Birthday: 12/18/1994">
                                           <font>
                                               <Font size="14.0" />
                                           </font>
@@ -105,7 +93,7 @@
                                               <Insets left="16.0" top="10.0" />
                                           </VBox.margin>
                                       </Label>
-                                      <Label text="Contact Person: Gilbert John Cuaresma">
+                                      <Label fx:id="contactPersonL" text="Contact Person: Gilbert John Cuaresma">
                                           <font>
                                               <Font size="14.0" />
                                           </font>
@@ -113,7 +101,7 @@
                                               <Insets left="16.0" />
                                           </VBox.margin>
                                       </Label>
-                                      <Label layoutX="26.0" layoutY="144.0" text="Address: Quezon City">
+                                      <Label fx:id="contactAddressL" layoutX="26.0" layoutY="144.0" text="Address: Quezon City">
                                           <font>
                                               <Font size="14.0" />
                                           </font>
@@ -121,7 +109,7 @@
                                               <Insets left="16.0" />
                                           </VBox.margin>
                                       </Label>
-                                      <Label layoutX="10.0" layoutY="174.0" text="Phone Number: 0932388888">
+                                      <Label fx:id="contactNumberL" layoutX="10.0" layoutY="174.0" text="Phone Number: 0932388888">
                                           <font>
                                               <Font size="14.0" />
                                           </font>
@@ -142,20 +130,8 @@
                                   <content>
                                       <VBox fx:id="whiteContainer" prefHeight="326.0" prefWidth="226.0" spacing="10.0">
                                           <children>
-                                              <HBox fx:id="violetHeader" alignment="CENTER" layoutX="26.0" layoutY="42.0">
-                                                  <children>
-                                                      <Label text="DEDUCTIONS" textFill="WHITE">
-                                                          <font>
-                                                              <Font size="14.0" />
-                                                          </font>
-                                                      </Label>
-                                                  </children>
-                                                  <padding>
-                                                      <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
-                                                  </padding>
-                                              </HBox>
                                               <HBox alignment="CENTER_LEFT" layoutX="26.0" layoutY="26.0" />
-                                              <Label layoutX="26.0" layoutY="84.0" text="RECURRING">
+                                              <Label layoutX="26.0" layoutY="84.0" text="RECURRING DEDUCTIONS">
                                                   <font>
                                                       <Font name="System Bold" size="14.0" />
                                                   </font>
@@ -163,7 +139,7 @@
                                                       <Insets left="16.0" />
                                                   </VBox.margin>
                                               </Label>
-                                              <Label text="Pag-ibig: 100.00">
+                                              <Label fx:id="pagIbigL" text="Pag-ibig: 100.00">
                                                   <font>
                                                       <Font size="14.0" />
                                                   </font>
@@ -171,7 +147,7 @@
                                                       <Insets left="16.0" />
                                                   </VBox.margin>
                                               </Label>
-                                              <Label text="SSS: 100">
+                                              <Label fx:id="sssL" text="SSS: 100">
                                                   <font>
                                                       <Font size="14.0" />
                                                   </font>
@@ -179,7 +155,7 @@
                                                       <Insets left="16.0" />
                                                   </VBox.margin>
                                               </Label>
-                                              <Label layoutX="26.0" layoutY="84.0" text="ONE-TIME">
+                                              <Label layoutX="26.0" layoutY="84.0" text="ONE-TIME DEDUCTIONS">
                                                   <font>
                                                       <Font name="System Bold" size="14.0" />
                                                   </font>
@@ -203,6 +179,30 @@
                                                       <Insets left="16.0" />
                                                   </VBox.margin>
                                               </Label>
+                                    <Label layoutX="26.0" layoutY="120.0" text="SCHEDULE">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets left="16.0" top="10.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <Label fx:id="schedL" layoutX="26.0" layoutY="150.0" text="Mon, Tue, Wed, Thu, Fri, Sat, Sun">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets left="16.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <Label fx:id="schedTimeL" layoutX="26.0" layoutY="245.0" text="10:00 AM">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets left="16.0" />
+                                       </VBox.margin>
+                                    </Label>
                                           </children>
                                       </VBox>
                                   </content>

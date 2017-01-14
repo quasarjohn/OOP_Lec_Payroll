@@ -1,8 +1,8 @@
 package control;
 
 import adapters.EmployeeDashboardListAdapter;
-import animators.FabAnimator;
-import domain.Domain;
+import animators.CircleAnimator;
+import utils.Domain;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -69,13 +69,13 @@ public class DashboardController implements Initializable {
 
     @FXML
     private void listenToFAB() {
-        FabAnimator.hideFab(fab);
+        CircleAnimator.hideFab(fab);
         //fab.setVisible(false);
         stackPane.getChildren().get(0).toFront();
     }
 
     @FXML private void listenToCancel() {
-        FabAnimator.showFab(fab);
+        CircleAnimator.showFab(fab);
         stackPane.getChildren().get(0).toFront();
     }
 }

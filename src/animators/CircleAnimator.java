@@ -10,7 +10,7 @@ import javafx.util.Duration;
 /**
  * Created by John on 1/8/2017.
  */
-public class FabAnimator {
+public class CircleAnimator {
 
     public static void hideFab(Circle circle) {
 
@@ -34,6 +34,17 @@ public class FabAnimator {
             timeline.setCycleCount(5);
             timeline.play();
         });
+    }
 
+    public static void showDP(Circle circle) {
+        Platform.runLater(() -> {
+            circle.setRadius(0);
+            Timeline timeline = new Timeline(new KeyFrame(Duration.millis(10), ae -> {
+                circle.setRadius(circle.getRadius() + 14.6);
+
+            }));
+            timeline.setCycleCount(5);
+            timeline.play();
+        });
     }
 }

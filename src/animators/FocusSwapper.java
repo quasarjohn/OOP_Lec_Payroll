@@ -1,4 +1,4 @@
-package domain;
+package animators;
 
 import javafx.scene.layout.HBox;
 

@@ -1,9 +1,18 @@
+.root{
+	-fx-font-family: Roboto;
+    src:"/resources/roboto/Roboto-Regular.ttf";
+}
+
 #drawerHeader{
     -fx-background-color:#339933;
 }
 
 #headerContent, #header{
     -fx-background-color:#339933;
+}
+
+#header .label {
+    -fx-text-fill: white;
 }
 
 #header {
@@ -162,7 +171,7 @@
     -fx-highlight-fill: #7ecfff;
 }
 
-#tf_lastName, #tf_firstName, #tf_middleName, #hour, #min  {
+#tf_lastName, #tf_firstName, #tf_middleName, #hireDatePicker, #birthdayPicker, #scheduleTimePicker , #empOrderCB {
     -fx-background-color: rgba(0,0,0,0);
         -fx-font-weight: BOLD;
         -fx-prompt-text-fill: lightgray;
@@ -171,4 +180,8 @@
         -fx-focus-color:#8cd98c;
         -fx-unfocus-color: #4d4d4d;
         -fx-max-width: 300;
+}
+
+#restrictionPane {
+    -fx-background-color:rgba(10,10,10, 0.5);
 }

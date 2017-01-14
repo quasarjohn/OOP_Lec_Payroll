@@ -12,7 +12,7 @@
   <property name="kittyfav_payroll.testoutput.dir" value="${module.kittyfav_payroll.basedir}/out/test/KittyFav Payroll"/>
   
   <path id="kittyfav_payroll.module.bootclasspath">
-    <!-- Paths to be included in compilation bootclasspath -->
+    <!-- ResourcePaths to be included in compilation bootclasspath -->
   </path>
   
   <path id="kittyfav_payroll.module.production.classpath">

@@ -1,25 +1,18 @@
-package control;
+package adapters;
 
-import domain.Domain;
-import domain.FocusSwapper;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
-import javafx.scene.paint.ImagePattern;
-import javafx.scene.shape.Circle;
 
 import java.io.IOException;
 
 /**
  * Created by John on 12/11/2016.
  */
-public class JobDoneListFactory {
+public class JobDoneListAdapter {
 
     private int index;
     private HBox hBox;
-    public JobDoneListFactory(int index) {
+    public JobDoneListAdapter(int index) {
         this.index = index;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/List_Item_Job_Done.fxml"));
         loader.setController(this);

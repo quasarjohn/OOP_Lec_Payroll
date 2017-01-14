@@ -36,7 +36,12 @@ public class DatabaseStructure {
                                     "birth_date date, " +
                                     "hire_date date, " +
                                     "schedule varchar(30), " +
-                                    "schedule_time time, primary key(pre_empNo, post_empNo))");
+                                    "schedule_time time, " +
+                                    "pag_ibig double, " +
+                                    "sss double, " +
+                                    "image_uuid varchar(300)," +
+                                    "primary key(pre_empNo, post_empNo)" +
+                                     ")");
 
         conn.execute();
     }

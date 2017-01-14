@@ -1,8 +1,7 @@
 package control;
 
 import com.jfoenix.controls.JFXButton;
-import com.sun.org.apache.xml.internal.security.Init;
-import domain.Domain;
+import utils.Domain;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
