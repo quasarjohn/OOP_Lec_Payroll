@@ -3,6 +3,7 @@ package values;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Observable;
@@ -167,5 +168,41 @@ public class Strings {
     public static String preDate() {
         SimpleDateFormat format = new SimpleDateFormat("yyMM");
         return format.format(new Date());
+    }
+
+    public static DecimalFormat df() {
+
+        return new DecimalFormat("0.00");
+    }
+
+    public static final ObservableList<String> orderOptions() {
+        ObservableList<String> orderOptions = FXCollections.observableArrayList(
+                "Order by First Name",
+                "Order by Last Name",
+                "Order by Employee Number"
+        );
+        return orderOptions;
+    }
+
+    public static final ObservableList<String> showSelectionOptions() {
+        ObservableList<String> showSelectionOptions = FXCollections.observableArrayList(
+                "Show Active",
+                "Show Inactive",
+                "Show Both"
+        );
+        return showSelectionOptions;
+    }
+
+    public static final ObservableList<String> attendanceTableHeader() {
+        ObservableList<String> attendanceTableHeader = FXCollections.observableArrayList(
+                "DATE", "SCHEDULE", "TIMEIN", "TIMEOUT", "HOURS WORKED", "STATUS"
+        );
+
+        return attendanceTableHeader;
+    }
+
+    public static final SimpleDateFormat getDateFormat() {
+
+        return new SimpleDateFormat("yyyy-MM-dd");
     }
 }

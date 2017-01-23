@@ -1,6 +1,7 @@
 package driver;
 
 import control.MainController;
+import model.dataWriter.EmployeeWriter;
 import utils.Domain;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -14,6 +15,8 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
+
+        EmployeeWriter.initializeAttendance();
 
         primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.setResizable(true);

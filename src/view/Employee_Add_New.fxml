@@ -31,17 +31,17 @@
                                               <Insets bottom="16.0" left="16.0" right="26.0" top="16.0" />
                                           </HBox.margin>
                                       </Circle>
-                              <JFXTextField fx:id="tf_firstName" promptText="First Name" text="Gilbert">
+                              <JFXTextField fx:id="tf_firstName" promptText="First Name">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </JFXTextField>
-                              <JFXTextField fx:id="tf_middleName" layoutX="204.0" layoutY="86.0" promptText="Middle Name" text="John">
+                              <JFXTextField fx:id="tf_middleName" layoutX="204.0" layoutY="86.0" promptText="Middle Name">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </JFXTextField>
-                              <JFXTextField fx:id="tf_lastName" layoutX="395.0" layoutY="86.0" promptText="Last Name" text="Cuaresma">
+                              <JFXTextField fx:id="tf_lastName" layoutX="395.0" layoutY="86.0" promptText="Last Name">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -55,7 +55,7 @@
                                               <Font size="14.0" />
                                           </font>
                                       </Label>
-                              <JFXTextField fx:id="tf_phoneNumber" maxWidth="1.7976931348623157E308" minWidth="103.0" prefHeight="36.0" prefWidth="115.0" text="0905">
+                              <JFXTextField fx:id="tf_phoneNumber" maxWidth="1.7976931348623157E308" minWidth="103.0" prefHeight="36.0" prefWidth="115.0">
                                  <HBox.margin>
                                     <Insets right="11.0" />
                                  </HBox.margin>
@@ -75,7 +75,7 @@
                                     <Insets left="11.0" />
                                  </HBox.margin>
                                       </Label>
-                              <JFXTextField fx:id="tf_address" text="QC">
+                              <JFXTextField fx:id="tf_address">
                                  <font>
                                     <Font size="14.0" />
                                  </font></JFXTextField>
@@ -142,7 +142,7 @@
                                                     <Font size="14.0" />
                                                 </font>
                                             </Label>
-                                    <JFXTextField fx:id="tf_contactPerson" focusColor="#8cd98c" text="Vangie" />
+                                    <JFXTextField fx:id="tf_contactPerson" focusColor="#8cd98c" />
                                  </children>
                               </HBox>
                               <HBox alignment="CENTER_LEFT">
@@ -155,7 +155,7 @@
                                                     <Font size="14.0" />
                                                 </font>
                                             </Label>
-                                    <JFXTextField fx:id="tf_contactAddress" focusColor="#8cd98c" text="QC" />
+                                    <JFXTextField fx:id="tf_contactAddress" focusColor="#8cd98c" />
                                  </children>
                               </HBox>
                               <HBox alignment="CENTER_LEFT">
@@ -168,7 +168,7 @@
                                                     <Font size="14.0" />
                                                 </font>
                                             </Label>
-                                    <JFXTextField fx:id="tf_contactPersonNumber" focusColor="#8cd98c" text="111456" />
+                                    <JFXTextField fx:id="tf_contactPersonNumber" focusColor="#8cd98c" />
                                  </children>
                               </HBox>
                               <Label layoutX="26.0" layoutY="174.0" text="GENDER">

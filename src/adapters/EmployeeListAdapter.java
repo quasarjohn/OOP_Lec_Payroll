@@ -37,10 +37,15 @@ public class EmployeeListAdapter {
     }
 
     private void bindData() {
+        String status = "";
+        if(employee.getEmpStatus().equalsIgnoreCase("INACTIVE")) {
+            status = " (INACTIVE)";
+        }
+
         title.setText(employee.getFirstName() + " " + employee.getMiddleName().charAt(0) + ". " +
         employee.getLastName());
 
-        subtitle.setText(employee.getPre_empNo() + "" + employee.getPost_empNo());
+        subtitle.setText(employee.getPre_empNo() + "" + employee.getPost_empNo() + status);
     }
 
     public HBox getItem() {

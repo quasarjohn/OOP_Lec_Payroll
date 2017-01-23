@@ -2,6 +2,9 @@ package control;
 
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
+import javafx.concurrent.Task;
+import model.dataReader.EmpReader;
+import model.dataStructure.Employee;
 import utils.Domain;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -15,7 +18,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import screenControls.ScreenController;
+import animators.ScreenController;
 
 
 import java.io.IOException;
@@ -40,6 +43,8 @@ public class HomeController implements Initializable {
 
     private FXMLLoader leftDrawerLoader;
 
+    private ArrayList<Employee> emps;
+
     public HomeController() {
         inflateDrawer();
     }
@@ -57,6 +62,7 @@ public class HomeController implements Initializable {
 
         loadScreenControls();
 
+        emps = EmpReader.getEmpList(EmpReader.OrderBy.EMPNO, EmpReader.ShowFilter.ACTIVE);
     }
 
     private void inflateDrawer() {
@@ -73,7 +79,8 @@ public class HomeController implements Initializable {
     @FXML
     private HBox drawerItem4;
 
-    @FXML private HBox headerContent;
+    @FXML
+    private HBox headerContent;
 
     @FXML
     private ScrollPane header;
@@ -119,15 +126,17 @@ public class HomeController implements Initializable {
 
     @FXML
     public void listenToItem3() {
+        Platform.runLater(() -> {
+            drawer.close();
+        });
+
         toolbarTitle.setText("EMPLOYEES");
         resetDrawerItemFocus();
         focusItem(drawerItem3);
+        body.setCenter(empPane);
+        employeeController.initLeftHeader();
+        employeeController.populateEmpList(0, emps);
 
-        Platform.runLater(() -> {
-            body.setCenter(empPane);
-            employeeController.populateEmpList();
-
-        });
     }
 
     @FXML
@@ -215,6 +224,7 @@ public class HomeController implements Initializable {
 
     @FXML
     private ImageView powerB;
+
     private void loadScreenControls() {
         ScreenController controls = new ScreenController(borderpane, Domain.getPrimaryStage(), headerContent);
     }
@@ -224,7 +234,7 @@ public class HomeController implements Initializable {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setHeaderText("Are you sure you want to exit?");
         Optional result = alert.showAndWait();
-        if(result.get() == ButtonType.OK) {
+        if (result.get() == ButtonType.OK) {
             System.exit(0);
         }
     }

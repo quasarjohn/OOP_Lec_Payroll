@@ -4,6 +4,7 @@
 <?import com.jfoenix.controls.JFXDatePicker?>
 <?import com.jfoenix.controls.JFXRadioButton?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXToggleButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
@@ -11,6 +12,7 @@
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
@@ -31,21 +33,27 @@
                                               <Insets bottom="16.0" left="16.0" right="26.0" top="16.0" />
                                           </HBox.margin>
                                       </Circle>
-                              <JFXTextField fx:id="tf_firstName" promptText="First Name" text="Gilbert">
+                              <JFXTextField fx:id="tf_firstName" promptText="First Name">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </JFXTextField>
-                              <JFXTextField fx:id="tf_middleName" layoutX="204.0" layoutY="86.0" promptText="Middle Name" text="John">
+                              <JFXTextField fx:id="tf_middleName" layoutX="204.0" layoutY="86.0" promptText="Middle Name">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </JFXTextField>
-                              <JFXTextField fx:id="tf_lastName" layoutX="395.0" layoutY="86.0" promptText="Last Name" text="Cuaresma">
+                              <JFXTextField fx:id="tf_lastName" layoutX="395.0" layoutY="86.0" promptText="Last Name">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </JFXTextField>
+                              <Region prefHeight="200.0" HBox.hgrow="ALWAYS">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Region>
+                              <JFXToggleButton fx:id="statusToggle" prefHeight="56.0" prefWidth="125.0" selected="true" text="Active" toggleColor="#339933" translateY="-70.0" />
                                   </children>
                               </HBox>
                               <HBox fx:id="whiteContainer" alignment="CENTER_LEFT" fillHeight="false" maxHeight="55.0" minHeight="55.0" prefHeight="55.0" prefWidth="438.0" VBox.vgrow="NEVER">
@@ -142,7 +150,7 @@
                                                     <Font size="14.0" />
                                                 </font>
                                             </Label>
-                                    <JFXTextField fx:id="tf_contactPerson" focusColor="#8cd98c" text="Vangie" />
+                                    <JFXTextField fx:id="tf_contactPerson" focusColor="#8cd98c" />
                                  </children>
                               </HBox>
                               <HBox alignment="CENTER_LEFT">
@@ -155,7 +163,7 @@
                                                     <Font size="14.0" />
                                                 </font>
                                             </Label>
-                                    <JFXTextField fx:id="tf_contactAddress" focusColor="#8cd98c" text="QC" />
+                                    <JFXTextField fx:id="tf_contactAddress" focusColor="#8cd98c" />
                                  </children>
                               </HBox>
                               <HBox alignment="CENTER_LEFT">
@@ -168,7 +176,7 @@
                                                     <Font size="14.0" />
                                                 </font>
                                             </Label>
-                                    <JFXTextField fx:id="tf_contactPersonNumber" focusColor="#8cd98c" text="111456" />
+                                    <JFXTextField fx:id="tf_contactPersonNumber" focusColor="#8cd98c" />
                                  </children>
                               </HBox>
                               <Label layoutX="26.0" layoutY="174.0" text="GENDER">
@@ -253,19 +261,19 @@
                                     </Label>
                                     <FlowPane vgap="10.0">
                                        <children>
-                                          <JFXCheckBox fx:id="m" checkedColor="#339933" selected="true" text="Monday" />
-                                          <JFXCheckBox fx:id="t" checkedColor="#339933" selected="true" text="Tuesday" />
-                                          <JFXCheckBox fx:id="w" checkedColor="#339933" layoutX="99.0" layoutY="20.0" selected="true" text="Wednesday" />
-                                          <JFXCheckBox fx:id="th" checkedColor="#339933" layoutX="178.0" layoutY="20.0" selected="true" text="Thursday" />
-                                          <JFXCheckBox fx:id="f" checkedColor="#339933" layoutX="257.0" layoutY="20.0" selected="true" text="Friday" />
-                                          <JFXCheckBox fx:id="s" checkedColor="#339933" layoutX="20.0" layoutY="37.0" selected="true" text="Saturday" />
-                                          <JFXCheckBox fx:id="su" checkedColor="#339933" layoutX="99.0" layoutY="37.0" selected="true" text="Sunday" />
+                                          <JFXCheckBox fx:id="m" checkedColor="#339933" text="Monday" />
+                                          <JFXCheckBox fx:id="t" checkedColor="#339933" text="Tuesday" />
+                                          <JFXCheckBox fx:id="w" checkedColor="#339933" layoutX="99.0" layoutY="20.0" text="Wednesday" />
+                                          <JFXCheckBox fx:id="th" checkedColor="#339933" layoutX="178.0" layoutY="20.0" text="Thursday" />
+                                          <JFXCheckBox fx:id="f" checkedColor="#339933" layoutX="257.0" layoutY="20.0" text="Friday" />
+                                          <JFXCheckBox fx:id="s" checkedColor="#339933" layoutX="20.0" layoutY="37.0" text="Saturday" />
+                                          <JFXCheckBox fx:id="su" checkedColor="#339933" layoutX="99.0" layoutY="37.0" text="Sunday" />
                                        </children>
                                        <padding>
                                           <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                        </padding>
                                     </FlowPane>
-                                    <JFXDatePicker fx:id="scheduleTimePicker" defaultColor="#339933">
+                                    <JFXDatePicker fx:id="scheduleTimePicker" defaultColor="#339933" editable="false">
                                        <VBox.margin>
                                           <Insets left="12.0" />
                                        </VBox.margin>

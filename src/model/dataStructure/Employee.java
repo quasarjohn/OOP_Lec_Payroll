@@ -20,7 +20,9 @@ public class Employee {
 
     private String schedule, time, imageUUID;
 
-    private double pagIbig, sss;
+    private String pagIbig, sss;
+
+    private String empStatus;
 
     public int getPre_empNo() {
         return pre_empNo;
@@ -142,19 +144,19 @@ public class Employee {
         this.time = time;
     }
 
-    public double getPagIbig() {
+    public String getPagIbig() {
         return pagIbig;
     }
 
-    public void setPagIbig(double pagIbig) {
+    public void setPagIbig(String pagIbig) {
         this.pagIbig = pagIbig;
     }
 
-    public double getSss() {
+    public String getSss() {
         return sss;
     }
 
-    public void setSss(double sss) {
+    public void setSss(String sss) {
         this.sss = sss;
     }
 
@@ -164,5 +166,13 @@ public class Employee {
 
     public void setImageUUID(String imageUUID) {
         this.imageUUID = imageUUID;
+    }
+
+    public String getEmpStatus() {
+        return empStatus;
+    }
+
+    public void setEmpStatus(String empStatus) {
+        this.empStatus = empStatus;
     }
 }

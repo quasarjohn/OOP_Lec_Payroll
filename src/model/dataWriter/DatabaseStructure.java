@@ -22,26 +22,41 @@ public class DatabaseStructure {
         //CREATE TABLE FOR EMPLOYEE
         conn.doSomething("create table employees(" +
 
-                                    "pre_empNo integer not null, " +
-                                    "post_empNo integer not null, " +
-                                    "last_name varchar(100) not null, " +
-                                    "first_name varchar(100), " +
-                                    "middle_name varchar(100), " +
-                                    "gender char(1) constraint gender_ck check(gender in ('M', 'F')), " +
-                                    "phone_number varchar(100), " +
-                                    "address varchar(300), " +
-                                    "contact_person varchar(300), " +
-                                    "contact_person_number varchar(100), " +
-                                    "contact_person_address varchar(300), " +
-                                    "birth_date date, " +
-                                    "hire_date date, " +
-                                    "schedule varchar(30), " +
-                                    "schedule_time time, " +
-                                    "pag_ibig double, " +
-                                    "sss double, " +
-                                    "image_uuid varchar(300)," +
-                                    "primary key(pre_empNo, post_empNo)" +
-                                     ")");
+                "pre_empNo integer not null, " +
+                "post_empNo integer not null, " +
+                "last_name varchar(100) not null, " +
+                "first_name varchar(100), " +
+                "middle_name varchar(100), " +
+                "gender char(1) constraint gender_ck check(gender in ('M', 'F')), " +
+                "phone_number varchar(100), " +
+                "address varchar(300), " +
+                "contact_person varchar(300), " +
+                "contact_person_number varchar(100), " +
+                "contact_person_address varchar(300), " +
+                "birth_date date, " +
+                "hire_date date, " +
+                "schedule varchar(30), " +
+                "schedule_time time, " +
+                "pag_ibig integer, " +
+                "sss integer, " +
+                "image_uuid varchar(300)," +
+                "emp_status varchar(10), " +
+                "primary key(pre_empNo, post_empNo)" +
+                ")");
+        conn.execute();
+
+        //CREATE ATTENDANCE TABLE
+        conn.doSomething("create table attendance (" +
+                "pre_empno integer not null, " +
+                "post_empno integer not null, " +
+                "workdate date not null, " +
+                "schedule_time time, " +
+                "timein time, " +
+                "timeout time, " +
+                "hours_worked time, " +
+                "status varchar(10), " +
+                "primary key(pre_empno, post_empno, workdate), " +
+                "foreign key(pre_empno, post_empno) references employees)");
 
         conn.execute();
     }

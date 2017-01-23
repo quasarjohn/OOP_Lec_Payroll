@@ -1,0 +1,171 @@
+#homeB{
+	-fx-image:url(/resources/home.png) 
+}
+
+#empB{
+	-fx-image:url(/resources/emps.png)
+}
+
+#attendanceB{
+	-fx-image:url(/resources/calendar.png)	
+}
+
+#payrollB{
+	-fx-image:url(/resources/atm.png)	
+}
+
+#commisionB{
+	-fx-image:url(/resources/list.png)	
+}
+
+#settingsB{
+	-fx-image:url(/resources/settings.png)	
+}
+
+#historyB{
+	-fx-image:url(/resources/record.png)	
+}
+
+#loginFrame{
+	-fx-image:url(/resources/loginKitty.png) 
+}
+
+#exitB{
+	-fx-image:url(/resources/exit.png)
+}
+
+#homeB:hover, #empB:hover, #attendanceB:hover, 
+#exitB:hover, #caBox:hover, #cmVB:hover,
+ #payrollB:hover, #commisionB:hover, #settingsB:hover,
+ #historyB:hover{
+	-fx-scale-y:1.08;
+	-fx-scale-x:1.08;
+}
+
+#commonPane{
+	-fx-border-color: #ff4d94;
+	-fx-border-width: 5px;
+	-fx-border-radius: 5px;
+}
+
+#pinkHeader{
+	-fx-background-color: #ff4d94;
+}
+
+#pinkHeader .label{
+	-fx-text-fill: white;
+}
+
+#rightClickButton{
+	-fx-background-color: #ffb3d9;
+}
+
+#rightClickButton:hover{
+	-fx-background-color: #ff80bf;
+}
+
+#body{
+	-fx-background-color: #e0e0d1;
+}
+
+#greenIndicator{
+	-fx-background-color: #33cc33;
+}
+
+#greenIndicator .label{
+	-fx-text-fill:white;
+	-fx-font-size: 14px;
+	-fx-font-weight: bold;
+}
+
+#orangeIndicator{
+	-fx-background-color: #ff751a;
+}
+
+#orangeIndicator .label{
+	-fx-text-fill:white;
+	-fx-font-size: 14px;
+	-fx-font-weight: bold;
+}
+
+#redIndicator{
+	-fx-background-color: #ff4d4d;
+}
+
+#redIndicator .label{
+	-fx-text-fill:white;
+	-fx-font-size: 14px;
+	-fx-font-weight: bold;
+}
+
+#indicatorBody{
+	-fx-background-color: #e0e0d1;
+}
+
+#indicatorBody .label{
+	-fx-font-size: 14px;
+}
+
+#attendancePane{
+	-fx-border-color: #ff4d94;
+	-fx-border-width: 5px;
+	-fx-border-radius: 5px;
+}
+
+#pic{
+	-fx-image:url(/resources/avatar.png);
+}
+
+#kitty{
+	-fx-image:url(/resources/kitty.png);
+}
+
+#id{
+	-fx-background-color: white;
+}
+
+#tempPic{
+	-fx-image:url(/resources/avatar.png)
+}
+
+#idTitle .label{
+	-fx-text-fill: #e6b800;
+}
+
+#moneyHeader{
+	-fx-background-color: #00b300;
+}
+
+#moneyHeader .label{
+	-fx-text-fill: white;
+	-fx-font-weight: bold;
+}
+
+#moneyHeader2{
+	-fx-background-color: #33cc33;
+}
+
+#moneyHeader2 .label{
+	-fx-text-fill:white;
+	-fx-font-size: 12px;
+	-fx-font-weight: bold;
+}
+
+#moneyBody{
+	-fx-background-color: #e0e0d1;
+}
+
+#moneyBody .label{
+	-fx-background-color: #e0e0d1;
+	-fx-font-size: 14px;
+	-fx-font-weight: bold;
+}
+
+#hr{
+	-fx-background-color: black;
+}
+
+#idHB {
+    -fx-background-color:black;
+}
+

@@ -26,7 +26,7 @@
                                               <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
                                           </HBox.margin>
                                       </Circle>
-                                      <Label fx:id="lbl_name" text="Emma Watson" textFill="WHITE" HBox.hgrow="ALWAYS">
+                                      <Label fx:id="lbl_name" textFill="WHITE" HBox.hgrow="ALWAYS">
                                           <font>
                                               <Font name="Segoe UI" size="48.0" />
                                           </font>
@@ -35,7 +35,7 @@
                               </HBox>
                               <HBox fx:id="whiteContainer" alignment="CENTER_LEFT" fillHeight="false" maxHeight="55.0" minHeight="55.0" prefHeight="55.0" prefWidth="438.0" spacing="16.0" VBox.vgrow="NEVER">
                                   <children>
-                                      <Label fx:id="phoneNumberL" text="Phone Number:     090512345678">
+                                      <Label fx:id="phoneNumberL" text="Phone Number:     ">
                                           <font>
                                               <Font size="14.0" />
                                           </font>
@@ -45,7 +45,7 @@
                                               <Insets bottom="4.0" top="4.0" />
                                           </HBox.margin>
                                       </VBox>
-                                      <Label fx:id="addressL" layoutX="26.0" layoutY="29.0" text="Address:     Quezon City">
+                                      <Label fx:id="addressL" layoutX="26.0" layoutY="29.0" text="Address:     ">
                                           <font>
                                               <Font size="14.0" />
                                           </font>
@@ -69,7 +69,7 @@
                               <VBox fx:id="whiteContainer" prefHeight="326.0" prefWidth="226.0" spacing="10.0">
                                   <children>
                                       <HBox alignment="CENTER_LEFT" layoutX="26.0" layoutY="26.0" />
-                                      <Label fx:id="hireDateL" text="Hire Date: 12/16/2016">
+                                      <Label fx:id="hireDateL" text="Hire Date: ">
                                           <font>
                                               <Font size="14.0" />
                                           </font>
@@ -77,7 +77,7 @@
                                               <Insets left="16.0" />
                                           </VBox.margin>
                                       </Label>
-                                      <Label fx:id="birthDayL" text="Birthday: 12/18/1994">
+                                      <Label fx:id="birthDayL" text="Birthday: ">
                                           <font>
                                               <Font size="14.0" />
                                           </font>
@@ -93,7 +93,7 @@
                                               <Insets left="16.0" top="10.0" />
                                           </VBox.margin>
                                       </Label>
-                                      <Label fx:id="contactPersonL" text="Contact Person: Gilbert John Cuaresma">
+                                      <Label fx:id="contactPersonL" text="Contact Person: ">
                                           <font>
                                               <Font size="14.0" />
                                           </font>
@@ -101,7 +101,7 @@
                                               <Insets left="16.0" />
                                           </VBox.margin>
                                       </Label>
-                                      <Label fx:id="contactAddressL" layoutX="26.0" layoutY="144.0" text="Address: Quezon City">
+                                      <Label fx:id="contactAddressL" layoutX="26.0" layoutY="144.0" text="Address: ">
                                           <font>
                                               <Font size="14.0" />
                                           </font>
@@ -109,7 +109,7 @@
                                               <Insets left="16.0" />
                                           </VBox.margin>
                                       </Label>
-                                      <Label fx:id="contactNumberL" layoutX="10.0" layoutY="174.0" text="Phone Number: 0932388888">
+                                      <Label fx:id="contactNumberL" layoutX="10.0" layoutY="174.0" text="Phone Number: ">
                                           <font>
                                               <Font size="14.0" />
                                           </font>
@@ -139,7 +139,7 @@
                                                       <Insets left="16.0" />
                                                   </VBox.margin>
                                               </Label>
-                                              <Label fx:id="pagIbigL" text="Pag-ibig: 100.00">
+                                              <Label fx:id="pagIbigL" text="Pag-ibig: ">
                                                   <font>
                                                       <Font size="14.0" />
                                                   </font>
@@ -147,7 +147,7 @@
                                                       <Insets left="16.0" />
                                                   </VBox.margin>
                                               </Label>
-                                              <Label fx:id="sssL" text="SSS: 100">
+                                              <Label fx:id="sssL" text="SSS: ">
                                                   <font>
                                                       <Font size="14.0" />
                                                   </font>
@@ -163,7 +163,7 @@
                                                       <Insets left="16.0" top="10.0" />
                                                   </VBox.margin>
                                               </Label>
-                                              <Label layoutX="26.0" layoutY="114.0" text="Cash Advance: 1200">
+                                              <Label layoutX="26.0" layoutY="114.0" text="Cash Advance: ">
                                                   <font>
                                                       <Font size="14.0" />
                                                   </font>
@@ -187,7 +187,7 @@
                                           <Insets left="16.0" top="10.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <Label fx:id="schedL" layoutX="26.0" layoutY="150.0" text="Mon, Tue, Wed, Thu, Fri, Sat, Sun">
+                                    <Label fx:id="schedL" layoutX="26.0" layoutY="150.0">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
@@ -195,7 +195,7 @@
                                           <Insets left="16.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <Label fx:id="schedTimeL" layoutX="26.0" layoutY="245.0" text="10:00 AM">
+                                    <Label fx:id="schedTimeL" layoutX="26.0" layoutY="245.0">
                                        <font>
                                           <Font size="14.0" />
                                        </font>

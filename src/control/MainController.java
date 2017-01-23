@@ -13,7 +13,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
-import screenControls.ScreenController;
+import animators.ScreenController;
 
 import java.io.IOException;
 import java.net.URL;

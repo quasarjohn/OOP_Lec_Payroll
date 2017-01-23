@@ -2,13 +2,12 @@ package control;
 
 import com.jfoenix.controls.*;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 import model.dataStructure.Employee;
 import model.dataWriter.EmployeeWriter;
-import utils.DatePickerUtils;
-import utils.Domain;
-import utils.FileUtils;
+import utils.*;
 import values.Images;
 import values.ResourcePaths;
 import values.Strings;
@@ -47,7 +46,8 @@ public class AddEmployeeController {
     @FXML
     private JFXRadioButton female, male;
 
-    private File dpPath;
+    private File dpPath, file;
+
 
     private EmployeeController context;
 
@@ -59,13 +59,18 @@ public class AddEmployeeController {
         scheduleTimePicker.setShowTime(true);
         scheduleTimePicker.setTime(LocalTime.of(10, 00));
 
+        FilterUtils.restrictToNumbers(tf_pagIbig);
+        FilterUtils.restrictToNumbers(tf_sss);
+        FilterUtils.restrictToNumbers(tf_phoneNumber);
+        FilterUtils.restrictToNumbers(tf_contactPersonNumber);
+
         hireDatePicker.setValue(LocalDate.now());
 
         bigProfileImage.setFill(Images.getImagePattern(this, ResourcePaths.camPath));
 
         bigProfileImage.setOnMouseClicked(e -> {
             FileChooser fc = new FileChooser();
-            File file = fc.showOpenDialog(Domain.getPrimaryStage());
+            file = fc.showOpenDialog(Domain.getPrimaryStage());
 
             if(file != null) {
                 File dir = null;
@@ -81,54 +86,63 @@ public class AddEmployeeController {
                 bigProfileImage.setFill(Images.getImagePatternFromFile(this, file.getPath()));
 
             }
-
-            System.out.println(file.getPath());
         });
     }
 
-    public void addEmployee() {
-        String uuid = UUID.randomUUID().toString();
+    public boolean addEmployee() {
+        boolean ready = noEmptyFields();
+        if(ready) {
+            String uuid = UUID.randomUUID().toString();
 
-        Employee emp = new Employee();
-        emp.setPre_empNo(Integer.parseInt(Strings.preDate()));
-        emp.setLastName(tf_lastName.getText());
-        emp.setFirstName(tf_firstName.getText());
-        emp.setMiddleName(tf_middleName.getText());
+            Employee emp = new Employee();
+            emp.setPre_empNo(Integer.parseInt(Strings.preDate()));
+            emp.setLastName(tf_lastName.getText());
+            emp.setFirstName(tf_firstName.getText());
+            emp.setMiddleName(tf_middleName.getText());
 
-        if (m.isSelected()) {
-            emp.setGender("M");
-        } else {
-            emp.setGender("F");
+            if (male.isSelected()) {
+                emp.setGender("M");
+            } else {
+                emp.setGender("F");
+            }
+
+            emp.setPhoneNumber(tf_phoneNumber.getText());
+            emp.setAddress(tf_address.getText());
+            emp.setContactPerson(tf_contactPerson.getText());
+            emp.setContactPersonNumber(tf_contactPersonNumber.getText());
+            emp.setContactPersonAddress(tf_contactAddress.getText());
+            emp.setBirthDate(birthdayPicker.getValue().getYear() + "-" +
+                    DatePickerUtils.wordToInt(birthdayPicker.getValue().getMonth().toString())
+                    + "-" + birthdayPicker.getValue().getDayOfMonth());
+            emp.setHireDate(hireDatePicker.getValue().getYear() + "-" +
+                    DatePickerUtils.wordToInt(hireDatePicker.getValue().getMonth().toString())
+                    + "-" + hireDatePicker.getValue().getDayOfMonth());
+            emp.setSchedule(buildSchedule());
+
+            emp.setTime(scheduleTimePicker.getTime().toString());
+
+            emp.setPagIbig((tf_pagIbig.getText()));
+            emp.setSss(tf_sss.getText());
+
+            emp.setImageUUID(uuid);
+
+
+            new EmployeeWriter().addEmployee(emp);
+
+            try {
+                FileUtils.copyFile(dpPath, new File(ResourcePaths.dpPath + uuid));
+            } catch (IOException e1) {
+                System.out.println("Directory already exists.");
+            }
+            refreshFields();
+            return ready;
         }
-
-        emp.setPhoneNumber(tf_phoneNumber.getText());
-        emp.setAddress(tf_address.getText());
-        emp.setContactPerson(tf_contactPerson.getText());
-        emp.setContactPersonNumber(tf_contactPersonNumber.getText());
-        emp.setContactPersonAddress(tf_contactAddress.getText());
-        emp.setBirthDate(birthdayPicker.getValue().getYear() + "-" +
-                DatePickerUtils.wordToInt(birthdayPicker.getValue().getMonth().toString())
-                + "-" + birthdayPicker.getValue().getDayOfMonth());
-        emp.setHireDate(hireDatePicker.getValue().getYear() + "-" +
-                DatePickerUtils.wordToInt(hireDatePicker.getValue().getMonth().toString())
-                + "-" + hireDatePicker.getValue().getDayOfMonth());
-        emp.setSchedule(buildSchedule());
-
-        emp.setTime(scheduleTimePicker.getTime().toString());
-
-        emp.setPagIbig(Double.parseDouble(tf_pagIbig.getText()));
-        emp.setSss(Double.parseDouble(tf_sss.getText()));
-
-        emp.setImageUUID(uuid);
-
-
-        EmployeeWriter.addEmployee(emp);
-
-        try {
-            FileUtils.copyFile(dpPath, new File(ResourcePaths.dpPath + uuid));
-        } catch (IOException e1) {
-            System.out.println("Directory already exists.");
+        else {
+            AlertUtils.showAlert("Make sure there are no empty fields " +
+                    "and you have chosen a picture..", "Also make sure that SSS " +
+                    "and Pag-ibig are not out of range (Maximum of 5 numbers).");
         }
+        return ready;
     }
 
     private String buildSchedule() {
@@ -149,5 +163,60 @@ public class AddEmployeeController {
         if (su.isSelected()) schedule += " SU";
 
         return schedule;
+    }
+
+    private boolean noEmptyFields() {
+
+        try {
+            System.out.println(birthdayPicker.getValue().getMonthValue());
+        } catch (Exception e) {
+            return  false;
+        }
+
+        if(tf_firstName.getText().length() > 0 &&
+        tf_middleName.getText().length() > 0 &&
+                tf_middleName.getText().length() > 0 &&
+                tf_lastName.getText().length() > 0 &&
+                tf_phoneNumber.getText().length() > 0 &&
+                tf_address.getText().length() > 0 &&
+                tf_contactPerson.getText().length() > 0 &&
+                tf_contactAddress.getText().length() > 0 &&
+                tf_contactPersonNumber.getText().length() > 0 &&
+                tf_pagIbig.getText().length() > 0 &&
+                tf_sss.getText().length() > 0 &&
+                dpPath != null &&
+                tf_sss.getText().length() < 6 &&
+                tf_pagIbig.getText().length() < 6
+                ) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    private void refreshFields() {
+        tf_firstName.setText("");
+        tf_lastName.setText("");
+        tf_middleName.setText("");
+        tf_phoneNumber.setText("");
+        tf_address.setText("");
+        tf_contactAddress.setText("");
+        tf_contactPerson.setText("");
+        tf_contactPersonNumber.setText("");
+        tf_pagIbig.setText("");
+        tf_sss.setText("");
+        file = null;
+
+        m.setSelected(true);
+        t.setSelected(true);
+        w.setSelected(true);
+        th.setSelected(true);
+        f.setSelected(true);
+        s.setSelected(true);
+        su.setSelected(true);
+
+        birthdayPicker.setValue(null);
+        bigProfileImage.setFill(Images.getImagePattern(this, ResourcePaths.camPath));
     }
 }

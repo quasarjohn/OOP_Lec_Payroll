@@ -1,4 +1,4 @@
-package screenControls;
+package animators;
 
 import javafx.scene.Node;
 import javafx.scene.control.TextArea;

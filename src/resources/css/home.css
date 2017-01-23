@@ -1,6 +1,6 @@
 .root{
 	-fx-font-family: Roboto;
-    src:"/resources/roboto/Roboto-Regular.ttf";
+    src:"/resources/css/Roboto-Regular.ttf";
 }
 
 #drawerHeader{
@@ -171,7 +171,8 @@
     -fx-highlight-fill: #7ecfff;
 }
 
-#tf_lastName, #tf_firstName, #tf_middleName, #hireDatePicker, #birthdayPicker, #scheduleTimePicker , #empOrderCB {
+#tf_lastName, #tf_firstName, #tf_middleName, #hireDatePicker,
+    #birthdayPicker, #scheduleTimePicker , #empOrderCB, #showSelectionCB, #statusToggle {
     -fx-background-color: rgba(0,0,0,0);
         -fx-font-weight: BOLD;
         -fx-prompt-text-fill: lightgray;
@@ -185,3 +186,52 @@
 #restrictionPane {
     -fx-background-color:rgba(10,10,10, 0.5);
 }
+
+.table-view .column-header-background{
+	-fx-background-color: #339933;
+}
+
+.table-view .column-header{
+	-fx-background-color: transparent;
+	-fx-pref-height: 40px;
+	-fx-border-color: #ebebe0;
+	-fx-border-width:0px 0.5px 0px 0px;
+}
+
+.table-view .column-header .label{
+	-fx-text-fill: white;
+}
+
+/* Selected row */
+.table-view:focused .table-row-cell:filled:focused:selected {
+    -fx-background-color: #8cd98c;
+    -fx-background-insets: 0, 1, 2;
+    -fx-background: -fx-accent;
+    -fx-text-fill: -fx-selection-bar-text;
+}
+
+/* Selected row when table not focused */
+.table-row-cell:filled:focused:selected {
+    -fx-background-color: #8cd98c;
+    -fx-background-insets: 0, 1, 2;
+    -fx-background: -fx-accent;
+    -fx-text-fill: -fx-selection-bar-text;
+}
+
+/* Row hovered */
+.table-view:row-selection .table-row-cell:filled:hover {
+    -fx-background-color: #8cd98c;
+    -fx-background-insets: 0, 0 0 1 0;
+     -fx-background: -fx-accent;
+    -fx-text-fill: -fx-selection-bar-text;
+}
+
+/* Selected row hovered */
+.table-view:focused .table-row-cell:filled:focused:selected:hover {
+    -fx-background: -fx-accent;
+    -fx-background-color: #8cd98c;
+    -fx-background-insets: 0, 1, 2;
+    -fx-text-fill: -fx-selection-bar-text;
+}
+
+

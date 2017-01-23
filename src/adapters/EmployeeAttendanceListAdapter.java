@@ -1,5 +1,16 @@
 package adapters;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.util.Callback;
+import model.dataReader.AttendanceReader;
+import model.dataReader.EmpReader;
+import model.dataStructure.Employee;
 import utils.Domain;
 import animators.FocusSwapper;
 import javafx.fxml.FXML;
@@ -11,6 +22,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import values.Strings;
 
 import java.io.IOException;
 
@@ -22,15 +34,23 @@ public class EmployeeAttendanceListAdapter {
     @FXML
     private Circle circle;
     @FXML
-    private Label title;
-    @FXML
-    private Label subtitle;
-
-    private int i = 0;
+    private Label title, subtitle, statusL;
 
     private HBox hBox;
-    public EmployeeAttendanceListAdapter(FlowPane attendanceListContainer) {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/List_Item_Employee_Dashboard.fxml"));
+
+    private int position;
+
+    private TableView table;
+
+    private Employee emp;
+
+    private String month, year;
+
+    public EmployeeAttendanceListAdapter(TableView table, Employee emp, int position) {
+        this.position = position;
+        this.table = table;
+        this.emp = emp;
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/List_Item_Employee_Attendance.fxml"));
         loader.setController(this);
         try {
             hBox = loader.load();
@@ -41,18 +61,27 @@ public class EmployeeAttendanceListAdapter {
         ImagePattern pattern = new ImagePattern(image);
         circle.setFill(pattern);
 
-        hBox.setOnMouseClicked(e -> {
-            i = 0;
-            if (e.isStillSincePress()) {
-                FocusSwapper.changeFocus(hBox, Domain.getEmpList());
-                attendanceListContainer.getChildren().clear();
-                for (; i < 31; i++) {
-                    MonthToDateAttendanceListAdapter mtd = new MonthToDateAttendanceListAdapter();
-                    VBox hb = mtd.getItem();
-                    attendanceListContainer.getChildren().addAll(hb);
-                }
-            }
-        });
+        title.setText(emp.getFirstName() + " " + emp.getMiddleName().charAt(0) + ". " +
+        emp.getLastName());
+
+        String[] status = new EmpReader().getAttendanceStatus(emp);
+
+        if(status[0] == null) {
+            status[0] = "";
+        }
+
+        if(status[1] == null) {
+            status[1] = "";
+        }
+
+        if(status[2] == null) {
+            status[2] = "";
+        }
+
+        subtitle.setText("Schedule: " + status[0] +
+                "   |   Time-in: " + status[1]);
+
+        statusL.setText(status[2]);
     }
 
     public HBox getItem() {
@@ -60,5 +89,31 @@ public class EmployeeAttendanceListAdapter {
         title.setStyle("-fx-font-size: 16px");
         subtitle.setStyle("-fx-font-size: 12px");
         return hBox;
+    }
+
+    public int getPosition() {
+        return position;
+    }
+
+    public void loadTable(String month, String year) {
+        //TODO LOAD TABLE FOR ATTENDANCE
+
+        table.getItems().clear();
+        table.getColumns().clear();
+        //LOAD TABLE HEADERS
+        for(int i = 0; i < 6; i++) {
+            final int j = i;
+
+            TableColumn col = new TableColumn(Strings.attendanceTableHeader().get(i));
+            col.setCellFactory(TextFieldTableCell.forTableColumn());
+            col.setCellValueFactory(new Callback <TableColumn.CellDataFeatures<ObservableList, String>, ObservableValue<String>>(){
+                public ObservableValue<String> call(TableColumn.CellDataFeatures<ObservableList, String> param) {
+                    return new SimpleStringProperty(param.getValue().get(j).toString());
+                }
+            });
+            table.getColumns().addAll(col);
+        }
+
+        table.setItems(new AttendanceReader().getEmpAttendance(emp, month, year));
     }
 }

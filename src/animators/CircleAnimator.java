@@ -1,9 +1,12 @@
 package animators;
 
+import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
+import javafx.animation.ScaleTransition;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
+import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 
@@ -46,5 +49,46 @@ public class CircleAnimator {
             timeline.setCycleCount(5);
             timeline.play();
         });
+    }
+
+    public static void showRestrictionPane(VBox vbox) {
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Platform.runLater(() -> {
+                    ScaleTransition st = new ScaleTransition(Duration.millis(200), vbox);
+
+                    st.setFromX(0);
+                    st.setFromY(0);
+
+                    st.setToX(10);
+                    st.setToY(10);
+
+                    st.play();
+                });
+            }
+        });
+        t.start();
+    }
+
+    public static void hideRestrictionPane(VBox vbox) {
+        Thread t= new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Platform.runLater(() -> {
+                    ScaleTransition st = new ScaleTransition(Duration.millis(200), vbox);
+
+                    st.setFromX(1);
+                    st.setFromY(1);
+
+                    st.setToX(0);
+                    st.setToY(0);
+
+                    st.play();
+                });
+            }
+        });
+
+        t.start();
     }
 }
