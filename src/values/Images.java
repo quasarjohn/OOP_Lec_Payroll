@@ -22,8 +22,13 @@ public class Images {
         try {
             image = new Image(new FileInputStream(new File(path)));
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            image = new Image(context.getClass().getResourceAsStream(ResourcePaths.camPath));
         }
+
+        if(image == null) {
+            image = new Image(context.getClass().getResourceAsStream(ResourcePaths.camPath));
+        }
+
         return new ImagePattern(image);
     }
 }

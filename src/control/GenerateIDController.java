@@ -23,9 +23,12 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.dataStructure.Employee;
+import model.dataWriter.ActiveUser;
+import model.dataWriter.Logger;
 import values.Images;
 
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -39,15 +42,13 @@ import java.util.Map;
 public class GenerateIDController {
 
     private Stage stage;
-    private HBox hb = new HBox();
-
+    private HBox hb;
     public GenerateIDController() {
         stage = new Stage();
         hb = new HBox();
 
         hb.setSpacing(1);
         hb.setId("idHB");
-
 
         Scene scene = new Scene(hb);
         scene.getStylesheets().add(getClass().getResource("/resources/css/id.css").toExternalForm());
@@ -103,11 +104,18 @@ public class GenerateIDController {
         idPic.setFill(Images.getImagePatternFromFile(getClass(), "C:KFAVImages/" + employee.getImageUUID()));
 
         stage.centerOnScreen();
-        stage.show();
 
         qrContainer.getChildren().setAll(getQRCode(employee.getPre_empNo() + "" + employee.getPost_empNo()));
 
         generateSnapshot(hb, employee);
+        stage.close();
+        try {
+            Desktop.getDesktop().open(new File("C:\\KFAVIDs"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Logger.log(Logger.LogType.EMP_GEN_BADGE, ActiveUser.getUsername(),
+                "Generated Badge for " + employee.getPre_empNo() + "" + employee.getPost_empNo());
     }
 
     @SuppressWarnings({ "unchecked", "rawtypes" })

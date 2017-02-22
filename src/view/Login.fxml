@@ -23,16 +23,16 @@
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <JFXTextField maxWidth="300.0" prefWidth="300.0" promptText="Username">
+                  <JFXTextField fx:id="usernameTF" maxWidth="300.0" prefWidth="300.0" promptText="Username">
                      <font>
                         <Font size="14.0" />
                      </font></JFXTextField>
-                  <JFXPasswordField maxWidth="300.0" prefWidth="300.0" promptText="Password">
+                  <JFXPasswordField fx:id="passwordField" maxWidth="300.0" prefWidth="300.0" promptText="Password">
                      <font>
                         <Font size="14.0" />
                      </font></JFXPasswordField>
                   <JFXButton fx:id="loginB" maxWidth="300.0" prefWidth="290.0" text="LOGIN" />
-                  <Label text="Incorrect Username or Password" textFill="#ff3d3d">
+                  <Label fx:id="errorL" text="Incorrect Username or Password" textFill="#ff3d3d" visible="false">
                      <font>
                         <Font size="14.0" />
                      </font>

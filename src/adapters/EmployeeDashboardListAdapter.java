@@ -1,5 +1,15 @@
 package adapters;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.ObservableList;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.util.Callback;
+import model.dataReader.DashboardReader;
+import model.dataStructure.Employee;
+import utils.DateUtils;
 import utils.Domain;
 import animators.FocusSwapper;
 import javafx.fxml.FXML;
@@ -10,8 +20,11 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import values.Images;
+import values.Strings;
 
 import java.io.IOException;
+import java.util.Date;
 
 /**
  * Created by John on 12/11/2016.
@@ -24,11 +37,21 @@ public class EmployeeDashboardListAdapter {
     @FXML
     private Label title;
     @FXML
-    private Label subtitle;
+    private Label subtitle, commissionL;
+
+    private int position;
+
+    private TableView table;
 
     private HBox hBox;
-    private int i = 0;
-    public EmployeeDashboardListAdapter(VBox jobsDoneListContainer) {
+    private Employee emp;
+    private String date;
+    public EmployeeDashboardListAdapter(VBox jobsDoneListContainer, Employee emp,
+                                        int position, TableView table, String date) {
+        this.date = date;
+        this.emp  = emp;
+        this.table = table;
+        this.position = position;
         this.jobsDoneListContainer = jobsDoneListContainer;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/List_Item_Employee_Dashboard.fxml"));
         loader.setController(this);
@@ -37,22 +60,13 @@ public class EmployeeDashboardListAdapter {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Image image = new Image(getClass().getResourceAsStream("/resources/images/ic_face4.jpg"));
-        ImagePattern pattern = new ImagePattern(image);
-        circle.setFill(pattern);
 
-        hBox.setOnMouseClicked(e -> {
-           i = 0;
-            if (e.isStillSincePress()) {
-                FocusSwapper.changeFocus(hBox, Domain.getEmpList());
-                jobsDoneListContainer.getChildren().clear();
-                for (; i < 5; i++) {
-                        JobDoneListAdapter jobDoneListAdapter = new JobDoneListAdapter(i);
-                        HBox hb = jobDoneListAdapter.getItem();
-                        jobsDoneListContainer.getChildren().addAll(hb);
-                }
-            }
-        });
+        title.setText(emp.getFirstName() + " " + emp.getMiddleName().charAt(0) + ". " +
+        emp.getLastName());
+        subtitle.setText("Time-in: " + emp.getTimein() +" | Hours worked: " +
+                DateUtils.getHoursWorked(DateUtils.timeToInt(emp.getTimein())));
+        circle.setFill(Images.getImagePatternFromFile(this,"C:KFAVImages/" + emp.getImageUUID()));
+        commissionL.setText(DashboardReader.getTotalCommission(emp.getPre_empNo(), emp.getPost_empNo(), date) + "");
     }
 
     public HBox getItem() {
@@ -60,5 +74,29 @@ public class EmployeeDashboardListAdapter {
         title.setStyle("-fx-font-size: 16px");
         subtitle.setStyle("-fx-font-size: 12px");
         return hBox;
+    }
+
+    public int getPosition() {
+        return position;
+    }
+
+    public void loadTableContents() {
+        table.getItems().clear();
+        table.getColumns().clear();
+        //LOAD TABLE HEADERS
+        for(int i = 0; i < 5; i++) {
+            final int j = i;
+
+            TableColumn col = new TableColumn(Strings.dashboardIndividialHeader().get(i));
+            col.setCellFactory(TextFieldTableCell.forTableColumn());
+            col.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<ObservableList, String>, ObservableValue<String>>(){
+                public ObservableValue<String> call(TableColumn.CellDataFeatures<ObservableList, String> param) {
+                    return new SimpleStringProperty(param.getValue().get(j).toString());
+                }
+            });
+            table.getColumns().addAll(col);
+            table.setItems(DashboardReader.getIndividualDashboardData(emp.getPre_empNo(), emp.getPost_empNo(),
+                    date));
+        }
     }
 }

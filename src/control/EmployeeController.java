@@ -61,7 +61,8 @@ public class EmployeeController implements Initializable {
     //WIRE VIEWS FOR EMPLOYEE INFORMATION MODULE
     @FXML
     private Label lbl_name, phoneNumberL, addressL, hireDateL, birthDayL, contactPersonL,
-            contactAddressL, contactNumberL, pagIbigL, sssL, schedL, schedTimeL, empCountL;
+            contactAddressL, contactNumberL, pagIbigL, sssL, schedL, schedTimeL, empCountL ,
+            commissionL;
 
     private ArrayList<Employee> employees;
 
@@ -89,7 +90,6 @@ public class EmployeeController implements Initializable {
         }
 
         vb.getChildren().setAll(hb_emp_information);
-
 
         editEmployeeController = new EditEmployeeController(this);
         FXMLLoader hb_emp_edit_information_loader = new FXMLLoader(getClass().
@@ -207,7 +207,7 @@ public class EmployeeController implements Initializable {
                                 }
                             }
                             empListPopulated = true;
-                            empCountL.setText("You have " + empList.size() + "employees.");
+                            empCountL.setText("You have " + empList.size() + " employees.");
 
                             loadViewInfoPane();
 
@@ -263,12 +263,9 @@ public class EmployeeController implements Initializable {
     @FXML
     private void listenToGenerateBadgeB() {
         if (activePane == ActivePane.INFO) {
-            //TODO GENERATE BADGE
             generateIDController.generateID(employee);
 
-
         } else if (activePane == ActivePane.UPDATE) {
-            //TODO CANCEL UPDATE and GO BACK TO INFO PANE
             activePane = ActivePane.INFO;
             loadViewInfoPane();
 
@@ -276,7 +273,6 @@ public class EmployeeController implements Initializable {
 
             Domain.getToolbarTitle().setText("EMPLOYEES");
         } else if (activePane == ActivePane.ADD) {
-            //TODO CANCEL ADD and GO BACK TO INFO PANE
             activePane = ActivePane.INFO;
             CircleAnimator.showFab(fab);
             try {
@@ -351,6 +347,7 @@ public class EmployeeController implements Initializable {
                         sssL.setText("SSS: " + employee.getSss());
                         schedL.setText("Days: " + employee.getSchedule().trim().replace(" ", ", "));
                         schedTimeL.setText("Time: " + employee.getTime());
+                        commissionL.setText("COMMISSION: " + employee.getCommission() + "%");
 
                         bigProfileImage.setFill(Images.getImagePatternFromFile(this, ResourcePaths.dpPath +
                                 employee.getImageUUID()));

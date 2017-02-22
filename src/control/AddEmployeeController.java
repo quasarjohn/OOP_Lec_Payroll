@@ -2,11 +2,12 @@ package control;
 
 import com.jfoenix.controls.*;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 import model.dataStructure.Employee;
+import model.dataWriter.ActiveUser;
 import model.dataWriter.EmployeeWriter;
+import model.dataWriter.Logger;
 import utils.*;
 import values.Images;
 import values.ResourcePaths;
@@ -14,9 +15,6 @@ import values.Strings;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.CopyOption;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.UUID;
@@ -32,7 +30,7 @@ public class AddEmployeeController {
 
     tf_contactPerson, tf_contactAddress, tf_contactPersonNumber,
 
-    tf_pagIbig, tf_sss;
+    tf_pagIbig, tf_sss, tf_commission;
 
     @FXML
     private Circle bigProfileImage;
@@ -70,6 +68,8 @@ public class AddEmployeeController {
 
         bigProfileImage.setOnMouseClicked(e -> {
             FileChooser fc = new FileChooser();
+            fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Images", "*.png", "*.jpeg"));
+
             file = fc.showOpenDialog(Domain.getPrimaryStage());
 
             if(file != null) {
@@ -112,10 +112,10 @@ public class AddEmployeeController {
             emp.setContactPersonNumber(tf_contactPersonNumber.getText());
             emp.setContactPersonAddress(tf_contactAddress.getText());
             emp.setBirthDate(birthdayPicker.getValue().getYear() + "-" +
-                    DatePickerUtils.wordToInt(birthdayPicker.getValue().getMonth().toString())
+                    DateUtils.wordToInt(birthdayPicker.getValue().getMonth().toString())
                     + "-" + birthdayPicker.getValue().getDayOfMonth());
             emp.setHireDate(hireDatePicker.getValue().getYear() + "-" +
-                    DatePickerUtils.wordToInt(hireDatePicker.getValue().getMonth().toString())
+                    DateUtils.wordToInt(hireDatePicker.getValue().getMonth().toString())
                     + "-" + hireDatePicker.getValue().getDayOfMonth());
             emp.setSchedule(buildSchedule());
 
@@ -125,7 +125,7 @@ public class AddEmployeeController {
             emp.setSss(tf_sss.getText());
 
             emp.setImageUUID(uuid);
-
+            emp.setCommission(tf_commission.getText());
 
             new EmployeeWriter().addEmployee(emp);
 
@@ -135,6 +135,8 @@ public class AddEmployeeController {
                 System.out.println("Directory already exists.");
             }
             refreshFields();
+            Logger.log(Logger.LogType.EMP_ADD, ActiveUser.getUsername(), "Added " + emp.getPre_empNo() +
+                    "" + emp.getPost_empNo());
             return ready;
         }
         else {

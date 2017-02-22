@@ -15,13 +15,24 @@ public class DatabaseStructure {
         conn.loadDriver();
         conn.connectToDB();
 
+        //CREATE TABLE FOR USER ACCOUNT
+        conn.doSomething("create table user_account (username varchar(100) " +
+                " primary key not null, password varchar(100) not null, role varchar(20) " +
+                "not null, date_created date not null, first_name varchar(300) not null, " +
+                "last_name varchar(300) not null)");
+        conn.execute();
+
+        //CREATE TABLE LOGS
+        conn.doSomething(" create table logs(username varchar(100) not null, " +
+                "log_date date, log_time time, log_type varchar(30), details varchar(200))");
+        conn.execute();
+
         //CREATE SEQUENCE FOR EMPID
         conn.doSomething("create sequence empNo_seq start with 1 increment by 2 no cycle cache 5");
         conn.execute();
 
         //CREATE TABLE FOR EMPLOYEE
         conn.doSomething("create table employees(" +
-
                 "pre_empNo integer not null, " +
                 "post_empNo integer not null, " +
                 "last_name varchar(100) not null, " +
@@ -37,10 +48,11 @@ public class DatabaseStructure {
                 "hire_date date, " +
                 "schedule varchar(30), " +
                 "schedule_time time, " +
-                "pag_ibig integer, " +
-                "sss integer, " +
+                "pag_ibig decimal, " +
+                "sss decimal, " +
                 "image_uuid varchar(300)," +
                 "emp_status varchar(10), " +
+                "commission_percentage decimal, " +
                 "primary key(pre_empNo, post_empNo)" +
                 ")");
         conn.execute();
@@ -59,5 +71,14 @@ public class DatabaseStructure {
                 "foreign key(pre_empno, post_empno) references employees)");
 
         conn.execute();
+
+        conn.doSomething("create table earnings(pre_empno integer not null, " +
+                "post_empno integer not null, workdate date, amount decimal, " +
+                "commission_percentage decimal, commission decimal, date_paid date, " +
+                "category varchar(50), notes varchar(100), " +
+                "foreign key(pre_empno, post_empno, workdate) references attendance )");
+        conn.execute();
+
+        conn.closeConnection();
     }
 }

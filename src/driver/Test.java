@@ -4,8 +4,13 @@ import connection.AppConnection;
 import model.dataReader.EmpReader;
 import model.dataStructure.Attendance;
 import model.dataWriter.DatabaseStructure;
+import model.dataWriter.EmployeeWriter;
+import utils.DateUtils;
 import values.Strings;
 
+import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -17,7 +22,18 @@ public class Test {
 
     public static void main(String[] args) {
 
-        DatabaseStructure.buildDatabaseStructure();
+
+        try {
+            Desktop.getDesktop().open(new File("C:\\KFAVIDs"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+//        System.out.println(DateUtils.getCurrentTime());
+
+//        EmployeeWriter.initializeAttendance();
+
+
+//        DatabaseStructure.buildDatabaseStructure();
 
 //        SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
 //        SimpleDateFormat time = new SimpleDateFormat("hh.mm.ss");

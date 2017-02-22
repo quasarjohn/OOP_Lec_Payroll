@@ -120,7 +120,7 @@
     -fx-background-color:gray
 }
 
-#monthCB, #yearCB, #datePicker, #categoryCB {
+#monthCB, #yearCB, #datePicker, #categoryCB, #attendaceDatePicker {
     -fx-border-color: white;
     -fx-background-color:white;
 }
@@ -172,7 +172,8 @@
 }
 
 #tf_lastName, #tf_firstName, #tf_middleName, #hireDatePicker,
-    #birthdayPicker, #scheduleTimePicker , #empOrderCB, #showSelectionCB, #statusToggle {
+    #birthdayPicker, #scheduleTimePicker , #empOrderCB,
+    #showSelectionCB, #statusToggle, #attendaceDatePicker, #categoryCB, #priceCB {
     -fx-background-color: rgba(0,0,0,0);
         -fx-font-weight: BOLD;
         -fx-prompt-text-fill: lightgray;

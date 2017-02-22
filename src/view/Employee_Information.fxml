@@ -203,6 +203,21 @@
                                           <Insets left="16.0" />
                                        </VBox.margin>
                                     </Label>
+                                    <HBox alignment="BOTTOM_LEFT">
+                                       <children>
+                                          <Label fx:id="commissionL" text="COMMISSION %: 33">
+                                             <font>
+                                                <Font name="System Bold" size="14.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                       <padding>
+                                          <Insets left="16.0" />
+                                       </padding>
+                                       <VBox.margin>
+                                          <Insets top="15.0" />
+                                       </VBox.margin>
+                                    </HBox>
                                           </children>
                                       </VBox>
                                   </content>

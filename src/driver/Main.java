@@ -1,6 +1,7 @@
 package driver;
 
 import control.MainController;
+import javafx.scene.image.Image;
 import model.dataWriter.EmployeeWriter;
 import utils.Domain;
 import javafx.application.Application;
@@ -16,7 +17,11 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
 
+        primaryStage.getIcons().add(new Image("/resources/images/ic_kitty.png"));
+
         EmployeeWriter.initializeAttendance();
+
+        System.out.println("DONE");
 
         primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.setResizable(true);

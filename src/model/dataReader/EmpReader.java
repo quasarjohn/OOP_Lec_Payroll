@@ -2,6 +2,7 @@ package model.dataReader;
 
 import connection.AppConnection;
 import model.dataStructure.Employee;
+import values.Strings;
 
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -103,6 +104,7 @@ public class EmpReader {
                 emp.setSss(conn.getRS().getString(17));
                 emp.setImageUUID(conn.getRS().getString(18));
                 emp.setEmpStatus(conn.getRS().getString(19));
+                emp.setCommission(conn.getRS().getString(20));
             }
             return emp;
         } catch (SQLException e) {
@@ -112,29 +114,40 @@ public class EmpReader {
         return null;
     }
 
-    public static int[] buildPrimaryKey(String key) {
-        int[] array = new int[2];
-
-        String pre = key.substring(0, 4);
-        String post = key.substring(4);
-
-        array[0] = Integer.parseInt(pre);
-        array[1] = Integer.parseInt(post);
-
-        return array;
-    }
-
-    public static ArrayList<Employee> getEmpListAttendanceForCurrentDay() {
+    public static ArrayList<Employee>
+    getEmpListAttendanceForSpecificDay(String date, AttendanceShowSelection selection, AttendanceOrderSelection orderSelection) {
         ArrayList<Employee> employees = new ArrayList<>();
         AppConnection conn = new AppConnection();
         conn.loadDriver();
         conn.connectToDB();
 
-        SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+        String activeFilter;
+        String orderFilter;
+
+        switch (selection) {
+            case ACTIVE_W_SCHED: activeFilter = "where e.emp_status = 'ACTIVE' and " +
+                    "e.schedule like '%" + getCurrentDay() + "%'  AND a.workdate = '" + date + "'"; break;
+            case ACTIVE: activeFilter = "where e.emp_status = 'ACTIVE' "; break;
+            case BOTH: activeFilter = " where e.emp_status = 'ACTIVE' OR e.emp_status = 'INACTIVE'"; break;
+            case INACTIVE: activeFilter = "where e.emp_status = 'INACTIVE' "; break;
+            default:activeFilter = "where e.emp_status = 'ACTIVE' and " +
+                    "e.schedule like '%" + getCurrentDay() + "%' "; break;
+        }
+
+        switch (orderSelection) {
+            case EMPNO: orderFilter = " order by e.pre_empno, e.post_empno"; break;
+            case FIRSTNAME: orderFilter = " order by e.last_name"; break;
+            case LASTNAME: orderFilter = " order by e.first_name"; break;
+            default: orderFilter = " order by e.pre_empno, e.post_empno"; break;
+        }
+
+        System.out.println(activeFilter);
 
         conn.doSomething("select e.pre_empno, e.post_empno, e.last_name, " +
-                "e.first_name,e.middle_name from employees e where emp_status = 'ACTIVE' and " +
-                "schedule like '%" + getCurrentDay() + "%'");
+                "e.first_name,e.middle_name, a.timein, a.schedule_time, a.status, e.image_uuid " +
+                "from employees e left join attendance a on e.pre_empno = a.pre_empno " +
+                "AND a.post_empno = e.post_empno " +
+                activeFilter + " " + orderFilter);
         try {
             conn.query();
 
@@ -145,6 +158,10 @@ public class EmpReader {
                 emp.setLastName(conn.getRS().getString(3));
                 emp.setFirstName(conn.getRS().getString(4));
                 emp.setMiddleName(conn.getRS().getString(5));
+                emp.setTimein(conn.getRS().getString(6));
+                emp.setTime(conn.getRS().getString(7));
+                emp.setStatus(conn.getRS().getString(8));
+                emp.setImageUUID(conn.getRS().getString(9));
 
                 employees.add(emp);
             }
@@ -155,6 +172,48 @@ public class EmpReader {
         return employees;
     }
 
+    public enum AttendanceShowSelection {
+        ACTIVE_W_SCHED, ACTIVE, INACTIVE, BOTH;
+    }
+
+    public enum AttendanceOrderSelection {
+        EMPNO, LASTNAME, FIRSTNAME
+    }
+
+    public static ArrayList<Employee> getEmpListAttendanceForCurrentDay() {
+        ArrayList<Employee> employees = new ArrayList<>();
+        AppConnection conn = new AppConnection();
+        conn.loadDriver();
+        conn.connectToDB();
+
+        conn.doSomething("select e.pre_empno, e.post_empno, e.last_name, " +
+                "e.first_name,e.middle_name, a.timein, a.schedule_time, a.status " +
+                "from employees e left join attendance a on e.pre_empno = a.pre_empno " +
+                "AND a.post_empno = e.post_empno " +
+                "where e.emp_status = 'ACTIVE' and " +
+                "e.schedule like '%" + getCurrentDay() + "%'");
+        try {
+            conn.query();
+
+            while (conn.getRS().next()) {
+                Employee emp = new Employee();
+                emp.setPre_empNo(conn.getRS().getInt(1));
+                emp.setPost_empNo(conn.getRS().getInt(2));
+                emp.setLastName(conn.getRS().getString(3));
+                emp.setFirstName(conn.getRS().getString(4));
+                emp.setMiddleName(conn.getRS().getString(5));
+                emp.setTimein(conn.getRS().getString(6));
+                emp.setTime(conn.getRS().getString(7));
+                emp.setStatus(conn.getRS().getString(8));
+
+                employees.add(emp);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return employees;
+    }
 
     private static String getCurrentDay() {
         String date = new Date().toString();
@@ -175,34 +234,4 @@ public class EmpReader {
         else
             return "SU";
     }
-
-    public String[] getAttendanceStatus(Employee emp) {
-
-        System.out.println(emp.getPre_empNo() + " " + emp.getPost_empNo());
-
-        String[] status = new String[3];
-
-        AppConnection conn = new AppConnection();
-        conn.loadDriver();
-        conn.connectToDB();
-
-        conn.doSomething("select e.schedule_time, a1.timein, " +
-                "a1.status from employees e left join attendance a on e.pre_empno = a.pre_" +
-                "empno AND a.post_empno = e.post_empno left join attendance a1 on a1.pre_empno = " +
-                "e.pre_empno and a1.post_empno = e.post_empno " +
-                "where e.pre_empno = " + emp.getPre_empNo() + " and e.post_empno = " + emp.getPost_empNo());
-
-        try {
-            conn.query();
-            while (conn.getRS().next()) {
-                status[0] = conn.getRS().getString(1);
-                status[1] = conn.getRS().getString(2);
-                status[2] = conn.getRS().getString(3);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return status;
-    }
-
 }

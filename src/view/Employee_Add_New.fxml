@@ -270,6 +270,19 @@
                                           <Insets left="12.0" />
                                        </VBox.margin>
                                     </JFXDatePicker>
+                                    <HBox alignment="BOTTOM_LEFT">
+                                       <VBox.margin>
+                                          <Insets left="16.0" top="15.0" />
+                                       </VBox.margin>
+                                       <children>
+                                          <Label text="COMMISSION %: ">
+                                             <font>
+                                                <Font name="System Bold" size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <JFXTextField fx:id="tf_commission" focusColor="#8cd98c" maxWidth="85.0" minWidth="68.0" prefHeight="31.0" prefWidth="85.0" text="33" />
+                                       </children>
+                                    </HBox>
                                           </children>
                                  <padding>
                                     <Insets top="10.0" />

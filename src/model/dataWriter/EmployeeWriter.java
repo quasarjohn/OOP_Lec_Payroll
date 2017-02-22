@@ -33,6 +33,9 @@ public class EmployeeWriter {
 //        System.out.println(emp.getSss());
 //        System.out.println(emp.getImageUUID());
 //        System.out.println(emp.getEmpStatus());
+
+        System.out.println(emp.getCommission());
+
         emp.setEmpStatus("ACTIVE");
 
         conn = new AppConnection();
@@ -58,7 +61,8 @@ public class EmployeeWriter {
                 emp.getPagIbig() + "," +
                 emp.getSss() + ",'" +
                 emp.getImageUUID() + "','" +
-                emp.getEmpStatus() + "'"
+                emp.getEmpStatus() + "'," +
+                emp.getCommission() + ""
                 + ")"
         );
 
@@ -96,7 +100,8 @@ public class EmployeeWriter {
                 "pag_ibig = '" + emp.getPagIbig() + "', " +
                 "sss = '" + emp.getSss() + "', " +
                 "image_uuid = '" + emp.getImageUUID() + "', " +
-                "emp_status = '" + emp.getEmpStatus() + "'" +
+                "emp_status = '" + emp.getEmpStatus() + "'," +
+                "commission_percentage = " + emp.getCommission() + " " +
                 "where pre_empno = " + emp.getPre_empNo() + " AND " +
                 "post_empno = " + emp.getPost_empNo());
 
@@ -112,6 +117,9 @@ public class EmployeeWriter {
 
     public static void initializeAttendance() {
         for(Employee emp : new EmpReader().getEmpListAttendanceForCurrentDay()) {
+
+            System.out.println("INSERTING ATTENDANCE");
+
             AppConnection conn = new AppConnection();
             conn.loadDriver();
             conn.connectToDB();

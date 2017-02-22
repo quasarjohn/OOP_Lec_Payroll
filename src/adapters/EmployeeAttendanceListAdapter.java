@@ -10,6 +10,7 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.Callback;
 import model.dataReader.AttendanceReader;
 import model.dataReader.EmpReader;
+import model.dataStructure.Attendance;
 import model.dataStructure.Employee;
 import utils.Domain;
 import animators.FocusSwapper;
@@ -22,6 +23,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import values.Images;
 import values.Strings;
 
 import java.io.IOException;
@@ -44,8 +46,6 @@ public class EmployeeAttendanceListAdapter {
 
     private Employee emp;
 
-    private String month, year;
-
     public EmployeeAttendanceListAdapter(TableView table, Employee emp, int position) {
         this.position = position;
         this.table = table;
@@ -57,31 +57,15 @@ public class EmployeeAttendanceListAdapter {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Image image = new Image(getClass().getResourceAsStream("/resources/images/ic_face4.jpg"));
-        ImagePattern pattern = new ImagePattern(image);
-        circle.setFill(pattern);
+        circle.setFill(Images.getImagePatternFromFile(this,"C:KFAVImages/" + emp.getImageUUID()));
 
         title.setText(emp.getFirstName() + " " + emp.getMiddleName().charAt(0) + ". " +
         emp.getLastName());
 
-        String[] status = new EmpReader().getAttendanceStatus(emp);
+        subtitle.setText("Schedule: " + emp.getTime() +
+                "   |   Time-in: " + emp.getTimein());
 
-        if(status[0] == null) {
-            status[0] = "";
-        }
-
-        if(status[1] == null) {
-            status[1] = "";
-        }
-
-        if(status[2] == null) {
-            status[2] = "";
-        }
-
-        subtitle.setText("Schedule: " + status[0] +
-                "   |   Time-in: " + status[1]);
-
-        statusL.setText(status[2]);
+        statusL.setText(emp.getStatus());
     }
 
     public HBox getItem() {
@@ -95,8 +79,12 @@ public class EmployeeAttendanceListAdapter {
         return position;
     }
 
-    public void loadTable(String month, String year) {
-        //TODO LOAD TABLE FOR ATTENDANCE
+    public void loadTable(String month, String year, Label attSinceHiredL, Label mtdAttendanceL) {
+
+        System.out.println(year + " XXX " + month);
+
+        attSinceHiredL.setText(AttendanceReader.getAttendancePercentage(emp) + "%");
+        mtdAttendanceL.setText(AttendanceReader.getAttendancePercentage(emp, month, year) + "%");
 
         table.getItems().clear();
         table.getColumns().clear();

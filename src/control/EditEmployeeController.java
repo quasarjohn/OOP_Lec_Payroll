@@ -2,13 +2,12 @@ package control;
 
 import com.jfoenix.controls.*;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
-import model.dataReader.EmpReader;
 import model.dataStructure.Employee;
+import model.dataWriter.ActiveUser;
 import model.dataWriter.EmployeeWriter;
+import model.dataWriter.Logger;
 import utils.*;
 import values.Images;
 import values.ResourcePaths;
@@ -18,8 +17,6 @@ import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.Optional;
 import java.util.UUID;
 
 /**
@@ -33,7 +30,7 @@ public class EditEmployeeController {
 
     tf_contactPerson, tf_contactAddress, tf_contactPersonNumber,
 
-    tf_pagIbig, tf_sss;
+    tf_pagIbig, tf_sss, tf_commission;
 
     @FXML
     private Circle bigProfileImage;
@@ -78,9 +75,10 @@ public class EditEmployeeController {
 
         bigProfileImage.setOnMouseClicked(e -> {
             FileChooser fc = new FileChooser();
+            fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Images", "*.png", "*.jpeg"));
             File file = fc.showOpenDialog(Domain.getPrimaryStage());
 
-            if(file != null) {
+            if (file != null) {
                 File dir = null;
 
                 try {
@@ -99,10 +97,14 @@ public class EditEmployeeController {
     }
 
     private boolean dpChanged = false;
+
     public boolean updateEmployee() {
+
+        System.out.println(ActiveUser.getUsername());
+
         boolean ready = noEmptyFields();
 
-        if(ready) {
+        if (ready) {
             Employee emp = new Employee();
             emp.setPre_empNo(Integer.parseInt(Strings.preDate()));
             emp.setLastName(tf_lastName.getText());
@@ -121,10 +123,10 @@ public class EditEmployeeController {
             emp.setContactPersonNumber(tf_contactPersonNumber.getText());
             emp.setContactPersonAddress(tf_contactAddress.getText());
             emp.setBirthDate(birthdayPicker.getValue().getYear() + "-" +
-                    DatePickerUtils.wordToInt(birthdayPicker.getValue().getMonth().toString())
+                    DateUtils.wordToInt(birthdayPicker.getValue().getMonth().toString())
                     + "-" + birthdayPicker.getValue().getDayOfMonth());
             emp.setHireDate(hireDatePicker.getValue().getYear() + "-" +
-                    DatePickerUtils.wordToInt(hireDatePicker.getValue().getMonth().toString())
+                    DateUtils.wordToInt(hireDatePicker.getValue().getMonth().toString())
                     + "-" + hireDatePicker.getValue().getDayOfMonth());
             emp.setSchedule(buildSchedule());
 
@@ -134,32 +136,37 @@ public class EditEmployeeController {
             emp.setSss(tf_sss.getText());
             emp.setPre_empNo(this.emp.getPre_empNo());
             emp.setPost_empNo(this.emp.getPost_empNo());
+            emp.setCommission(tf_commission.getText());
 
-            if(statusToggle.isSelected()) {
+            if (statusToggle.isSelected()) {
                 emp.setEmpStatus("ACTIVE");
-            }
-            else {
+            } else {
                 emp.setEmpStatus("INACTIVE");
             }
 
-            if(dpChanged) {
+            if (dpChanged) {
                 emp.setImageUUID(uuid);
-            }
-            else {
+            } else {
                 emp.setImageUUID(this.emp.getImageUUID());
             }
 
             new EmployeeWriter().updateEmployee(emp);
 
-            if(dpChanged) {
+            if (dpChanged) {
                 try {
                     FileUtils.copyFile(dpPath, new File(ResourcePaths.dpPath + uuid));
                 } catch (IOException e1) {
                     System.out.println("Directory already exists.");
                 }
             }
-        }
-        else {
+
+            if (emp.getEmpStatus().equals("INACTIVE"))
+                Logger.log(Logger.LogType.EMP_DELETE, ActiveUser.getUsername(), "Soft Deleted " +
+                        emp.getPre_empNo() + "" + emp.getPost_empNo());
+            else
+                Logger.log(Logger.LogType.EMP_UPDATE, ActiveUser.getUsername(), "Updated " +
+                        emp.getPre_empNo() + "" + emp.getPost_empNo());
+        } else {
             AlertUtils.showAlert("Make sure there are no empty fields.", "Also make sure that SSS " +
                     "and Pag-ibig are not out of range (Maximum of 5 numbers).");
 
@@ -190,10 +197,9 @@ public class EditEmployeeController {
     public void bindViews(Employee emp) {
         this.emp = emp;
 
-        if(emp.getEmpStatus().equalsIgnoreCase("ACTIVE")) {
+        if (emp.getEmpStatus().equalsIgnoreCase("ACTIVE")) {
             statusToggle.setSelected(true);
-        }
-        else {
+        } else {
             statusToggle.setSelected(false);
         }
 
@@ -206,16 +212,17 @@ public class EditEmployeeController {
         tf_contactPerson.setText(emp.getContactPerson());
         tf_pagIbig.setText(emp.getPagIbig() + "");
         tf_sss.setText(emp.getSss() + "");
+        tf_commission.setText(emp.getCommission());
 
         formatScheduleSelection(emp.getSchedule().trim());
 
-        if(emp.getGender().equals("M"))
+        if (emp.getGender().equals("M"))
             male.setSelected(true);
         else female.setSelected(true);
 
         tf_contactPersonNumber.setText(emp.getContactPersonNumber());
 
-        int[] birthDateInt = DatePickerUtils.dateToInt(emp.getBirthDate());
+        int[] birthDateInt = DateUtils.dateToInt(emp.getBirthDate());
         birthdayPicker.setValue(LocalDate.of(birthDateInt[0], birthDateInt[1], birthDateInt[2]));
     }
 
@@ -230,20 +237,20 @@ public class EditEmployeeController {
         s.setSelected(false);
         su.setSelected(false);
 
-        for(String x : scheds) {
-            if(x.equals("M"))
+        for (String x : scheds) {
+            if (x.equals("M"))
                 m.setSelected(true);
-            else if(x.equals("T"))
+            else if (x.equals("T"))
                 t.setSelected(true);
-            else if(x.equals("W"))
+            else if (x.equals("W"))
                 w.setSelected(true);
-            else if(x.equals("TH"))
+            else if (x.equals("TH"))
                 th.setSelected(true);
-            else if(x.equals("F"))
+            else if (x.equals("F"))
                 f.setSelected(true);
-            else if(x.equals("S"))
+            else if (x.equals("S"))
                 s.setSelected(true);
-            else if(x.equals("SU"))
+            else if (x.equals("SU"))
                 su.setSelected(true);
         }
     }
@@ -253,10 +260,10 @@ public class EditEmployeeController {
         try {
             System.out.println(birthdayPicker.getValue().getMonthValue());
         } catch (Exception e) {
-            return  false;
+            return false;
         }
 
-        if(tf_firstName.getText().length() > 0 &&
+        if (tf_firstName.getText().length() > 0 &&
                 tf_middleName.getText().length() > 0 &&
                 tf_middleName.getText().length() > 0 &&
                 tf_lastName.getText().length() > 0 &&
@@ -271,8 +278,7 @@ public class EditEmployeeController {
                 tf_pagIbig.getText().length() < 6
                 ) {
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }

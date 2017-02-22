@@ -1,21 +1,41 @@
 package control;
 
 import adapters.EmployeeDashboardListAdapter;
+import adapters.JobDoneListAdapter;
 import animators.CircleAnimator;
+import animators.FocusSwapper;
+import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXDatePicker;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.ObservableList;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.util.Callback;
+import model.dataReader.DashboardReader;
+import model.dataReader.Suggestions;
+import model.dataStructure.Earning;
+import model.dataStructure.Employee;
+import model.dataWriter.DashboardWriter;
+import utils.DateUtils;
 import utils.Domain;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import values.Strings;
 import values.Styles;
 
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.DoubleSummaryStatistics;
 import java.util.ResourceBundle;
 
 /**
@@ -41,6 +61,15 @@ public class DashboardController implements Initializable {
     @FXML
     private Button dashboardAddB, cancelB;
 
+    private int position = 0;
+
+    private Suggestions suggestions;
+
+    private ArrayList<Employee> employees;
+
+    @FXML private JFXDatePicker datePicker;
+    @FXML private JFXComboBox empOrderCB;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         sp.setFitToWidth(true);
@@ -51,16 +80,57 @@ public class DashboardController implements Initializable {
         ImagePattern pattern = new ImagePattern(image);
         fab.setFill(pattern);
 
+        suggestions = new Suggestions();
+
+        categoryCB.getJFXEditor().setOnKeyTyped(e ->{
+            categoryCB.getItems().setAll(suggestions.getCategorySuggestions(categoryCB.getJFXEditor().getText().toUpperCase()));
+            categoryCB.show();
+        });
+
+        empOrderCB.getItems().setAll(Strings.orderOptions());
+        empOrderCB.getSelectionModel().select(0);
+
+        int[] date = DateUtils.dateToInt(Strings.getDateFormat().format(new Date()));
+        datePicker.setValue(LocalDate.of(date[0], date[1], date[2]));
     }
 
+    private String date;
     void populateEmpList() {
-        Domain.getEmpList().clear();
+        table.getItems().clear();
+        date = DateUtils.getDateFromDatePicker(datePicker);
+
+        System.out.println(date);
+
+        employees = DashboardReader.getEmpList(date);
+
+        if(employees.size() > 0) {
+            CircleAnimator.showFab(fab);
+        }
+        else CircleAnimator.hideFab(fab);
+
+        ArrayList<HBox> items = new ArrayList<>();
+
         empListContainer.getChildren().clear();
-        for (int i = 0; i < 8; i++) {
-            EmployeeDashboardListAdapter emp = new EmployeeDashboardListAdapter(jobsDoneListContainer);
+        for (int i = 0; i < employees.size(); i++) {
+            EmployeeDashboardListAdapter emp = new EmployeeDashboardListAdapter(jobsDoneListContainer,
+                    employees.get(i), i, table, date);
             HBox hb = emp.getItem();
             empListContainer.getChildren().addAll(hb);
-            Domain.getEmpList().add(hb);
+            items.add(hb);
+
+            hb.setOnMouseClicked(e -> {
+                if (e.isStillSincePress()) {
+                    FocusSwapper.changeFocus(hb, items);
+                    position = emp.getPosition();
+                    emp.loadTableContents();
+                    System.out.println(position);
+                }
+            });
+
+            if (i == 0) {
+                emp.loadTableContents();
+                FocusSwapper.changeFocus(hb, items);
+            }
         }
 
         dashboardAddB.setStyle(Styles.ButtonStyles.greenButton);
@@ -74,8 +144,85 @@ public class DashboardController implements Initializable {
         stackPane.getChildren().get(0).toFront();
     }
 
-    @FXML private void listenToCancel() {
+    @FXML
+    private void listenToCancel() {
         CircleAnimator.showFab(fab);
         stackPane.getChildren().get(0).toFront();
+    }
+
+    @FXML
+    private JFXComboBox<String> categoryCB, priceCB;
+    @FXML
+    private TextArea notesTA;
+    @FXML
+    private TableView table;
+
+    @FXML
+    void listenToAdd() {
+        Earning earning = new Earning();
+        earning.setPre_empno(employees.get(position).getPre_empNo() + "");
+        earning.setPost_empno(employees.get(position).getPost_empNo() + "");
+        earning.setWorkdate(Strings.getDateFormat().format(new Date()));
+        earning.setAmount(Double.parseDouble(priceCB.getJFXEditor().getText()));
+        earning.setCommissioPercentage(Double.parseDouble(employees.get(position).getCommission()));
+        earning.setCommission((Double.parseDouble(priceCB.getJFXEditor().getText()) *
+                Double.parseDouble(employees.get(position).getCommission())) / 100);
+        earning.setDate_paid(null);
+        earning.setCategory(categoryCB.getJFXEditor().getText());
+        earning.setNotes(notesTA.getText());
+
+        DashboardWriter.addWorkDone(earning);
+        stackPane.getChildren().get(0).toFront();
+
+        populateEmpList();
+        loadTableContents();
+    }
+
+    public void loadTableContents() {
+        table.getItems().clear();
+        table.getColumns().clear();
+        //LOAD TABLE HEADERS
+        for (int i = 0; i < 5; i++) {
+            final int j = i;
+
+            TableColumn col = new TableColumn(Strings.dashboardIndividialHeader().get(i));
+            col.setCellFactory(TextFieldTableCell.forTableColumn());
+            col.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<ObservableList, String>, ObservableValue<String>>() {
+                public ObservableValue<String> call(TableColumn.CellDataFeatures<ObservableList, String> param) {
+                    return new SimpleStringProperty(param.getValue().get(j).toString());
+                }
+            });
+            table.getColumns().addAll(col);
+            table.setItems(DashboardReader.getIndividualDashboardData(employees.get(position).getPre_empNo(),
+                    employees.get(position).getPost_empNo(), date));
+        }
+    }
+
+    @FXML private void listenToDatePicker() {
+        System.out.println(datePicker.getValue().getYear() + "-" + datePicker.getValue().getMonthValue() + "-" +
+                datePicker.getValue().getDayOfYear());
+
+        System.out.println(new SimpleDateFormat("yyyy-M-dd").format(new Date()));
+
+        if(isDatesEqual(datePicker.getValue().getYear() + "-" + datePicker.getValue().getMonthValue() + "-" +
+                datePicker.getValue().getDayOfYear(),new SimpleDateFormat("yyyy-M-dd").format(new Date()) ))
+            CircleAnimator.showFab(fab);
+        else
+            CircleAnimator.hideFab(fab);
+
+        populateEmpList();
+    }
+
+    @FXML private void listenToOrderBy() {
+
+    }
+
+    private boolean isDatesEqual(String date, String date1) {
+        String[] parts = date.split("-");
+        String[] parts1 = date1.split("-");
+
+        if(parts[0].equals(parts1[0]) && parts[1].equals(parts1[1]) && parts[2].equals(parts1[2]))
+            return true;
+        else return false;
     }
 }

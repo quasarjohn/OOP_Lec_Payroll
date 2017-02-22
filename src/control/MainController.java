@@ -1,6 +1,16 @@
 package control;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
+import connection.AppConnection;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import model.dataReader.UserLogin;
+import model.dataWriter.ActiveUser;
+import model.dataWriter.Logger;
 import utils.Domain;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -25,6 +35,8 @@ import java.util.ResourceBundle;
  */
 public class MainController implements Initializable {
 
+    private AppConnection conn;
+
     @FXML
     private JFXButton loginB;
 
@@ -35,6 +47,10 @@ public class MainController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        conn = new AppConnection();
+        conn.loadDriver();
+        conn.connectToDB();
+
         loginB.getStyleClass().add("button-raised");
         loginB.setOnAction(e -> listenToLogin());
 
@@ -42,25 +58,55 @@ public class MainController implements Initializable {
             loadScreenControls();
         });
 
+        usernameTF.setOnKeyPressed(e-> {
+            if(e.getCode() == KeyCode.ENTER) {
+                listenToLogin();
+            }
+        });
+
+        passwordField.setOnKeyPressed(e-> {
+            if(e.getCode() == KeyCode.ENTER) {
+                listenToLogin();
+            }
+        });
     }
 
+    @FXML private JFXTextField usernameTF;
+    @FXML private JFXPasswordField passwordField;
+    @FXML private Label errorL;
     private void listenToLogin() {
 
-        HomeController homeController = new HomeController();
-        FXMLLoader homePaneLoader = new FXMLLoader(getClass().getResource("/view/Home.fxml"));
-        homePaneLoader.setController(homeController);
-        try {
-            Stage stage = Domain.getPrimaryStage();
-            stage.hide();
-            Parent root = homePaneLoader.load();
-            Scene scene = new Scene(root, 1000, 500);
-            scene.getStylesheets().add(getClass().getResource("/resources/css/jfoenix-components.css").toExternalForm());
-            scene.getStylesheets().add(getClass().getResource("/resources/css/home.css").toExternalForm());
-            stage.setScene(scene);
-            homeController.listenToItem1();
-            stage.centerOnScreen();
-        } catch (IOException e) {
-            e.printStackTrace();
+        String username, password;
+
+        username = usernameTF.getText();
+        password = passwordField.getText();
+
+        UserLogin userLogin = new UserLogin(conn);
+
+        if(userLogin.credentialMatch(username, password)) {
+            Logger.log(Logger.LogType.LOGIN_SUCCESS, username, "Successful Login");
+            ActiveUser.setUsername(username);
+            HomeController homeController = new HomeController();
+            FXMLLoader homePaneLoader = new FXMLLoader(getClass().getResource("/view/Home.fxml"));
+            homePaneLoader.setController(homeController);
+            try {
+                Stage stage = Domain.getPrimaryStage();
+                stage.hide();
+                Parent root = homePaneLoader.load();
+                Scene scene = new Scene(root, 1000, 500);
+                scene.getStylesheets().add(getClass().getResource("/resources/css/jfoenix-components.css").toExternalForm());
+                scene.getStylesheets().add(getClass().getResource("/resources/css/home.css").toExternalForm());
+                stage.setScene(scene);
+                homeController.listenToItem1();
+                stage.centerOnScreen();
+            } catch (IOException e) {
+                conn.closeConnection();
+                e.printStackTrace();
+            }
+        }
+        else {
+            errorL.setVisible(true);
+            Logger.log(Logger.LogType.LOGIN_ATTEMPT, username, "Failed Login Attempt");
         }
     }
 

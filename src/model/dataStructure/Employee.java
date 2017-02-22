@@ -20,9 +20,11 @@ public class Employee {
 
     private String schedule, time, imageUUID;
 
-    private String pagIbig, sss;
+    private String pagIbig, sss, commission;
 
     private String empStatus;
+
+    private String timein, timemout, status;
 
     public int getPre_empNo() {
         return pre_empNo;
@@ -174,5 +176,37 @@ public class Employee {
 
     public void setEmpStatus(String empStatus) {
         this.empStatus = empStatus;
+    }
+
+    public void setTimein(String timein) {
+        this.timein = timein;
+    }
+
+    public String getTimein() {
+        return timein;
+    }
+
+    public String getTimemout() {
+        return timemout;
+    }
+
+    public void setTimemout(String timemout) {
+        this.timemout = timemout;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getCommission() {
+        return commission;
+    }
+
+    public void setCommission(String commission) {
+        this.commission = commission;
     }
 }

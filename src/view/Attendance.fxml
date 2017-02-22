@@ -19,7 +19,7 @@
          <children>
             <StackPane minWidth="403.0" prefWidth="403.0">
                <children>
-                  <ScrollPane fx:id="sp" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" pannable="true" prefHeight="425.0" prefWidth="361.0" vbarPolicy="NEVER">
+                  <ScrollPane fx:id="sp" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" pannable="true" prefHeight="425.0" prefWidth="361.0">
                      <content>
                         <VBox fx:id="empListContainer" alignment="TOP_CENTER" />
                      </content>
@@ -30,13 +30,13 @@
                         <Insets top="80.0" />
                      </StackPane.margin>
                   </ScrollPane>
-                  <ScrollPane hbarPolicy="NEVER" maxHeight="80.0" prefHeight="388.0" prefWidth="403.0" vbarPolicy="NEVER" StackPane.alignment="TOP_LEFT">
+                  <ScrollPane fx:id="sp" hbarPolicy="NEVER" maxHeight="80.0" prefHeight="388.0" prefWidth="403.0" vbarPolicy="NEVER" StackPane.alignment="TOP_LEFT">
                      <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="77.0" prefWidth="399.0">
+                        <AnchorPane fx:id="sp" minHeight="0.0" minWidth="0.0" prefHeight="77.0" prefWidth="399.0">
                            <children>
-                              <JFXComboBox fx:id="empOrderCB" layoutX="14.0" layoutY="39.0" prefHeight="25.0" prefWidth="222.0" promptText="Order By" />
-                              <JFXComboBox fx:id="showSelectionCB" layoutX="243.0" layoutY="39.0" prefHeight="25.0" prefWidth="142.0" />
-                              <JFXDatePicker editable="false" layoutX="8.0" layoutY="8.0" />
+                              <JFXComboBox fx:id="empOrderCB" layoutX="14.0" layoutY="39.0" prefHeight="25.0" prefWidth="190.0" promptText="Order By" />
+                              <JFXComboBox fx:id="showSelectionCB" layoutX="216.0" layoutY="39.0" onAction="#reloadAttendanceList" prefHeight="25.0" prefWidth="169.0" />
+                              <JFXDatePicker fx:id="attendaceDatePicker" editable="false" layoutX="209.0" layoutY="7.0" prefHeight="32.0" prefWidth="185.0" />
                            </children>
                         </AnchorPane>
                      </content>
@@ -50,38 +50,38 @@
                <children>
                   <HBox fillHeight="false" prefWidth="1010.0" spacing="16.0" VBox.vgrow="NEVER">
                      <children>
-                        <ScrollPane fx:id="sp" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" prefHeight="193.0" prefWidth="389.0" vbarPolicy="NEVER" HBox.hgrow="ALWAYS">
+                        <ScrollPane fx:id="sp" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" maxHeight="156.0" minHeight="156.0" prefHeight="156.0" prefWidth="424.0" vbarPolicy="NEVER" HBox.hgrow="ALWAYS">
                            <content>
                               <VBox fx:id="hb" alignment="CENTER" prefHeight="191.0" prefWidth="376.0" spacing="10.0">
                                  <children>
                                     <Label layoutX="10.0" layoutY="66.0" text="MONTHLY ATTENDANCE">
                                        <font>
-                                          <Font size="24.0" />
+                                          <Font size="18.0" />
                                        </font>
                                     </Label>
-                                    <JFXComboBox fx:id="monthCB" editable="true" prefHeight="25.0" prefWidth="245.0" promptText="Select Month" />
-                                    <JFXComboBox fx:id="yearCB" editable="true" layoutX="99.0" layoutY="134.0" prefHeight="25.0" prefWidth="245.0" promptText="Select Year" />
+                                    <JFXComboBox fx:id="monthCB" editable="true" onAction="#populateEmpList" prefHeight="25.0" prefWidth="245.0" promptText="Select Month" />
+                                    <JFXComboBox fx:id="yearCB" editable="true" layoutX="99.0" layoutY="134.0" onAction="#populateEmpList" prefHeight="25.0" prefWidth="245.0" promptText="Select Year" />
                                  </children></VBox>
                            </content>
                            <effect>
                               <DropShadow color="#00000081" height="15.0" offsetX="1.0" offsetY="1.0" radius="7.0" width="15.0" />
                            </effect>
                         </ScrollPane>
-                        <ScrollPane fx:id="sp" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" layoutX="10.0" layoutY="10.0" maxHeight="231.0" minHeight="191.0" pannable="true" prefHeight="193.0" prefWidth="277.0" vbarPolicy="NEVER">
+                        <ScrollPane fx:id="sp" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" layoutX="10.0" layoutY="10.0" maxHeight="231.0" minHeight="156.0" pannable="true" prefHeight="156.0" prefWidth="277.0" vbarPolicy="NEVER">
                            <effect>
                               <DropShadow color="#00000080" height="15.0" offsetX="1.0" offsetY="1.0" radius="7.0" width="15.0" />
                            </effect>
                            <content>
-                              <VBox fx:id="whiteContainer" alignment="CENTER" prefHeight="227.0" prefWidth="275.0" spacing="16.0">
+                              <VBox fx:id="whiteContainer" alignment="CENTER" prefHeight="148.0" prefWidth="275.0" spacing="16.0">
                                  <children>
                                     <Label text="MTD ATTENDANCE">
                                        <font>
-                                          <Font size="18.0" />
+                                          <Font size="14.0" />
                                        </font>
                                     </Label>
-                                    <Label text="90%">
+                                    <Label fx:id="mtdAttendanceL" text="90%">
                                        <font>
-                                          <Font size="48.0" />
+                                          <Font size="36.0" />
                                        </font>
                                     </Label>
                                  </children>
@@ -91,7 +91,7 @@
                               </VBox>
                            </content>
                         </ScrollPane>
-                        <ScrollPane fx:id="sp1" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" layoutX="743.0" layoutY="10.0" maxHeight="231.0" minHeight="192.0" pannable="true" prefHeight="193.0" prefWidth="277.0" vbarPolicy="NEVER">
+                        <ScrollPane fx:id="sp1" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" layoutX="743.0" layoutY="10.0" maxHeight="231.0" minHeight="156.0" pannable="true" prefHeight="156.0" prefWidth="277.0" vbarPolicy="NEVER">
                            <effect>
                               <DropShadow color="#00000080" height="15.0" offsetX="1.0" offsetY="1.0" radius="7.0" width="15.0" />
                            </effect>
@@ -100,12 +100,12 @@
                                  <children>
                                     <Label text="ATTENDANCE SINCE HIRED">
                                        <font>
-                                          <Font size="18.0" />
+                                          <Font size="14.0" />
                                        </font>
                                     </Label>
-                                    <Label text="85%">
+                                    <Label fx:id="attSinceHiredL" text="85%">
                                        <font>
-                                          <Font size="48.0" />
+                                          <Font size="36.0" />
                                        </font>
                                     </Label>
                                  </children>
@@ -119,7 +119,7 @@
                   </HBox>
                   <ScrollPane fx:id="sp" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" pannable="true" vbarPolicy="NEVER" VBox.vgrow="ALWAYS">
                      <VBox.margin>
-                        <Insets left="2.0" right="2.0" top="4.0" />
+                        <Insets top="16.0" />
                      </VBox.margin>
                      <content>
                         <TableView fx:id="table" prefHeight="200.0" prefWidth="200.0">

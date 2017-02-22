@@ -43,7 +43,7 @@
                           <content>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="77.0" prefWidth="399.0">
                                  <children>
-                                    <Label fx:id="empCountL" layoutX="14.0" layoutY="14.0" text="10 EMPLOYEES" />
+                                    <Label fx:id="empCountL" layoutX="14.0" layoutY="14.0" text="0 EMPLOYEES" />
                                     <JFXComboBox fx:id="empOrderCB" layoutX="14.0" layoutY="39.0" prefHeight="25.0" prefWidth="222.0" promptText="Order By" />
                                     <JFXComboBox fx:id="showSelectionCB" layoutX="243.0" layoutY="39.0" prefHeight="25.0" prefWidth="142.0" />
                                  </children>

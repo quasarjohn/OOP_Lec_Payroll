@@ -193,6 +193,26 @@ public class Strings {
         return showSelectionOptions;
     }
 
+    public static final ObservableList<String> showAttendanceSelectionOptions() {
+        ObservableList<String> showSelectionOptions = FXCollections.observableArrayList(
+                "Show Active w/ Sched",
+                "Show Active",
+                "Show Inactive",
+                "Show Both"
+        );
+        return showSelectionOptions;
+    }
+
+    public static final ObservableList<String> showDashboardSelectionOptions() {
+        ObservableList<String> showSelectionOptions = FXCollections.observableArrayList(
+                "Show Active & Timed in",
+                "Show Active",
+                "Show Inactive",
+                "Show Both"
+        );
+        return showSelectionOptions;
+    }
+
     public static final ObservableList<String> attendanceTableHeader() {
         ObservableList<String> attendanceTableHeader = FXCollections.observableArrayList(
                 "DATE", "SCHEDULE", "TIMEIN", "TIMEOUT", "HOURS WORKED", "STATUS"
@@ -204,5 +224,13 @@ public class Strings {
     public static final SimpleDateFormat getDateFormat() {
 
         return new SimpleDateFormat("yyyy-MM-dd");
+    }
+
+    public static final ObservableList<String> dashboardIndividialHeader() {
+        ObservableList<String> attendanceTableHeader = FXCollections.observableArrayList(
+                "CATEGORY", "AMOUNT", "COMMISSION PERCENTAGE", "COMMISSION RECEIVED", "NOTES"
+        );
+
+        return attendanceTableHeader;
     }
 }
