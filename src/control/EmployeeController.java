@@ -62,7 +62,7 @@ public class EmployeeController implements Initializable {
     @FXML
     private Label lbl_name, phoneNumberL, addressL, hireDateL, birthDayL, contactPersonL,
             contactAddressL, contactNumberL, pagIbigL, sssL, schedL, schedTimeL, empCountL ,
-            commissionL;
+            commissionL, ratePerHourL;
 
     private ArrayList<Employee> employees;
 
@@ -348,6 +348,7 @@ public class EmployeeController implements Initializable {
                         schedL.setText("Days: " + employee.getSchedule().trim().replace(" ", ", "));
                         schedTimeL.setText("Time: " + employee.getTime());
                         commissionL.setText("COMMISSION: " + employee.getCommission() + "%");
+                        ratePerHourL.setText("RATE / HOUR: " + employee.getHourlyRate());
 
                         bigProfileImage.setFill(Images.getImagePatternFromFile(this, ResourcePaths.dpPath +
                                 employee.getImageUUID()));

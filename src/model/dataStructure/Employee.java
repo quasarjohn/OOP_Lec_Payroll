@@ -20,7 +20,7 @@ public class Employee {
 
     private String schedule, time, imageUUID;
 
-    private String pagIbig, sss, commission;
+    private String pagIbig, sss, commission, hourlyRate;
 
     private String empStatus;
 
@@ -208,5 +208,13 @@ public class Employee {
 
     public void setCommission(String commission) {
         this.commission = commission;
+    }
+
+    public String getHourlyRate() {
+        return hourlyRate;
+    }
+
+    public void setHourlyRate(String hourlyRate) {
+        this.hourlyRate = hourlyRate;
     }
 }

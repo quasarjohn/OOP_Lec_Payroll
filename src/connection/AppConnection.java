@@ -1,9 +1,6 @@
 package connection;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.sql.*;
-import java.util.Scanner;
 
 /**
  * Created by John on 1/10/2017.
@@ -56,7 +53,6 @@ public class AppConnection {
     public void query() throws SQLException {
 
         this.rs = this.pst.executeQuery();
-
 
     }
 

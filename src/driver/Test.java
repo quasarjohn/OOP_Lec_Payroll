@@ -1,19 +1,10 @@
 package driver;
 
-import connection.AppConnection;
-import model.dataReader.EmpReader;
-import model.dataStructure.Attendance;
-import model.dataWriter.DatabaseStructure;
-import model.dataWriter.EmployeeWriter;
-import utils.DateUtils;
-import values.Strings;
+import model.dataWriter.DatabaseBuilder;
 
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
-import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /**
  * Created by John on 1/11/2017.
@@ -23,17 +14,17 @@ public class Test {
     public static void main(String[] args) {
 
 
-        try {
-            Desktop.getDesktop().open(new File("C:\\KFAVIDs"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            Desktop.getDesktop().open(new File("C:\\KFAVIDs"));
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 //        System.out.println(DateUtils.getCurrentTime());
 
 //        EmployeeWriter.initializeAttendance();
 
 
-//        DatabaseStructure.buildDatabaseStructure();
+        DatabaseBuilder.buildDatabaseStructure();
 
 //        SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
 //        SimpleDateFormat time = new SimpleDateFormat("hh.mm.ss");

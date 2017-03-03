@@ -105,6 +105,7 @@ public class EmpReader {
                 emp.setImageUUID(conn.getRS().getString(18));
                 emp.setEmpStatus(conn.getRS().getString(19));
                 emp.setCommission(conn.getRS().getString(20));
+                emp.setHourlyRate(conn.getRS().getString(21));
             }
             return emp;
         } catch (SQLException e) {
@@ -125,20 +126,38 @@ public class EmpReader {
         String orderFilter;
 
         switch (selection) {
-            case ACTIVE_W_SCHED: activeFilter = "where e.emp_status = 'ACTIVE' and " +
-                    "e.schedule like '%" + getCurrentDay() + "%'  AND a.workdate = '" + date + "'"; break;
-            case ACTIVE: activeFilter = "where e.emp_status = 'ACTIVE' "; break;
-            case BOTH: activeFilter = " where e.emp_status = 'ACTIVE' OR e.emp_status = 'INACTIVE'"; break;
-            case INACTIVE: activeFilter = "where e.emp_status = 'INACTIVE' "; break;
-            default:activeFilter = "where e.emp_status = 'ACTIVE' and " +
-                    "e.schedule like '%" + getCurrentDay() + "%' "; break;
+            case ACTIVE_W_SCHED:
+                activeFilter = "where e.emp_status = 'ACTIVE' and " +
+                        "e.schedule like '%" + getCurrentDay() + "%'  AND a.workdate = '" + date + "'";
+                break;
+            case ACTIVE:
+                activeFilter = "where e.emp_status = 'ACTIVE' ";
+                break;
+            case BOTH:
+                activeFilter = " where e.emp_status = 'ACTIVE' OR e.emp_status = 'INACTIVE'";
+                break;
+            case INACTIVE:
+                activeFilter = "where e.emp_status = 'INACTIVE' ";
+                break;
+            default:
+                activeFilter = "where e.emp_status = 'ACTIVE' and " +
+                        "e.schedule like '%" + getCurrentDay() + "%' ";
+                break;
         }
 
         switch (orderSelection) {
-            case EMPNO: orderFilter = " order by e.pre_empno, e.post_empno"; break;
-            case FIRSTNAME: orderFilter = " order by e.last_name"; break;
-            case LASTNAME: orderFilter = " order by e.first_name"; break;
-            default: orderFilter = " order by e.pre_empno, e.post_empno"; break;
+            case EMPNO:
+                orderFilter = " order by e.pre_empno, e.post_empno";
+                break;
+            case FIRSTNAME:
+                orderFilter = " order by e.last_name";
+                break;
+            case LASTNAME:
+                orderFilter = " order by e.first_name";
+                break;
+            default:
+                orderFilter = " order by e.pre_empno, e.post_empno";
+                break;
         }
 
         System.out.println(activeFilter);
@@ -233,5 +252,24 @@ public class EmpReader {
             return "S";
         else
             return "SU";
+    }
+
+    public static double getRatePerSec(Employee employee) {
+        double rate = 0;
+        AppConnection conn = new AppConnection();
+        conn.loadDriver();
+        conn.connectToDB();
+        conn.doSomething("select hourly_rate from employees where pre_empno = " +
+                employee.getPre_empNo() + " AND post_empno  =" + employee.getPost_empNo());
+        try {
+            conn.query();
+            while (conn.getRS().next()) {
+                rate = conn.getRS().getDouble(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return rate / 3600;
     }
 }

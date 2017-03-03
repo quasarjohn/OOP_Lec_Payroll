@@ -291,6 +291,22 @@
                                           <Insets left="16.0" top="15.0" />
                                        </VBox.margin>
                                     </HBox>
+                                    <HBox alignment="BOTTOM_LEFT" layoutX="26.0" layoutY="283.0">
+                                       <children>
+                                          <Label text="RATE / HOUR">
+                                             <font>
+                                                <Font name="System Bold" size="14.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                          </Label>
+                                          <JFXTextField fx:id="tf_ratePerHour" focusColor="#8cd98c" maxWidth="85.0" minWidth="68.0" prefHeight="31.0" prefWidth="85.0" text="50" />
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets left="16.0" />
+                                       </VBox.margin>
+                                    </HBox>
                                           </children>
                                  <padding>
                                     <Insets top="10.0" />

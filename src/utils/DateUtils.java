@@ -88,4 +88,25 @@ public class DateUtils {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         return dateFormat.format(new Date());
     }
+
+    public static String getTimeDifference(String start, String end) {
+        int difference = timeToInt(end) - timeToInt(start);
+        return intToTime(difference);
+    }
+
+    public static String intToTime(int time) {
+        int hour = 0, min = 0;
+
+        while (time > 59) {
+            time -= 59;
+            min ++; {
+                while (min >=59) {
+                    min -= 59;
+                    hour ++;
+                }
+            }
+        }
+
+        return hour + ":" + min + ":" + time;
+    }
 }

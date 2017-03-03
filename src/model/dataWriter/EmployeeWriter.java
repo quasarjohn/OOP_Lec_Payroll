@@ -62,10 +62,9 @@ public class EmployeeWriter {
                 emp.getSss() + ",'" +
                 emp.getImageUUID() + "','" +
                 emp.getEmpStatus() + "'," +
-                emp.getCommission() + ""
-                + ")"
+                emp.getCommission() + "," +
+                emp.getHourlyRate() + ")"
         );
-
 
         try {
             conn.update();
@@ -85,7 +84,7 @@ public class EmployeeWriter {
 
         conn.doSomething("update employees set " +
                 "last_name = '" + emp.getLastName() + "', " +
-                "first_name = '"  + emp.getFirstName() + "', " +
+                "first_name = '" + emp.getFirstName() + "', " +
                 "middle_name ='" + emp.getMiddleName() + "', " +
                 "gender = '" + emp.getGender() + "', " +
                 "phone_number = '" + emp.getPhoneNumber() + "', " +
@@ -101,10 +100,10 @@ public class EmployeeWriter {
                 "sss = '" + emp.getSss() + "', " +
                 "image_uuid = '" + emp.getImageUUID() + "', " +
                 "emp_status = '" + emp.getEmpStatus() + "'," +
-                "commission_percentage = " + emp.getCommission() + " " +
+                "commission_percentage = " + emp.getCommission() + ", " +
+                "hourly_rate = " + emp.getHourlyRate() + " " +
                 "where pre_empno = " + emp.getPre_empNo() + " AND " +
                 "post_empno = " + emp.getPost_empNo());
-
         try {
             conn.update();
             System.out.println("DATA WRITE COMPLETED");
@@ -116,7 +115,7 @@ public class EmployeeWriter {
     }
 
     public static void initializeAttendance() {
-        for(Employee emp : new EmpReader().getEmpListAttendanceForCurrentDay()) {
+        for (Employee emp : new EmpReader().getEmpListAttendanceForCurrentDay()) {
 
             System.out.println("INSERTING ATTENDANCE");
 
@@ -144,7 +143,7 @@ public class EmployeeWriter {
                     "values(" + emp.getPre_empNo() +
                     ", " + emp.getPost_empNo() +
                     ",'" + Strings.getDateFormat().format(new Date()) +
-                    "','" + time +"')");
+                    "','" + time + "')");
 
             try {
                 conn.update();

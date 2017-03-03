@@ -5,7 +5,7 @@ import connection.AppConnection;
 /**
  * Created by John on 1/11/2017.
  */
-public class DatabaseStructure {
+public class DatabaseBuilder {
 
     private static AppConnection conn;
 
@@ -53,6 +53,7 @@ public class DatabaseStructure {
                 "image_uuid varchar(300)," +
                 "emp_status varchar(10), " +
                 "commission_percentage decimal, " +
+                "hourly_rate decimal, " +
                 "primary key(pre_empNo, post_empNo)" +
                 ")");
         conn.execute();

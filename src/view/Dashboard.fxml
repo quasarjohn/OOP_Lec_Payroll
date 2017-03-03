@@ -67,31 +67,22 @@
                                                 <Insets bottom="10.0" />
                                              </VBox.margin>
                                           </Label>
-                                          <Label fx:id="empCommissionL" layoutX="26.0" layoutY="26.0" text="Commission: 330.00">
+                                          <Label fx:id="empCommissionL" layoutX="26.0" layoutY="26.0" text="Total Commission: 0.00">
                                              <font>
-                                                <Font size="18.0" />
+                                                <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <Label fx:id="empReglarPayL" layoutX="40.0" layoutY="160.0" text="Regular Pay: 220.00">
+                                          <Label fx:id="empBasicPayL" layoutX="40.0" layoutY="72.0" text="Total Basic Pay: 0.00">
                                              <font>
-                                                <Font size="18.0" />
+                                                <Font size="14.0" />
                                              </font>
                                           </Label>
                                           <HBox fx:id="hr1" maxHeight="1.0" prefHeight="1.0" prefWidth="240.0" />
-                                          <HBox alignment="CENTER_LEFT">
-                                             <children>
-                                                <Label text="Earning: ">
-                                                   <font>
-                                                      <Font size="18.0" />
-                                                   </font>
-                                                </Label>
-                                                <Label fx:id="netEmpIncomeL" layoutX="10.0" layoutY="10.0" text="P550.00">
-                                                   <font>
-                                                      <Font size="24.0" />
-                                                   </font>
-                                                </Label>
-                                             </children>
-                                          </HBox>
+                                          <Label fx:id="empTotalEarning" layoutX="40.0" layoutY="104.0" text="Total Earning: 0.00">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
                                        </children>
                                        <padding>
                                           <Insets bottom="30.0" left="30.0" right="30.0" top="20.0" />
@@ -107,27 +98,32 @@
                                                 <Insets bottom="10.0" />
                                              </VBox.margin>
                                           </Label>
-                                          <Label fx:id="salonIncomeL" text="Salon Income: 3,500.00">
+                                          <Label fx:id="salonIncomeL" text="Salon Income: 0.00">
                                              <font>
-                                                <Font size="18.0" />
+                                                <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <Label fx:id="salonCommissionL" layoutX="26.0" layoutY="26.0" text="- Employee Salary: 1,115.00">
+                                          <Label fx:id="salonCommissionL" layoutX="26.0" layoutY="26.0" text="- Commission: 0.00">
                                              <font>
-                                                <Font size="18.0" />
+                                                <Font size="14.0" />
                                              </font>
                                           </Label>
                                           <HBox fx:id="hr1" maxHeight="1.0" prefHeight="1.0" prefWidth="240.0" />
+                                          <Label fx:id="salonBasicPayL" layoutX="50.0" layoutY="104.0" text="- Basic Pay: 0.00">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
                                           <HBox alignment="CENTER_LEFT">
                                              <children>
                                                 <Label text="Net Salon Income: ">
                                                    <font>
-                                                      <Font size="18.0" />
+                                                      <Font size="14.0" />
                                                    </font>
                                                 </Label>
-                                                <Label fx:id="netSalonIncomeL" text="P2,375">
+                                                <Label fx:id="netSalonIncomeL" text="0.00">
                                                    <font>
-                                                      <Font size="24.0" />
+                                                      <Font size="18.0" />
                                                    </font>
                                                 </Label>
                                              </children>

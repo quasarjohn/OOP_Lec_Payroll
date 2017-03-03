@@ -28,7 +28,7 @@ public class EditEmployeeController {
     @FXML
     private JFXTextField tf_firstName, tf_middleName, tf_lastName, tf_phoneNumber, tf_address,
 
-    tf_contactPerson, tf_contactAddress, tf_contactPersonNumber,
+    tf_contactPerson, tf_contactAddress, tf_contactPersonNumber, tf_ratePerHour,
 
     tf_pagIbig, tf_sss, tf_commission;
 
@@ -137,6 +137,7 @@ public class EditEmployeeController {
             emp.setPre_empNo(this.emp.getPre_empNo());
             emp.setPost_empNo(this.emp.getPost_empNo());
             emp.setCommission(tf_commission.getText());
+            emp.setHourlyRate(tf_ratePerHour.getText());
 
             if (statusToggle.isSelected()) {
                 emp.setEmpStatus("ACTIVE");
@@ -213,6 +214,7 @@ public class EditEmployeeController {
         tf_pagIbig.setText(emp.getPagIbig() + "");
         tf_sss.setText(emp.getSss() + "");
         tf_commission.setText(emp.getCommission());
+        tf_ratePerHour.setText(emp.getHourlyRate());
 
         formatScheduleSelection(emp.getSchedule().trim());
 

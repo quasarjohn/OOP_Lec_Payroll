@@ -30,7 +30,7 @@ public class AddEmployeeController {
 
     tf_contactPerson, tf_contactAddress, tf_contactPersonNumber,
 
-    tf_pagIbig, tf_sss, tf_commission;
+    tf_pagIbig, tf_sss, tf_commission, tf_ratePerHour;
 
     @FXML
     private Circle bigProfileImage;
@@ -126,6 +126,7 @@ public class AddEmployeeController {
 
             emp.setImageUUID(uuid);
             emp.setCommission(tf_commission.getText());
+            emp.setHourlyRate(tf_ratePerHour.getText());
 
             new EmployeeWriter().addEmployee(emp);
 

@@ -4,8 +4,10 @@ import connection.AppConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.dataStructure.Employee;
+import utils.DateUtils;
 
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Observable;
 
@@ -68,7 +70,33 @@ public class DashboardReader {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        conn.closeConnection();
         return commission;
+    }
+
+    public double[] getTotalEarningAndCommission(String date) {
+        double[] data = new double[2];
+
+        data[0] = 0;
+        data[1] = 0;
+
+        AppConnection conn = new AppConnection();
+        conn.loadDriver();
+        conn.connectToDB();
+
+        conn.doSomething("select sum(amount), sum(commission) " +
+                "from earnings where workdate = '" + date + "'");
+        try {
+            conn.query();
+            while (conn.getRS().next()) {
+                data[0] = conn.getRS().getDouble(1);
+                data[1] = conn.getRS().getDouble(2);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        conn.closeConnection();
+        return data;
     }
 
     public static ObservableList<ObservableList<String>> getIndividualDashboardData(int pre, int post, String date) {
@@ -98,7 +126,42 @@ public class DashboardReader {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
+        conn.closeConnection();
         return data;
+    }
+
+    public static String getTotalEmpHour(Employee emp, String date) {
+        String value = "";
+        AppConnection conn = new AppConnection();
+        conn.loadDriver();
+        conn.connectToDB();
+        conn.doSomething("select timein from attendance where pre_empno = " + emp.getPre_empNo() +
+                " AND post_empno = " + emp.getPost_empNo() + " AND workdate = '" + date + "'");
+        try {
+            conn.query();
+            while (conn.getRS().next()) {
+                value = conn.getRS().getString(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        String timeDifference = DateUtils.getTimeDifference(value, DateUtils.getCurrentTime());
+        int totalWorkedInSec = DateUtils.timeToInt(timeDifference);
+
+
+        conn.closeConnection();
+        return new DecimalFormat("##.00").format(totalWorkedInSec * EmpReader.getRatePerSec(emp));
+    }
+
+    public static double getTotalBasicPay(ArrayList<Employee> employees) {
+
+        double value = 0;
+        for (Employee employee : employees) {
+
+            double totalHours = Double.parseDouble(getTotalEmpHour(employee, DateUtils.getCurrentDate()));
+            value += totalHours;
+        }
+        return value;
     }
 }

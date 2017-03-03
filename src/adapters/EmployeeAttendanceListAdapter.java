@@ -81,8 +81,6 @@ public class EmployeeAttendanceListAdapter {
 
     public void loadTable(String month, String year, Label attSinceHiredL, Label mtdAttendanceL) {
 
-        System.out.println(year + " XXX " + month);
-
         attSinceHiredL.setText(AttendanceReader.getAttendancePercentage(emp) + "%");
         mtdAttendanceL.setText(AttendanceReader.getAttendancePercentage(emp, month, year) + "%");
 

@@ -283,6 +283,19 @@
                                           <JFXTextField fx:id="tf_commission" focusColor="#8cd98c" maxWidth="85.0" minWidth="68.0" prefHeight="31.0" prefWidth="85.0" text="33" />
                                        </children>
                                     </HBox>
+                                    <HBox alignment="BOTTOM_LEFT" layoutX="26.0" layoutY="281.0">
+                                       <children>
+                                          <Label text="RATE / HOUR: ">
+                                             <font>
+                                                <Font name="System Bold" size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <JFXTextField fx:id="tf_ratePerHour" focusColor="#8cd98c" maxWidth="85.0" minWidth="68.0" prefHeight="31.0" prefWidth="85.0" text="33" />
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets left="16.0" />
+                                       </VBox.margin>
+                                    </HBox>
                                           </children>
                                  <padding>
                                     <Insets top="10.0" />

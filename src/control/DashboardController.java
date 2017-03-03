@@ -31,6 +31,7 @@ import values.Strings;
 import values.Styles;
 
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -67,8 +68,16 @@ public class DashboardController implements Initializable {
 
     private ArrayList<Employee> employees;
 
-    @FXML private JFXDatePicker datePicker;
-    @FXML private JFXComboBox empOrderCB;
+    @FXML
+    private JFXDatePicker datePicker;
+    @FXML
+    private JFXComboBox empOrderCB;
+
+    @FXML
+    private Label salonIncomeL, salonCommissionL, netSalonIncomeL,
+            empCommissionL, empBasicPayL, empTotalEarning, salonBasicPayL;
+
+    private DecimalFormat df = new DecimalFormat("0.00");
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -82,7 +91,7 @@ public class DashboardController implements Initializable {
 
         suggestions = new Suggestions();
 
-        categoryCB.getJFXEditor().setOnKeyTyped(e ->{
+        categoryCB.getJFXEditor().setOnKeyTyped(e -> {
             categoryCB.getItems().setAll(suggestions.getCategorySuggestions(categoryCB.getJFXEditor().getText().toUpperCase()));
             categoryCB.show();
         });
@@ -95,6 +104,7 @@ public class DashboardController implements Initializable {
     }
 
     private String date;
+
     void populateEmpList() {
         table.getItems().clear();
         date = DateUtils.getDateFromDatePicker(datePicker);
@@ -103,10 +113,9 @@ public class DashboardController implements Initializable {
 
         employees = DashboardReader.getEmpList(date);
 
-        if(employees.size() > 0) {
+        if (employees.size() > 0) {
             CircleAnimator.showFab(fab);
-        }
-        else CircleAnimator.hideFab(fab);
+        } else CircleAnimator.hideFab(fab);
 
         ArrayList<HBox> items = new ArrayList<>();
 
@@ -133,6 +142,7 @@ public class DashboardController implements Initializable {
             }
         }
 
+        loadDashboardHeaderData();
         dashboardAddB.setStyle(Styles.ButtonStyles.greenButton);
         cancelB.setStyle(Styles.ButtonStyles.redButton);
     }
@@ -176,6 +186,8 @@ public class DashboardController implements Initializable {
 
         populateEmpList();
         loadTableContents();
+
+        refreshFields();
     }
 
     public void loadTableContents() {
@@ -198,14 +210,15 @@ public class DashboardController implements Initializable {
         }
     }
 
-    @FXML private void listenToDatePicker() {
+    @FXML
+    private void listenToDatePicker() {
         System.out.println(datePicker.getValue().getYear() + "-" + datePicker.getValue().getMonthValue() + "-" +
                 datePicker.getValue().getDayOfYear());
 
         System.out.println(new SimpleDateFormat("yyyy-M-dd").format(new Date()));
 
-        if(isDatesEqual(datePicker.getValue().getYear() + "-" + datePicker.getValue().getMonthValue() + "-" +
-                datePicker.getValue().getDayOfYear(),new SimpleDateFormat("yyyy-M-dd").format(new Date()) ))
+        if (isDatesEqual(datePicker.getValue().getYear() + "-" + datePicker.getValue().getMonthValue() + "-" +
+                datePicker.getValue().getDayOfYear(), new SimpleDateFormat("yyyy-M-dd").format(new Date())))
             CircleAnimator.showFab(fab);
         else
             CircleAnimator.hideFab(fab);
@@ -213,7 +226,8 @@ public class DashboardController implements Initializable {
         populateEmpList();
     }
 
-    @FXML private void listenToOrderBy() {
+    @FXML
+    private void listenToOrderBy() {
 
     }
 
@@ -221,8 +235,33 @@ public class DashboardController implements Initializable {
         String[] parts = date.split("-");
         String[] parts1 = date1.split("-");
 
-        if(parts[0].equals(parts1[0]) && parts[1].equals(parts1[1]) && parts[2].equals(parts1[2]))
+        if (parts[0].equals(parts1[0]) && parts[1].equals(parts1[1]) && parts[2].equals(parts1[2]))
             return true;
         else return false;
+    }
+
+    private void loadDashboardHeaderData() {
+        if (employees.size() > 0) {
+            double data[] = new DashboardReader().getTotalEarningAndCommission(DateUtils.getDateFromDatePicker(datePicker));
+            double empTotalBasicPay = Double.parseDouble(DashboardReader.getTotalEmpHour(employees.get(position), DateUtils.getCurrentDate()));
+
+            salonIncomeL.setText("Salon Income: " + df.format(data[0]));
+            salonCommissionL.setText("-Commission: " + df.format(data[1]));
+            netSalonIncomeL.setText(df.format(data[0] - (data[1] + empTotalBasicPay)));
+            salonBasicPayL.setText(df.format(DashboardReader.getTotalBasicPay(employees)));
+
+            int pre = employees.get(position).getPre_empNo();
+            int post = employees.get(position).getPost_empNo();
+            empCommissionL.setText("Total Commission: " + DashboardReader.getTotalCommission(
+                    pre, post, DateUtils.getDateFromDatePicker(datePicker)));
+            empBasicPayL.setText("Total Basic Pay: " + empTotalBasicPay + "");
+            empTotalEarning.setText("Total Earning: " + df.format((data[1] + empTotalBasicPay)));
+        }
+    }
+
+    private void refreshFields() {
+        notesTA.setText("");
+        categoryCB.getJFXEditor().setText("");
+        priceCB.getJFXEditor().setText("");
     }
 }

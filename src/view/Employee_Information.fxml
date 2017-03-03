@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
@@ -155,30 +154,6 @@
                                                       <Insets left="16.0" />
                                                   </VBox.margin>
                                               </Label>
-                                              <Label layoutX="26.0" layoutY="84.0" text="ONE-TIME DEDUCTIONS">
-                                                  <font>
-                                                      <Font name="System Bold" size="14.0" />
-                                                  </font>
-                                                  <VBox.margin>
-                                                      <Insets left="16.0" top="10.0" />
-                                                  </VBox.margin>
-                                              </Label>
-                                              <Label layoutX="26.0" layoutY="114.0" text="Cash Advance: ">
-                                                  <font>
-                                                      <Font size="14.0" />
-                                                  </font>
-                                                  <VBox.margin>
-                                                      <Insets left="16.0" />
-                                                  </VBox.margin>
-                                              </Label>
-                                              <Label text="*Will be cleared after the payroll is generated.">
-                                                  <font>
-                                                      <Font size="10.0" />
-                                                  </font>
-                                                  <VBox.margin>
-                                                      <Insets left="16.0" />
-                                                  </VBox.margin>
-                                              </Label>
                                     <Label layoutX="26.0" layoutY="120.0" text="SCHEDULE">
                                        <font>
                                           <Font name="System Bold" size="14.0" />
@@ -218,6 +193,18 @@
                                           <Insets top="15.0" />
                                        </VBox.margin>
                                     </HBox>
+                                    <HBox alignment="BOTTOM_LEFT" layoutX="10.0" layoutY="320.0">
+                                       <children>
+                                          <Label fx:id="ratePerHourL" text="RATE / HOUR:">
+                                             <font>
+                                                <Font name="System Bold" size="14.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                       <padding>
+                                          <Insets left="16.0" />
+                                       </padding>
+                                    </HBox>
                                           </children>
                                       </VBox>
                                   </content>
@@ -225,11 +212,6 @@
                                       <DropShadow color="#00000081" height="15.0" offsetX="1.0" offsetY="1.0" radius="7.0" width="15.0" />
                                   </effect>
                               </ScrollPane>
-                              <JFXButton fx:id="oneTimeDedB" buttonType="RAISED" text="ADD ONE-TIME DEDUCTION" StackPane.alignment="BOTTOM_RIGHT">
-                                  <StackPane.margin>
-                                      <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
-                                  </StackPane.margin>
-                              </JFXButton>
                           </children>
                       </StackPane>
                   </children>
