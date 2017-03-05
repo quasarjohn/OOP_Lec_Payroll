@@ -10,5 +10,8 @@
     <orderEntry type="library" name="db2jcc" level="project" />
     <orderEntry type="library" name="jfoenix" level="project" />
     <orderEntry type="library" name="bridj-0.6.2" level="project" />
+    <orderEntry type="library" name="jasperreports-fonts-6.2.0" level="project" />
+    <orderEntry type="library" name="ant-1.7.1" level="project" />
+    <orderEntry type="library" name="jasperreports-javaflow-6.2.0" level="project" />
   </component>
 </module>

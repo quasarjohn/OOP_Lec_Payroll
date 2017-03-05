@@ -4,7 +4,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
@@ -14,21 +13,12 @@
     </padding>
     <children>
         <Circle fx:id="circle" fill="WHITE" radius="25.0" stroke="WHITE" strokeType="INSIDE" />
-      <VBox alignment="CENTER_LEFT">
-         <children>
-            <Label fx:id="title" text="DAYS WORKED: 7">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <Label fx:id="subtitle" text="HOURS WORKED: 49:23" />
-         </children>
-      </VBox>
-      <Region prefHeight="78.0" prefWidth="13.0" HBox.hgrow="ALWAYS" />
-      <Label text="P6000.50">
+      <Label fx:id="title" text="Gilbert">
          <font>
-            <Font size="24.0" />
+            <Font size="16.0" />
          </font>
       </Label>
+      <Region prefHeight="78.0" prefWidth="13.0" HBox.hgrow="ALWAYS" />
+      <Label fx:id="subtitle" text="1213385" />
     </children>
 </HBox>

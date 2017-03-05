@@ -132,11 +132,12 @@ public class DashboardController implements Initializable {
                     FocusSwapper.changeFocus(hb, items);
                     position = emp.getPosition();
                     emp.loadTableContents();
+                    loadDashboardHeaderData();
                     System.out.println(position);
                 }
             });
 
-            if (i == 0) {
+            if (i == position) {
                 emp.loadTableContents();
                 FocusSwapper.changeFocus(hb, items);
             }
@@ -243,19 +244,25 @@ public class DashboardController implements Initializable {
     private void loadDashboardHeaderData() {
         if (employees.size() > 0) {
             double data[] = new DashboardReader().getTotalEarningAndCommission(DateUtils.getDateFromDatePicker(datePicker));
-            double empTotalBasicPay = Double.parseDouble(DashboardReader.getTotalEmpHour(employees.get(position), DateUtils.getCurrentDate()));
+            double empTotalBasicPay = 0;
+
+            for (Employee emp : employees) {
+                empTotalBasicPay += Double.parseDouble(DashboardReader.getTotalEmpHour(emp, DateUtils.getCurrentDate()));
+            }
 
             salonIncomeL.setText("Salon Income: " + df.format(data[0]));
             salonCommissionL.setText("-Commission: " + df.format(data[1]));
             netSalonIncomeL.setText(df.format(data[0] - (data[1] + empTotalBasicPay)));
-            salonBasicPayL.setText(df.format(DashboardReader.getTotalBasicPay(employees)));
+            salonBasicPayL.setText("-Basic Pay: " + df.format(DashboardReader.getTotalBasicPay(employees)));
 
             int pre = employees.get(position).getPre_empNo();
             int post = employees.get(position).getPost_empNo();
-            empCommissionL.setText("Total Commission: " + DashboardReader.getTotalCommission(
-                    pre, post, DateUtils.getDateFromDatePicker(datePicker)));
-            empBasicPayL.setText("Total Basic Pay: " + empTotalBasicPay + "");
-            empTotalEarning.setText("Total Earning: " + df.format((data[1] + empTotalBasicPay)));
+
+            double empTotalCommission = DashboardReader.getTotalCommission(
+                    pre, post, DateUtils.getDateFromDatePicker(datePicker));
+            empCommissionL.setText("Total Commission: " + df.format(empTotalCommission));
+            empBasicPayL.setText("Total Basic Pay: " + df.format(empTotalBasicPay));
+            empTotalEarning.setText("Total Earning: " + df.format(empTotalCommission + empTotalBasicPay));
         }
     }
 

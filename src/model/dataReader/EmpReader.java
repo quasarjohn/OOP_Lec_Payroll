@@ -51,7 +51,7 @@ public class EmpReader {
         conn.connectToDB();
 
         conn.doSomething("select pre_empno, post_empno, " +
-                "first_name, middle_name, last_name, emp_status from employees " + filter + " " + order);
+                "first_name, middle_name, last_name, emp_status, image_uuid from employees " + filter + " " + order);
         try {
             conn.query();
             while (conn.getRS().next()) {
@@ -62,6 +62,7 @@ public class EmpReader {
                 emp.setMiddleName(conn.getRS().getString(4));
                 emp.setLastName(conn.getRS().getString(5));
                 emp.setEmpStatus(conn.getRS().getString(6));
+                emp.setImageUUID(conn.getRS().getString(7));
 
                 employees.add(emp);
             }

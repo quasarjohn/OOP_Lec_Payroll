@@ -12,29 +12,41 @@
   <property name="kittyfav_payroll.testoutput.dir" value="${module.kittyfav_payroll.basedir}/out/test/KittyFav Payroll"/>
   
   <path id="kittyfav_payroll.module.bootclasspath">
-    <!-- ResourcePaths to be included in compilation bootclasspath -->
+    <!-- Paths to be included in compilation bootclasspath -->
   </path>
   
   <path id="kittyfav_payroll.module.production.classpath">
     <path refid="${module.jdk.classpath.kittyfav_payroll}"/>
+    <path refid="library.db2jcc.classpath"/>
     <path refid="library.jfoenix.classpath"/>
+    <path refid="library.bridj-0.6.2.classpath"/>
+    <path refid="library.ant-1.7.1.classpath"/>
   </path>
   
   <path id="kittyfav_payroll.runtime.production.module.classpath">
     <pathelement location="${kittyfav_payroll.output.dir}"/>
+    <path refid="library.db2jcc.classpath"/>
     <path refid="library.jfoenix.classpath"/>
+    <path refid="library.bridj-0.6.2.classpath"/>
+    <path refid="library.ant-1.7.1.classpath"/>
   </path>
   
   <path id="kittyfav_payroll.module.classpath">
     <path refid="${module.jdk.classpath.kittyfav_payroll}"/>
     <pathelement location="${kittyfav_payroll.output.dir}"/>
+    <path refid="library.db2jcc.classpath"/>
     <path refid="library.jfoenix.classpath"/>
+    <path refid="library.bridj-0.6.2.classpath"/>
+    <path refid="library.ant-1.7.1.classpath"/>
   </path>
   
   <path id="kittyfav_payroll.runtime.module.classpath">
     <pathelement location="${kittyfav_payroll.testoutput.dir}"/>
     <pathelement location="${kittyfav_payroll.output.dir}"/>
+    <path refid="library.db2jcc.classpath"/>
     <path refid="library.jfoenix.classpath"/>
+    <path refid="library.bridj-0.6.2.classpath"/>
+    <path refid="library.ant-1.7.1.classpath"/>
   </path>
   
   

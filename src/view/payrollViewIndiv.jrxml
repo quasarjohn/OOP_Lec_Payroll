@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2017-03-05T19:51:33 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4_7" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7d177c83-ef9a-4894-862b-5a079bf0af9b">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DB2Connection"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT "JOHN"."PAYROLL_VIEW"."TOTAL_COMMISSION",
+	"JOHN"."PAYROLL_VIEW"."NET_INCOME",
+	"JOHN"."PAYROLL_VIEW"."DAYS_WORKED",
+	"JOHN"."PAYROLL_VIEW"."FIRST_NAME",
+	"JOHN"."PAYROLL_VIEW"."LAST_NAME",
+	"JOHN"."PAYROLL_VIEW"."MIDDLE_NAME",
+	"JOHN"."PAYROLL_VIEW"."HOURS_WORKED",
+	"JOHN"."PAYROLL_VIEW"."TOTAL_BASIC",
+	"JOHN"."PAYROLL_VIEW"."PRE_EMPNO",
+	"JOHN"."PAYROLL_VIEW"."SSS",
+	"JOHN"."PAYROLL_VIEW"."POST_EMPNO",
+	"JOHN"."PAYROLL_VIEW"."GENDATE",
+	"JOHN"."PAYROLL_VIEW"."PAG_IBIG"
+FROM "JOHN"."PAYROLL_VIEW"
+WHERE 
+	 "JOHN"."PAYROLL_VIEW"."PRE_EMPNO" = 'preplaceholder'
+	 AND "JOHN"."PAYROLL_VIEW"."POST_EMPNO" = 'postplaceholder'
+	 AND "JOHN"."PAYROLL_VIEW"."GENDATE" = 'gendateplaceholder'
+ORDER BY "JOHN"."PAYROLL_VIEW"."LAST_NAME" ASC]]>
+	</queryString>
+	<field name="TOTAL_COMMISSION" class="java.lang.Double"/>
+	<field name="NET_INCOME" class="java.lang.Double"/>
+	<field name="DAYS_WORKED" class="java.lang.Integer"/>
+	<field name="FIRST_NAME" class="java.lang.String"/>
+	<field name="LAST_NAME" class="java.lang.String"/>
+	<field name="MIDDLE_NAME" class="java.lang.String"/>
+	<field name="HOURS_WORKED" class="java.lang.Double"/>
+	<field name="TOTAL_BASIC" class="java.lang.Double"/>
+	<field name="PRE_EMPNO" class="java.lang.Integer"/>
+	<field name="SSS" class="java.math.BigDecimal"/>
+	<field name="POST_EMPNO" class="java.lang.Integer"/>
+	<field name="GENDATE" class="java.sql.Date"/>
+	<field name="PAG_IBIG" class="java.math.BigDecimal"/>
+	<group name="POST_EMPNO">
+		<groupExpression><![CDATA[$F{POST_EMPNO}]]></groupExpression>
+		<groupHeader>
+			<band height="360">
+				<staticText>
+					<reportElement x="0" y="0" width="150" height="30" uuid="db66bf65-60d0-42cf-9d5f-047e22936d74"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Employee Name: ]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="83" y="0" width="297" height="30" uuid="2ca0cb99-4f99-4aa7-8a9a-e0b50d672a78"/>
+					<textFieldExpression><![CDATA[$F{LAST_NAME} + ", " + $F{FIRST_NAME} + " " + $F{MIDDLE_NAME}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="90" width="60" height="30" uuid="80db690e-5ccc-47d7-8a79-b1cbc396fcb5"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[INCOME]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="120" width="60" height="30" uuid="91de90af-f3ff-488a-9bb3-c490a547c638"/>
+					<text><![CDATA[Commission: ]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="70" y="120" width="100" height="30" uuid="7df3f2b1-88dd-4017-a4dc-d1765aaefd37"/>
+					<textFieldExpression><![CDATA[$F{TOTAL_COMMISSION}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="150" width="60" height="30" uuid="81782830-b7ac-46d9-8c68-ff3261c10528"/>
+					<text><![CDATA[Basic Pay:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="70" y="150" width="100" height="30" uuid="b4112900-296b-416c-a329-4bba4d6b8246"/>
+					<textFieldExpression><![CDATA[$F{TOTAL_BASIC}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="40" width="70" height="30" uuid="d31aba23-f24f-4cb3-a1d7-dfb70d43f013"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Days Worked: ]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="80" y="40" width="70" height="30" uuid="c16aa3f7-441d-4c3b-b688-7c3882e98718"/>
+					<textFieldExpression><![CDATA[$F{DAYS_WORKED}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="153" y="40" width="87" height="30" uuid="e032b79b-f457-405c-bd34-9f3332839928"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Hours Worked:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="230" y="40" width="100" height="30" uuid="4b39c0cc-7136-4b63-a7a7-6830a9a304ab"/>
+					<textFieldExpression><![CDATA[$F{HOURS_WORKED}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="280" y="90" width="100" height="30" uuid="511c78c0-d9f6-4ec9-94e5-6f12226f9a61"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[DEDUCTIONS]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="280" y="120" width="50" height="30" uuid="86bcb290-e8aa-4c90-bb71-7cf7af962d6d"/>
+					<text><![CDATA[SSS:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="280" y="150" width="50" height="30" uuid="345c20d3-a1e0-4f47-9ca9-e8358b74a85f"/>
+					<text><![CDATA[Pag-ibig:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="330" y="120" width="100" height="30" uuid="a8fc0dfc-abc5-4916-939e-c9e904f81230"/>
+					<textFieldExpression><![CDATA[$F{SSS}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="330" y="150" width="100" height="30" uuid="fd17cc47-b6a6-4f80-a014-c6377cfbdaa3"/>
+					<textFieldExpression><![CDATA[$F{PAG_IBIG}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="200" width="70" height="30" uuid="afca8f81-9482-415e-9c5a-9ae5d9230cd4"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[NET INCOME:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="70" y="200" width="100" height="30" uuid="793df4fb-9013-4aef-b13e-68401a1e7e37"/>
+					<textFieldExpression><![CDATA[$F{NET_INCOME}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="420" y="260" width="140" height="20" uuid="e5acad11-c3c3-404a-b0b8-19bb312fca6e"/>
+					<text><![CDATA[Anna Mendonza Guiang]]></text>
+				</staticText>
+				<line>
+					<reportElement x="407" y="250" width="137" height="1" uuid="7015cdd3-4e78-4f1e-8e99-03084bdbc6d8"/>
+				</line>
+				<staticText>
+					<reportElement x="420" y="280" width="100" height="30" uuid="923cae10-94f7-483a-9242-a3016793567f"/>
+					<text><![CDATA[Salon Owner]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="131" splitType="Stretch">
+			<staticText>
+				<reportElement x="200" y="10" width="180" height="30" uuid="1cf38e2a-b0c5-4f37-8b28-e8d5e70c947d"/>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[Kitta Fav Spa and Salon]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="183" y="39" width="220" height="30" uuid="f507bfb2-7f82-491a-b432-937b7208f561"/>
+				<text><![CDATA[#62, Unit C101, Bell Mansion Condominium]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="203" y="49" width="151" height="30" uuid="310da108-73f9-4bfd-a104-f133d98aca72"/>
+				<text><![CDATA[Road 13, Pag-asa, Quezon City]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="80" width="80" height="30" uuid="02178b2b-65b9-4208-9ca0-2ea876b16939"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Date Generated: ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="80" y="80" width="100" height="30" uuid="5098586f-c9f5-43ad-aaf3-bbd5abe66160"/>
+				<textFieldExpression><![CDATA[$F{GENDATE}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="125" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

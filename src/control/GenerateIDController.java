@@ -153,7 +153,7 @@ public class GenerateIDController {
 
     public void generateSnapshot(HBox hb, Employee emp) {
         WritableImage  image = hb.snapshot(new SnapshotParameters(), null);
-        File file = new File("C:KFAVIDs/" + emp.getLastName()+ "ID.png");
+        File file = new File("C:KFAVIDs/" + emp.getLastName() + "_ " + emp.getFirstName()+ "ID.png");
         file.getParentFile().mkdirs();
         try{
             ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", file);

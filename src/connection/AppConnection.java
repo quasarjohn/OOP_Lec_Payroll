@@ -22,7 +22,6 @@ public class AppConnection {
             System.out.println("Driver not loaded");
             var2.printStackTrace();
         }
-
     }
 
     public void connectToDB() {
@@ -90,5 +89,9 @@ public class AppConnection {
         }
 
         return this.count;
+    }
+
+    public Connection getConn() {
+        return conn;
     }
 }

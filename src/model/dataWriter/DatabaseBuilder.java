@@ -68,9 +68,11 @@ public class DatabaseBuilder {
                 "timeout time, " +
                 "hours_worked time, " +
                 "status varchar(10), " +
+                "hours_worked_in_sec integer, " +
+                "basic_pay decimal, " +
+                "date_paid date, " +
                 "primary key(pre_empno, post_empno, workdate), " +
                 "foreign key(pre_empno, post_empno) references employees)");
-
         conn.execute();
 
         conn.doSomething("create table earnings(pre_empno integer not null, " +
@@ -79,6 +81,13 @@ public class DatabaseBuilder {
                 "category varchar(50), notes varchar(100), " +
                 "foreign key(pre_empno, post_empno, workdate) references attendance )");
         conn.execute();
+
+        conn.doSomething("create table payroll(gendate date not null, pre_empno " +
+                "integer not null, post_empno integer not null, total_commission double," +
+                " total_basic double, hours_worked double, days_worked integer, pag_ibig decimal, " +
+                "sss decimal, net_income double, primary key(gendate, pre_empno, post_empno))");
+        conn.execute();
+
 
         conn.closeConnection();
     }

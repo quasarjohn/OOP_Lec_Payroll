@@ -37,7 +37,7 @@ public class EmployeeDashboardListAdapter {
     @FXML
     private Label title;
     @FXML
-    private Label subtitle, commissionL;
+    private Label subtitle;
 
     private int position;
 
@@ -66,7 +66,6 @@ public class EmployeeDashboardListAdapter {
         subtitle.setText("Time-in: " + emp.getTimein() +" | Hours worked: " +
                 DateUtils.getHoursWorked(DateUtils.timeToInt(emp.getTimein())));
         circle.setFill(Images.getImagePatternFromFile(this,"C:KFAVImages/" + emp.getImageUUID()));
-        commissionL.setText(DashboardReader.getTotalCommission(emp.getPre_empNo(), emp.getPost_empNo(), date) + "");
     }
 
     public HBox getItem() {

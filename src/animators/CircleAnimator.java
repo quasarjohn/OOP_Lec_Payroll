@@ -16,7 +16,6 @@ import javafx.util.Duration;
 public class CircleAnimator {
 
     public static void hideFab(Circle circle) {
-
         Platform.runLater(() -> {
             Timeline timeline = new Timeline(new KeyFrame(Duration.millis(10), ae -> {
                 circle.setRadius(circle.getRadius() - 5);

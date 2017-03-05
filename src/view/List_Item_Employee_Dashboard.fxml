@@ -25,10 +25,5 @@
          </children>
       </VBox>
       <Region prefHeight="78.0" HBox.hgrow="ALWAYS" />
-      <Label fx:id="commissionL" text="P500.25">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
     </children>
 </HBox>
