@@ -14,7 +14,8 @@ public class Logger {
     public enum LogType {
         LOGIN_SUCCESS, LOGIN_ATTEMPT, LOGOUT,
         EMP_ADD, EMP_DELETE, EMP_UPDATE, EMP_GEN_BADGE,
-        PAY_ADD_ITEM, PAY_GENERATE
+        PAY_ADD_ITEM, PAY_GENERATE,
+        UPDATE_USER_PASS
     }
 
     public static void log(LogType logtype, String username, String details) {

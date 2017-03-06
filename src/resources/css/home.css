@@ -106,7 +106,7 @@
       //-fx-background-color: #7c2d6d
 }
 
-#generateBadgeB, #dashboardAddButton {
+#generateBadgeB, #dashboardAddButton, #updateB {
     -fx-background-color: #f2a42d;
     -fx-text-fill:white;
     -fx-background-size: stretch;
@@ -120,7 +120,7 @@
     -fx-background-color:gray
 }
 
-#monthCB, #yearCB, #datePicker, #categoryCB, #attendaceDatePicker {
+#monthCB, #yearCB, #datePicker, #categoryCB, #attendaceDatePicker, #paydatesCB {
     -fx-border-color: white;
     -fx-background-color:white;
 }

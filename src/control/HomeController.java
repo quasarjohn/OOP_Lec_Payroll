@@ -3,6 +3,7 @@ package control;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
 import javafx.concurrent.Task;
+import javafx.scene.layout.VBox;
 import model.dataReader.EmpReader;
 import model.dataStructure.Employee;
 import utils.Domain;
@@ -71,14 +72,8 @@ public class HomeController implements Initializable {
     }
 
     @FXML
-    private HBox drawerItem1;
-    @FXML
-    private HBox drawerItem2;
-    @FXML
-    private HBox drawerItem3;
-    @FXML
-    private HBox drawerItem4;
-
+    private HBox drawerItem1, drawerItem2,
+            drawerItem3, drawerItem4, drawerItem5;
     @FXML
     private HBox headerContent;
 
@@ -99,6 +94,7 @@ public class HomeController implements Initializable {
         drawerItems.add(drawerItem2);
         drawerItems.add(drawerItem3);
         drawerItems.add(drawerItem4);
+        drawerItems.add(drawerItem5);
     }
 
     public void listenToItem1() {
@@ -150,6 +146,16 @@ public class HomeController implements Initializable {
         });
     }
 
+    @FXML
+    public void listenToItem5() {
+        toolbarTitle.setText("SETTINGS");
+        resetDrawerItemFocus();
+        focusItem(drawerItem5);
+        Platform.runLater(() -> {
+            body.setCenter(settingsPane);
+        });
+    }
+
     private void resetDrawerItemFocus() {
         for (HBox item : drawerItems) {
             item.setStyle("-fx-background-color:white");
@@ -184,8 +190,10 @@ public class HomeController implements Initializable {
     private PayrollController payrollController;
     private EmployeeController employeeController;
     private AttendanceController attendanceController;
+    private SettingsController settingsController;
 
-    private HBox dashboardPane, payrollPane, empPane, settingsPane, attendancePane;
+    private HBox dashboardPane, payrollPane, empPane, attendancePane;
+    private VBox settingsPane;
 
     private void inflatePanes() {
         //Inflate Layouts
@@ -199,7 +207,7 @@ public class HomeController implements Initializable {
         dashboardController = new DashboardController();
         payrollController = new PayrollController();
         employeeController = new EmployeeController();
-        //TODO
+        settingsController = new SettingsController();
         attendanceController = new AttendanceController();
 
         //Set controllers
@@ -207,6 +215,7 @@ public class HomeController implements Initializable {
         payrollPaneLoader.setController(payrollController);
         empPaneLoader.setController(employeeController);
         attendancePaneLoader.setController(attendanceController);
+        settingsPaneLoader.setController(settingsController);
 
         //Load views
         try {

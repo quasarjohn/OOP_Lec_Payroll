@@ -100,7 +100,7 @@
                         <Insets left="16.0" />
                      </padding>
                   </HBox>
-                  <HBox alignment="CENTER_LEFT" spacing="16.0">
+                  <HBox fx:id="drawerItem5" alignment="CENTER_LEFT" onMouseClicked="#listenToItem5" spacing="16.0">
                      <children>
                         <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                            <image>

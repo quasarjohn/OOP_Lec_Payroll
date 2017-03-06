@@ -8,7 +8,10 @@ import javafx.scene.layout.Priority;
 import model.dataReader.EmpReader;
 import model.dataReader.PayrollReader;
 import model.dataStructure.Employee;
+import model.dataWriter.ActiveUser;
+import model.dataWriter.Logger;
 import model.dataWriter.PayrollWriter;
+import utils.DateUtils;
 import utils.Domain;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -49,8 +52,6 @@ public class PayrollController implements Initializable {
         sp.setFitToWidth(true);
         sp2.setFitToWidth(true);
         sp2.setFitToHeight(true);
-
-
     }
 
     void populateEmpList() {
@@ -61,7 +62,6 @@ public class PayrollController implements Initializable {
         paydatesCB.getSelectionModel().select(0);
 
         ArrayList<HBox> items = new ArrayList<>();
-
 
         Domain.getEmpList().clear();
         empListContainer.getChildren().clear();
@@ -83,20 +83,21 @@ public class PayrollController implements Initializable {
                 generateReport();
             });
 
-            if (i == 0) {
+            if (i == position) {
                 Platform.runLater(() -> {
                     FocusSwapper.changeFocus(items.get(0), items);
-
                 });
             }
         }
+        Platform.runLater(() -> generateReport());
     }
 
     @FXML
     void listenToGeneratePayrollB() {
         new PayrollWriter().generate(employees);
         paydatesCB.getItems().setAll(PayrollReader.getPaydates());
-
+        Logger.log(Logger.LogType.PAY_GENERATE, ActiveUser.getUsername(),
+                "Generated payslip for " + DateUtils.getCurrentDate());
     }
 
     private void generateReport() {
