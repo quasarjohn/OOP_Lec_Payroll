@@ -66,8 +66,11 @@ public class EditEmployeeController {
 
         hireDatePicker.setValue(LocalDate.now());
 
-        FilterUtils.restrictToNumbers(tf_pagIbig);
-        FilterUtils.restrictToNumbers(tf_sss);
+        FilterUtils.restrictToDecimal(tf_pagIbig);
+        FilterUtils.restrictToDecimal(tf_sss);
+        FilterUtils.restrictToDecimal(tf_commission);
+        FilterUtils.restrictToDecimal(tf_ratePerHour);
+
         FilterUtils.restrictToNumbers(tf_phoneNumber);
         FilterUtils.restrictToNumbers(tf_contactPersonNumber);
 
@@ -276,8 +279,8 @@ public class EditEmployeeController {
                 tf_contactPersonNumber.getText().length() > 0 &&
                 tf_pagIbig.getText().length() > 0 &&
                 tf_sss.getText().length() > 0 &&
-                tf_sss.getText().length() < 6 &&
-                tf_pagIbig.getText().length() < 6
+                tf_sss.getText().length() <=6 &&
+                tf_pagIbig.getText().length() <= 6
                 ) {
             return true;
         } else {

@@ -33,7 +33,7 @@ import java.util.ResourceBundle;
 /**
  * Created by John on 12/10/2016.
  */
-public class MainController implements Initializable {
+public class LoginController implements Initializable {
 
     private AppConnection conn;
 
@@ -83,30 +83,32 @@ public class MainController implements Initializable {
 
         UserLogin userLogin = new UserLogin(conn);
 
-        if(userLogin.credentialMatch(username, password)) {
-            Logger.log(Logger.LogType.LOGIN_SUCCESS, username, "Successful Login");
-            ActiveUser.setUsername(username);
-            HomeController homeController = new HomeController();
-            FXMLLoader homePaneLoader = new FXMLLoader(getClass().getResource("/view/Home.fxml"));
-            homePaneLoader.setController(homeController);
-            try {
-                Stage stage = Domain.getPrimaryStage();
-                stage.hide();
-                Parent root = homePaneLoader.load();
-                Scene scene = new Scene(root, 1000, 500);
-                scene.getStylesheets().add(getClass().getResource("/resources/css/jfoenix-components.css").toExternalForm());
-                scene.getStylesheets().add(getClass().getResource("/resources/css/home.css").toExternalForm());
-                stage.setScene(scene);
-                homeController.listenToItem1();
-                stage.centerOnScreen();
-            } catch (IOException e) {
-                conn.closeConnection();
-                e.printStackTrace();
+        if((username.length() > 0 && password.length() > 0)) {
+            if(userLogin.credentialMatch(username, password)) {
+                Logger.log(Logger.LogType.LOGIN_SUCCESS, username, "Successful Login");
+                ActiveUser.setUsername(username);
+                HomeController homeController = new HomeController();
+                FXMLLoader homePaneLoader = new FXMLLoader(getClass().getResource("/view/Home.fxml"));
+                homePaneLoader.setController(homeController);
+                try {
+                    Stage stage = Domain.getPrimaryStage();
+                    stage.hide();
+                    Parent root = homePaneLoader.load();
+                    Scene scene = new Scene(root, 1000, 500);
+                    scene.getStylesheets().add(getClass().getResource("/resources/css/jfoenix-components.css").toExternalForm());
+                    scene.getStylesheets().add(getClass().getResource("/resources/css/home.css").toExternalForm());
+                    stage.setScene(scene);
+                    homeController.listenToItem1();
+                    stage.centerOnScreen();
+                } catch (IOException e) {
+                    conn.closeConnection();
+                    e.printStackTrace();
+                }
             }
-        }
-        else {
-            errorL.setVisible(true);
-            Logger.log(Logger.LogType.LOGIN_ATTEMPT, username, "Failed Login Attempt");
+            else {
+                errorL.setVisible(true);
+                Logger.log(Logger.LogType.LOGIN_ATTEMPT, username, "Failed Login Attempt");
+            }
         }
     }
 

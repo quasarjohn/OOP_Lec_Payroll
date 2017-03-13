@@ -1,6 +1,6 @@
 package driver;
 
-import control.MainController;
+import control.LoginController;
 import javafx.scene.image.Image;
 import model.dataWriter.EmployeeWriter;
 import utils.Domain;
@@ -27,7 +27,7 @@ public class Main extends Application {
         primaryStage.setResizable(true);
         primaryStage.centerOnScreen();
         primaryStage.hide();
-        MainController mainController = new MainController();
+        LoginController mainController = new LoginController();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Login.fxml"));
         loader.setController(mainController);
         BorderPane root = loader.load();

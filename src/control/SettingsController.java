@@ -41,7 +41,6 @@ public class SettingsController {
                         oldUsernameTF.getText() + " AND " + oldPasswordTF.getText() + " to " +
                         newUsernameTF.getText() + " AND " + newPasswordTF.getText());
                 AlertUtils.showAlert("Update Success.", "Your username and password has been updated.");
-
             } else {
                 AlertUtils.showAlert("Update failed.", "Please verify your input.");
             }

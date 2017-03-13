@@ -26,7 +26,7 @@ public class UserLogin {
                 password = conn.getRS().getString(2);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("INCORRECT USERNAME OR PASSWORD");
         }
 
         if(u.equals(username) && p.equals(password)) {

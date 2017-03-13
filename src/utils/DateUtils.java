@@ -1,8 +1,11 @@
 package utils;
 
 import com.jfoenix.controls.JFXDatePicker;
+import connection.AppConnection;
+import model.dataStructure.Employee;
 import values.Strings;
 
+import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -14,8 +17,8 @@ public class DateUtils {
 
     public static int wordToInt(String month) {
 
-        for(int i = 0; i < Strings.months().size(); i++) {
-            if(month.equalsIgnoreCase(Strings.months().get(i)))
+        for (int i = 0; i < Strings.months().size(); i++) {
+            if (month.equalsIgnoreCase(Strings.months().get(i)))
                 return i + 1;
         }
         return 0;
@@ -36,7 +39,7 @@ public class DateUtils {
         try {
             String[] parts = time.split(":");
 
-             sec = Integer.parseInt(parts[2]) + Integer.parseInt(parts[1]) * 60 + Integer.parseInt(parts[0]) * 3600;
+            sec = Integer.parseInt(parts[2]) + Integer.parseInt(parts[1]) * 60 + Integer.parseInt(parts[0]) * 3600;
         } catch (Exception e) {
             return 0;
         }
@@ -53,14 +56,36 @@ public class DateUtils {
         return new SimpleDateFormat("HH:mm:ss").format(new Date());
     }
 
-    public static String getHoursWorked(int timeIn) {
+    public static String getHoursWorked(Employee emp, JFXDatePicker dp) {
 
-        if(timeIn == 0) {
+        AppConnection conn = new AppConnection();
+        conn.loadDriver();
+        conn.connectToDB();
+
+        int timeOut = 0;
+
+        conn.doSomething("select timeout from attendance where pre_empno = " +
+                emp.getPre_empNo() + " AND post_empno = " + emp.getPost_empNo() + " AND workdate = '" +
+                DateUtils.getDateFromDatePicker(dp) + "'");
+        try {
+            conn.query();
+            while (conn.getRS().next()) {
+                timeOut = DateUtils.timeToInt(conn.getRS().getString(1));
+                System.out.println(timeOut);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        int timeIn = DateUtils.timeToInt(emp.getTimein());
+
+        if (timeIn == 0) {
             return "00:00:00";
         }
 
-        int timeOut = timeToInt(DateUtils.getCurrentTime());
-
+        if(timeOut == 0) {
+            timeOut = DateUtils.timeToInt(DateUtils.getCurrentTime());
+        }
         DecimalFormat df = new DecimalFormat("00");
 
         int diff = timeOut - timeIn;
@@ -69,7 +94,7 @@ public class DateUtils {
 
         while (diff > 59) {
             diff -= 60;
-            min ++;
+            min++;
 
             while (min > 59) {
                 min -= 60;
@@ -99,10 +124,11 @@ public class DateUtils {
 
         while (time > 59) {
             time -= 59;
-            min ++; {
-                while (min >=59) {
+            min++;
+            {
+                while (min >= 59) {
                     min -= 59;
-                    hour ++;
+                    hour++;
                 }
             }
         }

@@ -57,8 +57,11 @@ public class AddEmployeeController {
         scheduleTimePicker.setShowTime(true);
         scheduleTimePicker.setTime(LocalTime.of(10, 00));
 
-        FilterUtils.restrictToNumbers(tf_pagIbig);
-        FilterUtils.restrictToNumbers(tf_sss);
+        FilterUtils.restrictToDecimal(tf_pagIbig);
+        FilterUtils.restrictToDecimal(tf_sss);
+        FilterUtils.restrictToDecimal(tf_commission);
+        FilterUtils.restrictToDecimal(tf_ratePerHour);
+
         FilterUtils.restrictToNumbers(tf_phoneNumber);
         FilterUtils.restrictToNumbers(tf_contactPersonNumber);
 
@@ -72,7 +75,7 @@ public class AddEmployeeController {
 
             file = fc.showOpenDialog(Domain.getPrimaryStage());
 
-            if(file != null) {
+            if (file != null) {
                 File dir = null;
 
                 try {
@@ -91,7 +94,7 @@ public class AddEmployeeController {
 
     public boolean addEmployee() {
         boolean ready = noEmptyFields();
-        if(ready) {
+        if (ready) {
             String uuid = UUID.randomUUID().toString();
 
             Employee emp = new Employee();
@@ -139,8 +142,7 @@ public class AddEmployeeController {
             Logger.log(Logger.LogType.EMP_ADD, ActiveUser.getUsername(), "Added " + emp.getPre_empNo() +
                     "" + emp.getPost_empNo());
             return ready;
-        }
-        else {
+        } else {
             AlertUtils.showAlert("Make sure there are no empty fields " +
                     "and you have chosen a picture..", "Also make sure that SSS " +
                     "and Pag-ibig are not out of range (Maximum of 5 numbers).");
@@ -173,11 +175,11 @@ public class AddEmployeeController {
         try {
             System.out.println(birthdayPicker.getValue().getMonthValue());
         } catch (Exception e) {
-            return  false;
+            return false;
         }
 
-        if(tf_firstName.getText().length() > 0 &&
-        tf_middleName.getText().length() > 0 &&
+        if (tf_firstName.getText().length() > 0 &&
+                tf_middleName.getText().length() > 0 &&
                 tf_middleName.getText().length() > 0 &&
                 tf_lastName.getText().length() > 0 &&
                 tf_phoneNumber.getText().length() > 0 &&
@@ -189,11 +191,12 @@ public class AddEmployeeController {
                 tf_sss.getText().length() > 0 &&
                 dpPath != null &&
                 tf_sss.getText().length() < 6 &&
-                tf_pagIbig.getText().length() < 6
+                tf_pagIbig.getText().length() < 6 &&
+                tf_phoneNumber.getText().length() <= 12 &&
+                tf_contactPersonNumber.getText().length() <= 12
                 ) {
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }

@@ -1,5 +1,6 @@
 package model.dataReader;
 
+import com.jfoenix.controls.JFXDatePicker;
 import connection.AppConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -130,7 +131,7 @@ public class DashboardReader {
         return data;
     }
 
-    public static String getTotalEmpHour(Employee emp, String date) {
+    public String getTotalEmpHour(Employee emp, String date) {
         String value = "";
         AppConnection conn = new AppConnection();
         conn.loadDriver();
@@ -146,22 +147,38 @@ public class DashboardReader {
             e.printStackTrace();
         }
 
-        String timeDifference = DateUtils.getTimeDifference(value, DateUtils.getCurrentTime());
-        int totalWorkedInSec = DateUtils.timeToInt(timeDifference);
+        String timeout = "";
 
+        conn.doSomething("select timeout from attendance where pre_empno = " + emp.getPre_empNo() +
+                " AND post_empno = " + emp.getPost_empNo() + " AND workdate = '" + date + "'");
+        try {
+            conn.query();
+            while (conn.getRS().next()) {
+                timeout = conn.getRS().getString(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        if(timeout == null) {
+            timeout = DateUtils.getCurrentTime();
+        }
+
+        String timeDifference = DateUtils.getTimeDifference(value, timeout);
+        int totalWorkedInSec = DateUtils.timeToInt(timeDifference);
 
         conn.closeConnection();
         return new DecimalFormat("##.00").format(totalWorkedInSec * EmpReader.getRatePerSec(emp));
     }
 
-    public static double getTotalBasicPay(ArrayList<Employee> employees) {
+    public double getTotalBasicPay(ArrayList<Employee> employees, JFXDatePicker dp) {
 
         double value = 0;
         for (Employee employee : employees) {
-
-            double totalHours = Double.parseDouble(getTotalEmpHour(employee, DateUtils.getCurrentDate()));
+            double totalHours = Double.parseDouble(getTotalEmpHour(employee, DateUtils.getDateFromDatePicker(dp)));
             value += totalHours;
         }
+        System.out.println(value);
         return value;
     }
 }

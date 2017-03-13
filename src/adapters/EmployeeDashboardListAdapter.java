@@ -1,5 +1,6 @@
 package adapters;
 
+import com.jfoenix.controls.JFXDatePicker;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
@@ -43,15 +44,18 @@ public class EmployeeDashboardListAdapter {
 
     private TableView table;
 
+    private JFXDatePicker dp;
+
     private HBox hBox;
     private Employee emp;
     private String date;
     public EmployeeDashboardListAdapter(VBox jobsDoneListContainer, Employee emp,
-                                        int position, TableView table, String date) {
+                                        int position, TableView table, String date, JFXDatePicker dp) {
         this.date = date;
         this.emp  = emp;
         this.table = table;
         this.position = position;
+        this.dp = dp;
         this.jobsDoneListContainer = jobsDoneListContainer;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/List_Item_Employee_Dashboard.fxml"));
         loader.setController(this);
@@ -64,7 +68,7 @@ public class EmployeeDashboardListAdapter {
         title.setText(emp.getFirstName() + " " + emp.getMiddleName().charAt(0) + ". " +
         emp.getLastName());
         subtitle.setText("Time-in: " + emp.getTimein() +" | Hours worked: " +
-                DateUtils.getHoursWorked(DateUtils.timeToInt(emp.getTimein())));
+                DateUtils.getHoursWorked(emp, dp));
         circle.setFill(Images.getImagePatternFromFile(this,"C:KFAVImages/" + emp.getImageUUID()));
     }
 

@@ -6,13 +6,16 @@ import animators.CircleAnimator;
 import animators.FocusSwapper;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
+import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.input.KeyCode;
 import javafx.util.Callback;
 import model.dataReader.DashboardReader;
+import model.dataReader.EmpReader;
 import model.dataReader.Suggestions;
 import model.dataStructure.Earning;
 import model.dataStructure.Employee;
@@ -27,6 +30,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import utils.FilterUtils;
 import values.Strings;
 import values.Styles;
 
@@ -92,8 +96,18 @@ public class DashboardController implements Initializable {
         suggestions = new Suggestions();
 
         categoryCB.getJFXEditor().setOnKeyTyped(e -> {
+
             categoryCB.getItems().setAll(suggestions.getCategorySuggestions(categoryCB.getJFXEditor().getText().toUpperCase()));
             categoryCB.show();
+        });
+
+        categoryCB.setOnKeyPressed(e -> {
+            if (e.getCode() == KeyCode.TAB) {
+                Platform.runLater(() -> {
+                    categoryCB.hide();
+                    priceCB.requestFocus();
+                });
+            }
         });
 
         empOrderCB.getItems().setAll(Strings.orderOptions());
@@ -101,6 +115,8 @@ public class DashboardController implements Initializable {
 
         int[] date = DateUtils.dateToInt(Strings.getDateFormat().format(new Date()));
         datePicker.setValue(LocalDate.of(date[0], date[1], date[2]));
+
+        FilterUtils.restrictToDecimal(priceCB.getJFXEditor());
     }
 
     private String date;
@@ -122,7 +138,7 @@ public class DashboardController implements Initializable {
         empListContainer.getChildren().clear();
         for (int i = 0; i < employees.size(); i++) {
             EmployeeDashboardListAdapter emp = new EmployeeDashboardListAdapter(jobsDoneListContainer,
-                    employees.get(i), i, table, date);
+                    employees.get(i), i, table, date, datePicker);
             HBox hb = emp.getItem();
             empListContainer.getChildren().addAll(hb);
             items.add(hb);
@@ -153,6 +169,7 @@ public class DashboardController implements Initializable {
         CircleAnimator.hideFab(fab);
         //fab.setVisible(false);
         stackPane.getChildren().get(0).toFront();
+        Platform.runLater(() -> categoryCB.requestFocus());
     }
 
     @FXML
@@ -218,11 +235,11 @@ public class DashboardController implements Initializable {
 
         System.out.println(new SimpleDateFormat("yyyy-M-dd").format(new Date()));
 
-        if (isDatesEqual(datePicker.getValue().getYear() + "-" + datePicker.getValue().getMonthValue() + "-" +
-                datePicker.getValue().getDayOfYear(), new SimpleDateFormat("yyyy-M-dd").format(new Date())))
-            CircleAnimator.showFab(fab);
-        else
-            CircleAnimator.hideFab(fab);
+//        if (isDatesEqual(datePicker.getValue().getYear() + "-" + datePicker.getValue().getMonthValue() + "-" +
+//                datePicker.getValue().getDayOfYear(), new SimpleDateFormat("yyyy-M-dd").format(new Date())))
+//            CircleAnimator.showFab(fab);
+//        else
+//            CircleAnimator.hideFab(fab);
 
         populateEmpList();
     }
@@ -241,19 +258,37 @@ public class DashboardController implements Initializable {
         else return false;
     }
 
+    private void resetDashboardHeader() {
+        salonIncomeL.setText("Salon Income: 0");
+        salonCommissionL.setText("-Commission: 0");
+
+        netSalonIncomeL.setText("0");
+        salonBasicPayL.setText("-Basic Pay: 0");
+
+        empCommissionL.setText("Total Commission: 0");
+        empBasicPayL.setText("Total Basic Pay: 0");
+        empTotalEarning.setText("Total Earning: 0");
+    }
+
     private void loadDashboardHeaderData() {
         if (employees.size() > 0) {
             double data[] = new DashboardReader().getTotalEarningAndCommission(DateUtils.getDateFromDatePicker(datePicker));
             double empTotalBasicPay = 0;
 
-            for (Employee emp : employees) {
-                empTotalBasicPay += Double.parseDouble(DashboardReader.getTotalEmpHour(emp, DateUtils.getCurrentDate()));
-            }
+            empTotalBasicPay = Double.parseDouble(new
+                    DashboardReader().getTotalEmpHour(employees.get(position), DateUtils.getDateFromDatePicker(datePicker)));
 
             salonIncomeL.setText("Salon Income: " + df.format(data[0]));
             salonCommissionL.setText("-Commission: " + df.format(data[1]));
-            netSalonIncomeL.setText(df.format(data[0] - (data[1] + empTotalBasicPay)));
-            salonBasicPayL.setText("-Basic Pay: " + df.format(DashboardReader.getTotalBasicPay(employees)));
+
+            double totalBasicPay = new DashboardReader().getTotalBasicPay(employees, datePicker);
+
+            netSalonIncomeL.setText(df.format(data[0] - (data[1] + totalBasicPay)));
+            salonBasicPayL.setText("-Basic Pay: " + df.format(totalBasicPay));
+
+            for (Employee e : employees) {
+                System.out.println(e.getPost_empNo());
+            }
 
             int pre = employees.get(position).getPre_empNo();
             int post = employees.get(position).getPost_empNo();
@@ -263,6 +298,8 @@ public class DashboardController implements Initializable {
             empCommissionL.setText("Total Commission: " + df.format(empTotalCommission));
             empBasicPayL.setText("Total Basic Pay: " + df.format(empTotalBasicPay));
             empTotalEarning.setText("Total Earning: " + df.format(empTotalCommission + empTotalBasicPay));
+        } else {
+            resetDashboardHeader();
         }
     }
 
